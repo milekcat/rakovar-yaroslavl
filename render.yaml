@@ -23,6 +23,12 @@ services:
         value: /tmp/rakovar-preview.sqlite3
       - key: MAX_BOT_USERNAME
         value: id7606139934_5_bot
+      - key: MAX_MINIAPP_URL
+        value: https://rakovar-preview-0psh.onrender.com
+      - key: MAX_BOT_MODE
+        value: webhook
+      - key: MAX_WEBHOOK_SECRET
+        generateValue: true
       - key: LOYALTY_RUB_PER_TICKET
         value: "1000"
       - key: PREVIEW_DELIVERY_RUB
