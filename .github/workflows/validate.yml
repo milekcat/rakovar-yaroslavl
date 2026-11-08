@@ -1,0 +1,30 @@
+name: Validate Rakovar preview
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install development dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Restore preview UI
+        run: python prepare_render.py
+      - name: Compile Python modules
+        run: python -m py_compile app.py max_auth.py max_client.py max_bot.py catalog_seed.py prepare_render.py
+      - name: Run tests
+        run: pytest -q
+      - name: Check storefront scripts
+        run: |
+          node --check static/storefront.js
+          node --check static/admin.js
