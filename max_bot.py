@@ -9,7 +9,6 @@ import os
 import signal
 import sys
 import time
-from urllib.parse import quote
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -45,13 +44,18 @@ def _guest_id(user_id: int | str) -> str:
 
 
 def _buttons(username: str | None) -> list | None:
-    # Do not show a Mini App button until an HTTPS URL is registered in MAX settings.
+    # MAX must have this HTTPS Mini App URL saved in the bot's settings first.
     miniapp_url = os.getenv("MAX_MINIAPP_URL", "").strip()
     username = (username or os.getenv("MAX_BOT_USERNAME", "")).strip().lstrip("@")
     if not username or not miniapp_url.startswith("https://"):
         return None
-    link = f"https://max.ru/{quote(username)}?startapp=shop"
-    return [[{"type": "link", "text": "Открыть РАКОВАРЪ", "url": link}]]
+    # open_app launches the registered Mini App inside MAX (not an external tab).
+    return [[{
+        "type": "open_app",
+        "text": "Открыть РАКОВАРЪ",
+        "web_app": username,
+        "payload": "shop",
+    }]]
 
 
 def _send_user(user_id: int, text: str, username: str | None = None):
