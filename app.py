@@ -23,7 +23,7 @@ load_dotenv()
 
 from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash
-from catalog_seed import CATALOG_PRODUCTS
+from catalog_seed import CATALOG_PRODUCTS, is_non_brand_product
 from max_auth import validate_init_data as verify_max_init_data, MaxInitDataError
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -101,6 +101,12 @@ def connect_db():
         raise
     finally:
         conn.close()
+
+
+def public_catalog_products(c: sqlite3.Connection) -> list[dict]:
+    """Return active, brand-relevant items only; keep legacy rows available to admins."""
+    rows = c.execute("SELECT * FROM products WHERE active=1 ORDER BY category,title").fetchall()
+    return [dict(row) for row in rows if not is_non_brand_product(dict(row))]
 
 
 def get_loyalty_rate(c: sqlite3.Connection) -> int:
@@ -228,7 +234,7 @@ def init_db() -> None:
                 c.execute(f"ALTER TABLE {table} ADD COLUMN {column} {declaration}")
         if DEMO_MODE:
             seed_row = c.execute("SELECT setting_value FROM site_settings WHERE setting_key='catalog_seed_version'").fetchone()
-            if not seed_row or seed_row[0] != "brand-refresh-2026-11-09-v5":
+            if not seed_row or seed_row[0] != "brand-refresh-2026-11-09-v6":
                 # Refresh only unverified imported rows; operator-approved prices/stock are preserved.
                 for p in CATALOG_PRODUCTS:
                     c.execute("""INSERT INTO products
@@ -242,9 +248,14 @@ def init_db() -> None:
                         WHERE products.price_verified=0 AND products.stock_confirmed=0""",
                         (p['id'],p['title'],p['category'],p['price'],p['unit'],p['stock'],p['description'],p['image'],p['badge'],NOW(),p['image_url'],p['source_url'],0,0,p['weight'],p['price_on_request']))
                 c.execute("UPDATE products SET active=0 WHERE id IN ('crayfish-classic','seafood-platter','shrimp-tiger','crayfish-bouquet','seafood-gift')")
+                # Old preview databases can retain menu rows that are no longer part of the brand catalog.
+                legacy_rows = c.execute("SELECT id,title,category,description,image,badge,image_url FROM products WHERE active=1").fetchall()
+                for legacy_row in legacy_rows:
+                    if is_non_brand_product(dict(legacy_row)):
+                        c.execute("UPDATE products SET active=0 WHERE id=?", (legacy_row["id"],))
                 c.execute("UPDATE promotions SET ticket_reward=1 WHERE code IN ('WELCOME10','SEA300') AND ticket_reward=0")
                 c.execute("UPDATE contests SET ticket_reward=1 WHERE id='sea-evening' AND ticket_reward=0")
-                c.execute("INSERT OR REPLACE INTO site_settings(setting_key,setting_value,updated_at) VALUES('catalog_seed_version',?,?)", ("brand-refresh-2026-11-09-v5", NOW()))
+                c.execute("INSERT OR REPLACE INTO site_settings(setting_key,setting_value,updated_at) VALUES('catalog_seed_version',?,?)", ("brand-refresh-2026-11-09-v6", NOW()))
         if DEMO_MODE and c.execute("SELECT COUNT(*) FROM prizes").fetchone()[0] == 0:
             c.executemany("INSERT INTO prizes(id,title,kind,description,stock,weight,partner,reward_value) VALUES(?,?,?,?,?,?,?,?)",
               [(p['id'],p['title'],p['kind'],p['description'],p['stock'],p['weight'],p['partner'],p.get('reward_value',0)) for p in SAMPLE_PRIZES])
@@ -509,7 +520,7 @@ def normalize_cart(c: sqlite3.Connection, items: Any) -> tuple[list[dict], int]:
         if not isinstance(qty, int) or isinstance(qty, bool) or qty < 1 or qty > 50:
             abort(400, description="invalid_quantity")
         product = c.execute("SELECT * FROM products WHERE id=? AND active=1", (pid,)).fetchone()
-        if not product or product["stock"] < qty:
+        if not product or is_non_brand_product(dict(product)) or product["stock"] < qty:
             abort(409, description="item_unavailable")
         if product["price_on_request"]:
             abort(409, description="price_on_request")
@@ -673,7 +684,7 @@ def max_webhook():
 def bootstrap():
     guest_id = resolve_guest_id(request.args.get("guest_id", "")) if request.args.get("guest_id") or session.get("max_guest_id") else ""
     with connect_db() as c:
-        products = [dict(r) for r in c.execute("SELECT * FROM products WHERE active=1 ORDER BY category,title")]
+        products = public_catalog_products(c)
         promos = [dict(r) for r in c.execute("SELECT code,title,description,discount_type,discount_value,min_order FROM promotions WHERE active=1")]
         contests = [dict(r) for r in c.execute("SELECT id,title,description,prize_title,starts_at,ends_at,status,rules FROM contests WHERE status='active'")]
         prizes = [dict(r) for r in c.execute("SELECT id,title,kind,description,stock,partner FROM prizes WHERE active=1 AND stock>0")]
@@ -736,7 +747,7 @@ def referral_attach():
 @app.get("/api/products")
 def products():
     with connect_db() as c:
-        return jsonify([dict(r) for r in c.execute("SELECT * FROM products WHERE active=1 ORDER BY category,title")])
+        return jsonify(public_catalog_products(c))
 
 
 @app.post("/api/events")
@@ -1035,6 +1046,8 @@ def admin_product_create():
     if image not in {"opt_hero.svg","opt_crayfish.svg","opt_prawns.svg","opt_platter.svg","opt_bouquet.svg"}: abort(400)
     if image_url and not image_url.startswith("https://"): abort(400)
     if source_url and not source_url.startswith("https://"): abort(400)
+    if is_non_brand_product({"title":title,"category":category,"description":d.get("description",""),"image":image,"image_url":image_url}):
+        abort(400, description="unsupported_catalog_item")
     with connect_db() as c:
         c.execute("INSERT INTO products(id,title,category,price,unit,stock,description,image,badge,created_at,image_url,source_url,price_verified,stock_confirmed,weight_label,price_on_request) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                   (pid,title,category,price,str(d.get("unit","за шт."))[:20],stock,str(d.get("description",""))[:500],image,str(d.get("badge",""))[:40],NOW(),image_url,source_url,0,0,str(d.get("weight_label",""))[:40],price_on_request))
@@ -1071,6 +1084,12 @@ def admin_product_update(product_id):
         fields["image"]=d["image"]
     if not fields: abort(400)
     with connect_db() as c:
+        existing = c.execute("SELECT * FROM products WHERE id=?", (product_id,)).fetchone()
+        if not existing: abort(404)
+        candidate = dict(existing)
+        candidate.update(fields)
+        if int(candidate.get("active", 1)) and is_non_brand_product(candidate):
+            abort(400, description="unsupported_catalog_item")
         cur=c.execute("UPDATE products SET "+",".join(f"{k}=?" for k in fields)+" WHERE id=?",(*fields.values(),product_id))
         if not cur.rowcount: abort(404)
         audit(c,"update","product",product_id,fields)
