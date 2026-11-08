@@ -13,7 +13,7 @@ import time
 from dotenv import load_dotenv
 load_dotenv()
 
-from max_client import MaxAPIError, get_me, get_updates, send_message, set_commands
+from max_client import MaxAPIError, api_request, get_me, get_updates, send_message, set_commands
 from app import DEMO_MODE, connect_db, get_loyalty_rate, get_visitor, get_or_create_referral_code, loyalty_tier, referral_setting
 
 STOP = False
@@ -134,6 +134,24 @@ def handle_update(update: dict, bot_username: str | None = None):
     _send_user(int(user_id), answer, bot_username)
 
 
+def register_webhook() -> dict:
+    base_url = os.getenv("RENDER_EXTERNAL_URL", "").strip().rstrip("/")
+    secret = os.getenv("MAX_WEBHOOK_SECRET", "").strip()
+    if not base_url.startswith("https://"):
+        raise RuntimeError("RENDER_EXTERNAL_URL must be a public HTTPS URL")
+    if not secret:
+        raise RuntimeError("MAX_WEBHOOK_SECRET is not configured")
+    return api_request(
+        "POST",
+        "/subscriptions",
+        body={
+            "url": f"{base_url}/api/max/webhook",
+            "update_types": ["message_created", "bot_started"],
+            "secret": secret,
+        },
+    )
+
+
 def main():
     if not os.getenv("MAX_BOT_TOKEN", "").strip():
         print("BLOCKED: set MAX_BOT_TOKEN in .env (do not paste it into source code).", file=sys.stderr)
@@ -152,6 +170,21 @@ def main():
         print("MAX bot commands registered.")
     except MaxAPIError as exc:
         print(f"MAX command registration failed: {exc}", file=sys.stderr)
+    mode = os.getenv("MAX_BOT_MODE", "polling").strip().lower()
+    if mode == "webhook":
+        try:
+            register_webhook()
+        except (MaxAPIError, RuntimeError) as exc:
+            _record_health("error", f"webhook_registration_failed:{getattr(exc, 'status', None) or type(exc).__name__}")
+            print(f"MAX webhook registration failed: {exc}", file=sys.stderr)
+            return 1
+        _record_health("connected", f"@{username or 'username-not-returned'}; webhook")
+        print(f"MAX bot connected: @{username or 'username-not-returned'}; mode=webhook")
+        return 0
+    if mode != "polling":
+        print("MAX_BOT_MODE must be 'webhook' or 'polling'.", file=sys.stderr)
+        return 2
+
     _record_health("connected", f"@{username or 'username-not-returned'}; long-polling-dev")
     print(f"MAX bot connected: @{username or 'username-not-returned'}; mode=long-polling (development only)")
     marker = None
