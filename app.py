@@ -73,16 +73,16 @@ SAMPLE_CONTESTS = [
 
 
 SITE_DEFAULTS = {
-    "hero_title": "РАКОВАРЪ. Морская история со вкусом.",
-    "hero_text": "Живые и варёные раки, морские деликатесы, авторские сеты и съедобные подарки. Выбирайте любимое, собирайте свой набор и присоединяйтесь к клубу РАКОВАРЪ.",
-    "hero_cta": "Выбрать продукты",
+    "hero_title": "Море ближе, чем кажется.",
+    "hero_text": "Живые и варёные раки, крабы, креветки, мидии, рыба, авторские сеты и съедобные подарки. Подберём деликатесы для вечера, праздника и особого повода.",
+    "hero_cta": "Смотреть меню",
     "promo_title": "Маленький бонус для большого вкуса.",
     "promo_text": "Получайте клубные билеты за подтверждённые покупки и участие в специальных активностях. Тратьте их в игровой гавани РАКОВАРЪ.",
     "footer_notice": "Демонстрационный проект · не является публичной офертой",
     "loyalty_rub_per_ticket": str(LOYALTY_RUB_PER_TICKET),
-    "contact_address": "Малый Московский переулок, 1/17, Ярославль",
+    "contact_address": "Комсомольская, 14, Ярославль",
     "contact_phone": "+7 (920) 118-57-87",
-    "contact_hours": "Ежедневно · точное время подтвердить у менеджера",
+    "contact_hours": "Магазин: ежедневно 10:00–21:00 · доставка: 11:30–21:00. Время уточняйте при заказе.",
 }
 
 
@@ -228,7 +228,7 @@ def init_db() -> None:
                 c.execute(f"ALTER TABLE {table} ADD COLUMN {column} {declaration}")
         if DEMO_MODE:
             seed_row = c.execute("SELECT setting_value FROM site_settings WHERE setting_key='catalog_seed_version'").fetchone()
-            if not seed_row or seed_row[0] != "cross-platform-snapshot-2026-11-08-v4":
+            if not seed_row or seed_row[0] != "brand-refresh-2026-11-09-v5":
                 # Refresh only unverified imported rows; operator-approved prices/stock are preserved.
                 for p in CATALOG_PRODUCTS:
                     c.execute("""INSERT INTO products
@@ -244,7 +244,7 @@ def init_db() -> None:
                 c.execute("UPDATE products SET active=0 WHERE id IN ('crayfish-classic','seafood-platter','shrimp-tiger','crayfish-bouquet','seafood-gift')")
                 c.execute("UPDATE promotions SET ticket_reward=1 WHERE code IN ('WELCOME10','SEA300') AND ticket_reward=0")
                 c.execute("UPDATE contests SET ticket_reward=1 WHERE id='sea-evening' AND ticket_reward=0")
-                c.execute("INSERT OR REPLACE INTO site_settings(setting_key,setting_value,updated_at) VALUES('catalog_seed_version',?,?)", ("cross-platform-snapshot-2026-11-08-v4", NOW()))
+                c.execute("INSERT OR REPLACE INTO site_settings(setting_key,setting_value,updated_at) VALUES('catalog_seed_version',?,?)", ("brand-refresh-2026-11-09-v5", NOW()))
         if DEMO_MODE and c.execute("SELECT COUNT(*) FROM prizes").fetchone()[0] == 0:
             c.executemany("INSERT INTO prizes(id,title,kind,description,stock,weight,partner,reward_value) VALUES(?,?,?,?,?,?,?,?)",
               [(p['id'],p['title'],p['kind'],p['description'],p['stock'],p['weight'],p['partner'],p.get('reward_value',0)) for p in SAMPLE_PRIZES])
