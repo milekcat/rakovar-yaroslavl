@@ -50,7 +50,7 @@ def patch_storefront(path: Path) -> None:
         "ПРЕДПРОСМОТР РАКОВАРЪ · цены и наличие из публичного меню требуют подтверждения · оплата отключена",
         "ПРЕДПРОСМОТР · цены и наличие требуют подтверждения · фотографии из публичного меню · оплата отключена",
     )
-    html = html.replace("images/rakovar_mark.svg", BRAND_LOGO)
+    html = html.replace("src=\"{{ url_for('static', filename='images/rakovar_mark.svg') }}\"", f'src="{BRAND_LOGO}"')
     pattern = r'<section class="hero wrap">.*?</section>\s*<section class="trust-strip">.*?</section>'
     html, count = re.subn(pattern, HERO_AND_TRUST, html, count=1, flags=re.S)
     if count != 1:
@@ -73,8 +73,8 @@ def patch_storefront(path: Path) -> None:
     html = html.replace("концепция цифровой платформы", "морские и речные деликатесы · Ярославль")
     if "brand-refresh.css" not in html:
         html = html.replace(
-            '<link rel="stylesheet" href="{{ url_for(\\'static\\', filename=\\'app.css\\') }}">',
-            '<link rel="stylesheet" href="{{ url_for(\\'static\\', filename=\\'app.css\\') }}"><link rel="stylesheet" href="{{ url_for(\\'static\\', filename=\\'brand-refresh.css\\') }}">',
+            '<link rel="stylesheet" href="{{ url_for(\'static\', filename=\'app.css\') }}">',
+            '<link rel="stylesheet" href="{{ url_for(\'static\', filename=\'app.css\') }}"><link rel="stylesheet" href="{{ url_for(\'static\', filename=\'brand-refresh.css\') }}">',
         )
     path.write_text(html, encoding="utf-8")
 
