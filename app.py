@@ -257,6 +257,20 @@ def init_db() -> None:
         if DEMO_MODE:
             c.executemany("INSERT OR IGNORE INTO site_settings(setting_key,setting_value,updated_at) VALUES(?,?,?)",
                           [(k,v,NOW()) for k,v in SITE_DEFAULTS.items()])
+            # Migrate untouched preview defaults to the refreshed brand copy;
+            # preserve values that an administrator has explicitly customized.
+            default_migrations = [
+                ("hero_title", "РАКОВАРЪ. Морская история со вкусом.", SITE_DEFAULTS["hero_title"]),
+                ("hero_text", "Живые и варёные раки, морские деликатесы, авторские сеты и съедобные подарки. Выбирайте любимое, собирайте свой набор и присоединяйтесь к клубу РАКОВАРЪ.", SITE_DEFAULTS["hero_text"]),
+                ("hero_cta", "Выбрать продукты", SITE_DEFAULTS["hero_cta"]),
+                ("contact_address", "Малый Московский переулок, 1/17, Ярославль", SITE_DEFAULTS["contact_address"]),
+                ("contact_hours", "Ежедневно · точное время подтвердить у менеджера", SITE_DEFAULTS["contact_hours"]),
+            ]
+            for key, old_value, new_value in default_migrations:
+                c.execute(
+                    "UPDATE site_settings SET setting_value=?,updated_at=? WHERE setting_key=? AND setting_value=?",
+                    (new_value, NOW(), key, old_value),
+                )
 
 
 init_db()
