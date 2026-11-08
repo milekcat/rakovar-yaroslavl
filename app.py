@@ -6,6 +6,7 @@ Production ordering/payments/social publishing remain disabled until owner setup
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
 from contextlib import contextmanager
 import hmac
 import json
@@ -32,6 +33,7 @@ MAX_BOT_TOKEN = os.environ.get("MAX_BOT_TOKEN", "").strip()
 MAX_MINIAPP_URL = os.environ.get("MAX_MINIAPP_URL", "").strip()
 MAX_BOT_USERNAME = os.environ.get("MAX_BOT_USERNAME", "id7606139934_5_bot").strip().lstrip("@")
 MAX_ADMIN_USER_ID = os.environ.get("MAX_ADMIN_USER_ID", "").strip()
+MAX_WEBHOOK_SECRET = os.environ.get("MAX_WEBHOOK_SECRET", "").strip()
 LOYALTY_RUB_PER_TICKET = max(100, min(int(os.environ.get("LOYALTY_RUB_PER_TICKET", "1000")), 100000))
 PREVIEW_DELIVERY_RUB = max(0, min(int(os.environ.get("PREVIEW_DELIVERY_RUB", "200")), 5000))
 PREVIEW_DELIVERY_MIN_RUB = max(0, min(int(os.environ.get("PREVIEW_DELIVERY_MIN_RUB", "1000")), 100000))
@@ -603,6 +605,54 @@ def max_auth():
     session["max_user_id"] = verified["user_id"]
     session["max_auth_date"] = verified["auth_date"]
     return jsonify(status="authenticated", guest_id=guest_id, user={"id":verified["user_id"],"first_name":verified["user"].get("first_name","")}, start_param=verified.get("start_param", ""), csrf_token=csrf_token())
+
+
+@app.post("/api/max/webhook")
+def max_webhook():
+    """Receive authenticated MAX bot events through the production webhook."""
+    if not MAX_WEBHOOK_SECRET:
+        return jsonify(error="max_webhook_not_configured"), 503
+    supplied_secret = request.headers.get("X-Max-Bot-Api-Secret", "")
+    if not hmac.compare_digest(supplied_secret, MAX_WEBHOOK_SECRET):
+        return jsonify(error="unauthorized"), 401
+    update = request.get_json(silent=True)
+    if not isinstance(update, dict):
+        return jsonify(error="invalid_update"), 400
+
+    fingerprint = hashlib.sha256(
+        json.dumps(update, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    ).hexdigest()
+    with connect_db() as c:
+        c.execute(
+            """CREATE TABLE IF NOT EXISTS max_webhook_events (
+                event_hash TEXT PRIMARY KEY,
+                received_at TEXT NOT NULL,
+                processed_at TEXT
+            )"""
+        )
+        inserted = c.execute(
+            "INSERT OR IGNORE INTO max_webhook_events(event_hash, received_at) VALUES(?, ?)",
+            (fingerprint, NOW()),
+        )
+        if inserted.rowcount == 0:
+            return jsonify(status="duplicate"), 200
+
+    try:
+        # Import lazily to avoid an app <-> bot import cycle during startup.
+        from max_bot import handle_update
+        handle_update(update, MAX_BOT_USERNAME)
+    except Exception:
+        with connect_db() as c:
+            c.execute("DELETE FROM max_webhook_events WHERE event_hash=?", (fingerprint,))
+        app.logger.exception("MAX webhook event processing failed")
+        return jsonify(error="event_processing_failed"), 500
+
+    with connect_db() as c:
+        c.execute(
+            "UPDATE max_webhook_events SET processed_at=? WHERE event_hash=?",
+            (NOW(), fingerprint),
+        )
+    return jsonify(status="ok"), 200
 
 
 @app.get("/api/bootstrap")
