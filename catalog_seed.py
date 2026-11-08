@@ -102,4 +102,27 @@ for pid,title,category,price,unit,weight,description,image,image_url,source_url 
         "stock_confirmed":0,"price_on_request":1 if price == 0 else 0,"created_at":"",
     })
 
+
+# Public product photography exposed by the current Chibbis listing. These URLs
+# are temporary preview references; replace with company-owned originals before
+# commercial publication and confirm reuse rights with the brand.
+CATEGORY_IMAGE_URLS = {
+    "Раки": "https://scdn.chibbis.ru/live/products/108f3eeaa45bb0138f55295849aa2f7e.jpeg",
+    "Живые раки": "https://scdn.chibbis.ru/live/products/108f3eeaa45bb0138f55295849aa2f7e.jpeg",
+    "Сеты": "https://scdn.chibbis.ru/live/products/fe4c4a6a9dc1e91b6eee1127139e5bae.jpeg",
+    "Комбо": "https://scdn.chibbis.ru/live/products/fe4c4a6a9dc1e91b6eee1127139e5bae.jpeg",
+    "Креветки": "https://scdn.chibbis.ru/live/products/5bf788161e3f482151c9e6ec7b625522.jpeg",
+    "Лангустины": "https://scdn.chibbis.ru/live/products/b2f141e560f500d95e5cc5966427dcfe.jpeg",
+    "Закуски": "https://scdn.chibbis.ru/live/products/b2f141e560f500d95e5cc5966427dcfe.jpeg",
+    "Мидии и моллюски": "https://scdn.chibbis.ru/live/products/44424c13a8bdc70c1ab8a4f1a691b010.jpeg",
+    "Деликатесы": "https://scdn.chibbis.ru/live/products/fe4c4a6a9dc1e91b6eee1127139e5bae.jpeg",
+    "Бургеры": "https://scdn.chibbis.ru/live/products/5bf788161e3f482151c9e6ec7b625522.jpeg",
+    "Рыба": "https://scdn.chibbis.ru/live/products/5bb0164b3a7281af9d10c3b64c367159.jpeg",
+    "Подарки": "https://scdn.chibbis.ru/live/products/685af54568bd400c7f80eba0b88c2303.jpeg",
+    "Сезонное": "https://scdn.chibbis.ru/live/products/5bb0164b3a7281af9d10c3b64c367159.jpeg",
+    "Соусы": "https://scdn.chibbis.ru/live/products/44424c13a8bdc70c1ab8a4f1a691b010.jpeg",
+}
+for product in CATALOG_PRODUCTS:
+    product["image_url"] = CATEGORY_IMAGE_URLS.get(product["category"], "")
+
 SOURCE_URL = EDA7_URL
