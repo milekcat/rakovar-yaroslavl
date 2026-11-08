@@ -4,7 +4,9 @@ services:
     runtime: python
     plan: free
     region: frankfurt
-    buildCommand: python -c "import tarfile; tarfile.open('source_bundle.tar.xz', 'r:xz').extractall('.')" && pip install -r requirements.txt
+    buildCommand: >-
+      python -c 'import tarfile; tarfile.open("source_bundle.tar.xz", "r:xz").extractall(".")'
+      && pip install -r requirements.txt
     startCommand: python start_render_preview.py
     healthCheckPath: /api/health
     autoDeployTrigger: commit
@@ -17,6 +19,8 @@ services:
         value: "true"
       - key: FLASK_SECRET_KEY
         generateValue: true
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
       - key: SQLITE_DB_PATH
         value: /tmp/rakovar-preview.sqlite3
       - key: LOYALTY_RUB_PER_TICKET
