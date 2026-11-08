@@ -4,13 +4,13 @@ services:
     runtime: python
     plan: free
     region: frankfurt
-    buildCommand: python -c \"import tarfile; tarfile.open('source_bundle.tar.xz', 'r:xz').extractall('.')\" && pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt
     startCommand: python start_render_preview.py
     healthCheckPath: /api/health
     autoDeployTrigger: commit
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.9
+        value: "3.11.9"
       - key: DEMO_MODE
         value: "true"
       - key: COOKIE_SECURE
@@ -21,14 +21,8 @@ services:
         sync: false
       - key: SQLITE_DB_PATH
         value: /tmp/rakovar-preview.sqlite3
-      - key: MAX_BOT_TOKEN
-        sync: false
       - key: MAX_BOT_USERNAME
         value: id7606139934_5_bot
-      - key: MAX_MINIAPP_URL
-        sync: false
-      - key: MAX_ADMIN_USER_ID
-        sync: false
       - key: LOYALTY_RUB_PER_TICKET
         value: "1000"
       - key: PREVIEW_DELIVERY_RUB
