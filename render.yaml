@@ -4,7 +4,7 @@ services:
     runtime: python
     plan: free
     region: frankfurt
-    buildCommand: pip install -r requirements.txt
+    buildCommand: python prepare_render.py && pip install -r requirements.txt
     startCommand: python start_render_preview.py
     healthCheckPath: /api/health
     autoDeployTrigger: commit
