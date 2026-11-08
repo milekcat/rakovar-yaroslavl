@@ -1,28 +1,23 @@
-"""Restore the deployable UI assets bundled in the repository ZIP.
-
-The tracked Python entry points remain authoritative. Only templates/, static/,
-and assets/ are restored from the distributable archive so deploys cannot
-silently omit the Flask UI.
-"""
+"""Restore the deployable UI assets bundled in the repository ZIP."""
 from __future__ import annotations
 
-import posixpath
 import sys
 import zipfile
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parent
 ARCHIVE = ROOT / "RAKOVAR_full_project_MAX_preview.zip"
-REQUIRED_TEMPLATES = {"storefront.html", "admin_login.html", "admin.html"}
+REQUIRED = {"storefront.html", "admin_login.html", "admin.html"}
 ALLOWED_DIRS = {"templates", "static", "assets"}
 
 
 def main() -> int:
     if not ARCHIVE.is_file() or not zipfile.is_zipfile(ARCHIVE):
-        print(f"ERROR: required project archive is missing or invalid: {ARCHIVE.name}", file=sys.stderr)
+        print("ERROR: RAKOVAR_full_project_MAX_preview.zip is missing or invalid", file=sys.stderr)
         return 2
 
-    extracted: set[str] = set()
+    extracted: list[str] = []
+    template_candidates: dict[str, list[tuple[zipfile.ZipInfo, int]]] = {}
     with zipfile.ZipFile(ARCHIVE) as archive:
         for info in archive.infolist():
             if info.is_dir():
@@ -31,29 +26,41 @@ def main() -> int:
             parts = PurePosixPath(raw).parts
             if not parts or raw.startswith("/") or ".." in parts:
                 continue
-            target_index = next((i for i, part in enumerate(parts) if part in ALLOWED_DIRS), None)
-            if target_index is None or target_index + 1 >= len(parts):
+            indexes = [i for i, part in enumerate(parts) if part in ALLOWED_DIRS]
+            if not indexes:
                 continue
-            folder = parts[target_index]
-            relative = PurePosixPath(*parts[target_index + 1:])
-            if relative.is_absolute() or ".." in relative.parts:
+            index = indexes[0]
+            folder = parts[index]
+            relative = PurePosixPath(*parts[index + 1:])
+            if relative.is_absolute() or not relative.parts or ".." in relative.parts:
                 continue
+            if folder == "templates":
+                template_candidates.setdefault(relative.name, []).append((info, index))
             destination = (ROOT / folder / Path(*relative.parts)).resolve()
             if ROOT not in destination.parents:
                 continue
             destination.parent.mkdir(parents=True, exist_ok=True)
             with archive.open(info) as source, destination.open("wb") as output:
                 output.write(source.read())
-            extracted.add(f"{folder}/{relative.as_posix()}")
+            extracted.append(f"{folder}/{relative.as_posix()}")
 
-    found_templates = {Path(item).name for item in extracted if item.startswith("templates/")}
-    missing = REQUIRED_TEMPLATES - found_templates
+        # Normalize the three Flask entry templates to the exact root expected
+        # by render_template(), even if the ZIP has an extra directory level.
+        for filename in REQUIRED:
+            candidates = template_candidates.get(filename, [])
+            if candidates:
+                info, _ = candidates[0]
+                destination = ROOT / "templates" / filename
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                with archive.open(info) as source, destination.open("wb") as output:
+                    output.write(source.read())
+
+    missing = [name for name in REQUIRED if not (ROOT / "templates" / name).is_file()]
+    print("Restored UI files: " + ", ".join(sorted(extracted)), flush=True)
     if missing:
-        print("ERROR: archive did not provide required Flask templates: " + ", ".join(sorted(missing)), file=sys.stderr)
-        print("Archive members: " + ", ".join(sorted(extracted)[:80]), file=sys.stderr)
+        print("ERROR: required Flask templates absent from archive: " + ", ".join(sorted(missing)), file=sys.stderr)
         return 3
-
-    print(f"Restored {len(extracted)} UI assets from {ARCHIVE.name}.", flush=True)
+    print("Verified required Flask templates: " + ", ".join(sorted(REQUIRED)), flush=True)
     return 0
 
 
