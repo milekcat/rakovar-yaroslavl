@@ -12,7 +12,8 @@ REQUIRED = {"storefront.html", "admin_login.html", "admin.html"}
 ALLOWED_DIRS = {"templates", "static", "assets"}
 
 BRAND_LOGO = "https://scdn.chibbis.ru/live/logos/ef70804ad82b43394b885f18187aa24c.png"
-BRAND_BANNER = "https://scdn.chibbis.ru/live/banners/df9c6ef11fd698f6963dbb540a41dc1f.png"
+# Use a seafood-set product photo for the hero; do not inherit an unrelated aggregator banner.
+BRAND_BANNER = "https://scdn.chibbis.ru/live/products/fe4c4a6a9dc1e91b6eee1127139e5bae.jpeg"
 PHOTO_CRAYFISH = "https://scdn.chibbis.ru/live/products/108f3eeaa45bb0138f55295849aa2f7e.jpeg"
 PHOTO_SET = "https://scdn.chibbis.ru/live/products/fe4c4a6a9dc1e91b6eee1127139e5bae.jpeg"
 PHOTO_SHRIMP = "https://scdn.chibbis.ru/live/products/5bf788161e3f482151c9e6ec7b625522.jpeg"
@@ -45,6 +46,7 @@ def patch_storefront(path: Path) -> None:
         'РАКОВАРЪ — морские и речные деликатесы в Ярославле. Раки, креветки, крабы, морские сеты и съедобные подарки.',
     )
     html = html.replace("РАКОВАРЪ — гастрономическая платформа", "РАКОВАРЪ — морские и речные деликатесы в Ярославле")
+    html = re.sub(r"(?i)военные\s+раки", "раки", html)
     html = html.replace("Каталог, подарочные наборы, клуб и конкурсы.", "Раки, креветки, крабы, мидии, авторские сеты и подарочные композиции.")
     html = html.replace(
         "ПРЕДПРОСМОТР РАКОВАРЪ · цены и наличие из публичного меню требуют подтверждения · оплата отключена",
