@@ -10,6 +10,16 @@ EDA7_URL = "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/"
 CHIBBIS_URL = "https://chibbis.ru/yar/restaurant/rakovar/menu"
 EDA_DOSTAVKA_URL = "https://eda-dostavka.com/yaroslavl/restorany/rakovar-fnxcs/"
 
+# Exclude stale or unrelated demo-catalog entries left by earlier preview snapshots.
+NON_BRAND_PRODUCT_TERMS = ("пицц", "pizza", "пепперони", "pepperoni", "военные раки")
+
+
+def is_non_brand_product(product):
+    """Return True for unrelated legacy menu entries that must not appear publicly."""
+    fields = ("title", "category", "description", "image", "badge", "image_url")
+    haystack = " ".join(str(product.get(field, "") or "") for field in fields).casefold()
+    return any(term in haystack for term in NON_BRAND_PRODUCT_TERMS)
+
 # id, title, category, public listed price, unit, weight, description, local fallback, remote photo, source
 _ROWS = [
 # Раки
@@ -124,5 +134,9 @@ CATEGORY_IMAGE_URLS = {
 }
 for product in CATALOG_PRODUCTS:
     product["image_url"] = CATEGORY_IMAGE_URLS.get(product["category"], "")
+
+# Fail fast if an unrelated legacy category accidentally enters the curated seed.
+if any(is_non_brand_product(product) for product in CATALOG_PRODUCTS):
+    raise ValueError("The preview catalog contains an unrelated product")
 
 SOURCE_URL = EDA7_URL
