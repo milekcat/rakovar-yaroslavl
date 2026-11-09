@@ -564,8 +564,13 @@ def storefront():
 def admin_login():
     if not ADMIN_PASSWORD_HASH:
         return render_template("admin_login.html", error="Администрирование не настроено: задайте ADMIN_PASSWORD_HASH в переменных окружения."), 503
-    session["admin_csrf"] = secrets.token_urlsafe(32)
-    return render_template("admin_login.html", error=None, csrf_token=session["admin_csrf"])
+    # Keep the token stable across duplicate GETs and multiple login tabs.
+    # Rotating it on every GET invalidates forms already open in the browser.
+    token = session.get("admin_csrf")
+    if not token:
+        token = secrets.token_urlsafe(32)
+        session["admin_csrf"] = token
+    return render_template("admin_login.html", error=None, csrf_token=token)
 
 
 @app.post("/admin/login")
@@ -573,7 +578,13 @@ def admin_login_post():
     if not ADMIN_PASSWORD_HASH:
         abort(503)
     if not csrf_valid():
-        abort(400)
+        # Preserve CSRF protection, but recover with a usable HTML login form.
+        session["admin_csrf"] = secrets.token_urlsafe(32)
+        return render_template(
+            "admin_login.html",
+            error="Сессия входа устарела. Повторите попытку с этой страницы.",
+            csrf_token=session["admin_csrf"],
+        ), 400
     ip_key = request.remote_addr or "unknown"
     attempts, locked_until = _LOGIN_FAILURES.get(ip_key, (0, 0.0))
     if locked_until > time.monotonic():
