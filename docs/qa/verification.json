@@ -9,13 +9,9 @@
   },
   "sqlite": {
     "status": "passed",
-    "passed": 86,
-    "skipped": 11,
-    "note": "before additional transactional sequence rollback regression; rerun in CI",
-    "additional_safety_regressions": {
-      "passed": 16,
-      "scope": "identity, idempotency, concurrency, cancellation, webhook and 32-sector limit"
-    }
+    "passed": 88,
+    "skipped": 12,
+    "scope": "full local SQLite suite; PostgreSQL-specific cases skipped here and passed in PostgreSQL run"
   },
   "dependency_audit": {
     "tool": "pip-audit 2.10.1",
@@ -40,12 +36,24 @@
   "browser": {
     "shared_chrome": "passed for storefront, SVG wheel, ticket balance 3->2, synthetic checkout",
     "playwright_local": "blocked before launch: AF_UNIX socket not permitted",
-    "full_browser_acceptance": "pending CI"
+    "full_browser_acceptance": "passed in GitHub Actions",
+    "run_id": 42684525587,
+    "checks": 8,
+    "javascript_errors": 0,
+    "report": "browser-results.json",
+    "evidence_commit": "76ebae37dd46c04bdbc927e30660f72021e7bb72"
   },
   "render": {
     "service": "rakovar-preview-0psh",
     "live_commit_at_initial_audit": "2a8f52c2ec6053b467c294144f3872327991f742",
     "configuration_changes": false,
     "new_branch_deployed": false
+  },
+  "ci_postgresql": {
+    "version": "18.6",
+    "tests": 100,
+    "status": "passed",
+    "run_id": 42684525587,
+    "evidence_commit": "76ebae37dd46c04bdbc927e30660f72021e7bb72"
   }
 }

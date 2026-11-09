@@ -28,7 +28,7 @@ jobs:
       - name: Compile Python modules
         run: python -m compileall -q app.py max_auth.py max_client.py max_bot.py catalog_seed.py prepare_render.py storage.py staff_auth.py commerce_safety.py scripts
       - name: Run tests
-        run: pytest -q
+        run: python -m pytest -q
       - name: Check storefront scripts
         run: |
           node --check static/storefront.js
