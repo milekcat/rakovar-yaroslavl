@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-09",
+  "timezone": "Europe/Moscow",
+  "postgresql": {
+    "version": "17.11",
+    "status": "passed",
+    "tests": 100,
+    "scope": "full pytest suite on disposable local PostgreSQL including backup/restore"
+  },
+  "sqlite": {
+    "status": "passed",
+    "passed": 86,
+    "skipped": 11,
+    "note": "before additional transactional sequence rollback regression; rerun in CI",
+    "additional_safety_regressions": {
+      "passed": 16,
+      "scope": "identity, idempotency, concurrency, cancellation, webhook and 32-sector limit"
+    }
+  },
+  "dependency_audit": {
+    "tool": "pip-audit 2.10.1",
+    "known_vulnerabilities": 0,
+    "status": "passed"
+  },
+  "sast": {
+    "tool": "Bandit 1.9.4",
+    "severity_counts": {
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 36,
+      "SEVERITY.MEDIUM": 15,
+      "SEVERITY.UNDEFINED": 0
+    },
+    "status": "reviewed",
+    "adjudication": "../SECURITY_REVIEW.md"
+  },
+  "targeted_secret_scan": {
+    "findings": 0,
+    "scope": "current tracked source and original archive; does not establish complete history scan"
+  },
+  "browser": {
+    "shared_chrome": "passed for storefront, SVG wheel, ticket balance 3->2, synthetic checkout",
+    "playwright_local": "blocked before launch: AF_UNIX socket not permitted",
+    "full_browser_acceptance": "pending CI"
+  },
+  "render": {
+    "service": "rakovar-preview-0psh",
+    "live_commit_at_initial_audit": "2a8f52c2ec6053b467c294144f3872327991f742",
+    "configuration_changes": false,
+    "new_branch_deployed": false
+  }
+}

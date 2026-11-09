@@ -11,24 +11,36 @@ from contextlib import contextmanager
 import hmac
 import json
 import os
+import re
 import secrets
 import time
 import sqlite3
 from functools import wraps
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from dotenv import load_dotenv
 load_dotenv()
 
 from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash
+from werkzeug.exceptions import HTTPException
 from catalog_seed import CATALOG_PRODUCTS, is_non_brand_product
 from max_auth import validate_init_data as verify_max_init_data, MaxInitDataError
+from storage import connect_database, migrate, top_products
+from staff_auth import StaffAccess, StaffError
+from commerce_safety import ORDER_TRANSITIONS, init_safety_schema, request_receipt, save_receipt
 
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = os.environ.get("SQLITE_DB_PATH", str(BASE_DIR / "rakovar.sqlite3"))
 DEMO_MODE = os.environ.get("DEMO_MODE", "true").lower() == "true"
+if not DEMO_MODE:
+    if not os.environ.get("DATABASE_URL", "").strip():
+        raise RuntimeError("Non-demo startup requires PostgreSQL; SQLite is preview-only")
+    configured_secret = os.environ.get("FLASK_SECRET_KEY", "")
+    if len(configured_secret) < 32 or "replace-with" in configured_secret.lower():
+        raise RuntimeError("Non-demo startup requires a stable FLASK_SECRET_KEY of at least 32 characters")
 MAX_BOT_TOKEN = os.environ.get("MAX_BOT_TOKEN", "").strip()
 MAX_MINIAPP_URL = os.environ.get("MAX_MINIAPP_URL", "").strip()
 MAX_BOT_USERNAME = os.environ.get("MAX_BOT_USERNAME", "id7606139934_5_bot").strip().lstrip("@")
@@ -52,7 +64,7 @@ _LOGIN_FAILURES: dict[str, tuple[int, float]] = {}
 _RATE_BUCKETS: dict[str, tuple[float, int]] = {}
 
 NOW = lambda: dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
-TODAY = lambda: dt.datetime.now(dt.timezone.utc).date().isoformat()
+TODAY = lambda: dt.datetime.now(ZoneInfo("Europe/Moscow")).date().isoformat()
 
 SAMPLE_PRIZES = [
     {"id":"prize-5","title":"Скидка 5% на заказ","kind":"coupon","description":"Демонстрационный промокод. Не является действующей акцией.","stock":50,"weight":35,"partner":"РАКОВАРЪ","reward_value":5},
@@ -88,19 +100,8 @@ SITE_DEFAULTS = {
 
 @contextmanager
 def connect_db():
-    Path(DB_PATH).parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(DB_PATH, timeout=15)
-    conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA foreign_keys=ON")
-    conn.execute("PRAGMA busy_timeout=15000")
-    try:
+    with connect_database(DB_PATH) as conn:
         yield conn
-        conn.commit()
-    except Exception:
-        conn.rollback()
-        raise
-    finally:
-        conn.close()
 
 
 def public_catalog_products(c: sqlite3.Connection) -> list[dict]:
@@ -120,118 +121,8 @@ def get_loyalty_rate(c: sqlite3.Connection) -> int:
 
 def init_db() -> None:
     with connect_db() as c:
-        c.executescript("""
-        CREATE TABLE IF NOT EXISTS products (
-          id TEXT PRIMARY KEY, title TEXT NOT NULL, category TEXT NOT NULL,
-          price INTEGER NOT NULL CHECK(price>=0), unit TEXT NOT NULL,
-          stock INTEGER NOT NULL DEFAULT 0 CHECK(stock>=0), description TEXT NOT NULL DEFAULT '',
-          image TEXT NOT NULL DEFAULT 'opt_hero.svg', badge TEXT NOT NULL DEFAULT '',
-          active INTEGER NOT NULL DEFAULT 1, created_at TEXT NOT NULL,
-          image_url TEXT NOT NULL DEFAULT '', source_url TEXT NOT NULL DEFAULT '',
-          price_verified INTEGER NOT NULL DEFAULT 0, stock_confirmed INTEGER NOT NULL DEFAULT 0,
-          weight_label TEXT NOT NULL DEFAULT '', price_on_request INTEGER NOT NULL DEFAULT 0
-        );
-        CREATE TABLE IF NOT EXISTS orders (
-          id TEXT PRIMARY KEY, created_at TEXT NOT NULL, customer_label TEXT NOT NULL,
-          contact_label TEXT NOT NULL, delivery_mode TEXT NOT NULL, address_label TEXT NOT NULL,
-          items_json TEXT NOT NULL, subtotal_rub INTEGER NOT NULL, discount_rub INTEGER NOT NULL,
-          delivery_rub INTEGER NOT NULL, total_rub INTEGER NOT NULL, promo_code TEXT NOT NULL DEFAULT '',
-          status TEXT NOT NULL, is_demo INTEGER NOT NULL DEFAULT 1,
-          guest_id TEXT NOT NULL DEFAULT '', source_channel TEXT NOT NULL DEFAULT 'web'
-        );
-        CREATE TABLE IF NOT EXISTS visitors (
-          guest_id TEXT PRIMARY KEY, tickets INTEGER NOT NULL DEFAULT 0, points INTEGER NOT NULL DEFAULT 0,
-          created_at TEXT NOT NULL, last_daily_claim TEXT NOT NULL DEFAULT ''
-        );
-        CREATE TABLE IF NOT EXISTS prizes (
-          id TEXT PRIMARY KEY, title TEXT NOT NULL, kind TEXT NOT NULL, description TEXT NOT NULL DEFAULT '',
-          stock INTEGER NOT NULL DEFAULT 0, weight INTEGER NOT NULL DEFAULT 1, partner TEXT NOT NULL DEFAULT '',
-          active INTEGER NOT NULL DEFAULT 1
-        );
-        CREATE TABLE IF NOT EXISTS spins (
-          id INTEGER PRIMARY KEY AUTOINCREMENT, guest_id TEXT NOT NULL, prize_id TEXT NOT NULL,
-          prize_title TEXT NOT NULL, created_at TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'unclaimed'
-        );
-        CREATE TABLE IF NOT EXISTS promotions (
-          code TEXT PRIMARY KEY, title TEXT NOT NULL, description TEXT NOT NULL DEFAULT '',
-          discount_type TEXT NOT NULL, discount_value INTEGER NOT NULL, min_order INTEGER NOT NULL DEFAULT 0,
-          max_uses INTEGER NOT NULL DEFAULT 0, uses INTEGER NOT NULL DEFAULT 0, active INTEGER NOT NULL DEFAULT 1,
-          starts_at TEXT NOT NULL DEFAULT '', ends_at TEXT NOT NULL DEFAULT '',
-          ticket_reward INTEGER NOT NULL DEFAULT 0
-        );
-        CREATE TABLE IF NOT EXISTS contests (
-          id TEXT PRIMARY KEY, title TEXT NOT NULL, description TEXT NOT NULL, prize_title TEXT NOT NULL,
-          starts_at TEXT NOT NULL, ends_at TEXT NOT NULL, status TEXT NOT NULL,
-          max_entries INTEGER NOT NULL DEFAULT 1, rules TEXT NOT NULL DEFAULT '',
-          ticket_reward INTEGER NOT NULL DEFAULT 0
-        );
-        CREATE TABLE IF NOT EXISTS contest_entries (
-          id INTEGER PRIMARY KEY AUTOINCREMENT, contest_id TEXT NOT NULL REFERENCES contests(id),
-          guest_id TEXT NOT NULL, alias TEXT NOT NULL, answer TEXT NOT NULL DEFAULT '',
-          created_at TEXT NOT NULL, UNIQUE(contest_id, guest_id)
-        );
-        CREATE TABLE IF NOT EXISTS contest_winners (
-          id INTEGER PRIMARY KEY AUTOINCREMENT, contest_id TEXT NOT NULL REFERENCES contests(id),
-          entry_id INTEGER NOT NULL REFERENCES contest_entries(id), alias TEXT NOT NULL,
-          answer TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL, UNIQUE(contest_id, entry_id)
-        );
-        CREATE TABLE IF NOT EXISTS content_posts (
-          id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, body TEXT NOT NULL,
-          channels_json TEXT NOT NULL, scheduled_at TEXT NOT NULL DEFAULT '', status TEXT NOT NULL DEFAULT 'draft',
-          created_at TEXT NOT NULL, updated_at TEXT NOT NULL
-        );
-        CREATE TABLE IF NOT EXISTS site_settings (
-          setting_key TEXT PRIMARY KEY, setting_value TEXT NOT NULL, updated_at TEXT NOT NULL
-        );
-        CREATE TABLE IF NOT EXISTS events (
-          id INTEGER PRIMARY KEY AUTOINCREMENT, event_name TEXT NOT NULL, guest_id TEXT NOT NULL DEFAULT '',
-          metadata_json TEXT NOT NULL DEFAULT '{}', created_at TEXT NOT NULL
-        );
-        CREATE TABLE IF NOT EXISTS integration_health (
-          provider TEXT PRIMARY KEY, status TEXT NOT NULL, last_checked TEXT NOT NULL,
-          detail TEXT NOT NULL DEFAULT ''
-        );
-        CREATE TABLE IF NOT EXISTS ticket_ledger (
-          id INTEGER PRIMARY KEY AUTOINCREMENT, guest_id TEXT NOT NULL,
-          delta INTEGER NOT NULL, reason TEXT NOT NULL, source_type TEXT NOT NULL,
-          source_id TEXT NOT NULL, metadata_json TEXT NOT NULL DEFAULT '{}',
-          created_at TEXT NOT NULL, UNIQUE(guest_id,source_type,source_id)
-        );
-        CREATE INDEX IF NOT EXISTS idx_ticket_ledger_guest ON ticket_ledger(guest_id,id DESC);
-        CREATE TABLE IF NOT EXISTS referral_codes (
-          code TEXT PRIMARY KEY, owner_guest_id TEXT NOT NULL UNIQUE, created_at TEXT NOT NULL, active INTEGER NOT NULL DEFAULT 1
-        );
-        CREATE TABLE IF NOT EXISTS referral_attributions (
-          referred_guest_id TEXT PRIMARY KEY, referrer_guest_id TEXT NOT NULL, code TEXT NOT NULL,
-          status TEXT NOT NULL DEFAULT 'pending', created_at TEXT NOT NULL, qualified_order_id TEXT NOT NULL DEFAULT '',
-          qualified_at TEXT NOT NULL DEFAULT '', referrer_reward INTEGER NOT NULL DEFAULT 0, friend_reward INTEGER NOT NULL DEFAULT 0,
-          CHECK(referrer_guest_id <> referred_guest_id)
-        );
-        CREATE INDEX IF NOT EXISTS idx_referral_referrer ON referral_attributions(referrer_guest_id,created_at DESC);
-        CREATE TABLE IF NOT EXISTS audit_log (
-          id INTEGER PRIMARY KEY AUTOINCREMENT, actor TEXT NOT NULL, action TEXT NOT NULL,
-          entity TEXT NOT NULL, entity_id TEXT NOT NULL DEFAULT '', details_json TEXT NOT NULL DEFAULT '{}',
-          created_at TEXT NOT NULL
-        );
-        """)
-        # Additive SQLite migrations keep existing preview databases bootable.
-        for table, column, declaration in [
-            ("prizes", "reward_value", "INTEGER NOT NULL DEFAULT 0"),
-            ("spins", "redemption_code", "TEXT NOT NULL DEFAULT ''"),
-            ("products", "image_url", "TEXT NOT NULL DEFAULT ''"),
-            ("products", "source_url", "TEXT NOT NULL DEFAULT ''"),
-            ("products", "price_verified", "INTEGER NOT NULL DEFAULT 0"),
-            ("products", "stock_confirmed", "INTEGER NOT NULL DEFAULT 0"),
-            ("products", "weight_label", "TEXT NOT NULL DEFAULT ''"),
-            ("products", "price_on_request", "INTEGER NOT NULL DEFAULT 0"),
-            ("orders", "guest_id", "TEXT NOT NULL DEFAULT ''"),
-            ("orders", "source_channel", "TEXT NOT NULL DEFAULT 'web'"),
-            ("promotions", "ticket_reward", "INTEGER NOT NULL DEFAULT 0"),
-            ("contests", "ticket_reward", "INTEGER NOT NULL DEFAULT 0"),
-        ]:
-            existing = {row[1] for row in c.execute(f"PRAGMA table_info({table})")}
-            if column not in existing:
-                c.execute(f"ALTER TABLE {table} ADD COLUMN {column} {declaration}")
+        migrate(c)
+        init_safety_schema(c)
         if DEMO_MODE:
             seed_row = c.execute("SELECT setting_value FROM site_settings WHERE setting_key='catalog_seed_version'").fetchone()
             if not seed_row or seed_row[0] != "brand-refresh-2026-11-09-v6":
@@ -285,6 +176,8 @@ def init_db() -> None:
 
 
 init_db()
+staff_access = StaffAccess(app, connect_db, bootstrap_hash=ADMIN_PASSWORD_HASH,
+    require_mfa=not DEMO_MODE or os.environ.get("STAFF_REQUIRE_MFA", "false").lower() == "true")
 
 
 def json_body() -> dict[str, Any]:
@@ -295,10 +188,13 @@ def json_body() -> dict[str, Any]:
 def admin_required(fn):
     @wraps(fn)
     def wrapped(*args, **kwargs):
-        if not session.get("admin"):
+        principal = staff_access.current_principal()
+        if not principal:
             if request.path.startswith('/api/'):
                 return jsonify(error="admin_auth_required"), 401
             return redirect(url_for("admin_login"))
+        if not staff_access.allowed(request.endpoint, principal):
+            abort(403, description="permission_denied")
         return fn(*args, **kwargs)
     return wrapped
 
@@ -320,9 +216,12 @@ def require_csrf():
         abort(400, description="csrf_failed")
 
 
+staff_access.register_routes(require_csrf)
+
+
 def audit(c: sqlite3.Connection, action: str, entity: str, entity_id: str = "", details: dict | None = None):
     c.execute("INSERT INTO audit_log(actor,action,entity,entity_id,details_json,created_at) VALUES(?,?,?,?,?,?)",
-              ("admin", action, entity, str(entity_id), json.dumps(details or {}, ensure_ascii=False), NOW()))
+              (staff_access.actor(), action, entity, str(entity_id), json.dumps(details or {}, ensure_ascii=False), NOW()))
 
 
 def rate_limited(scope: str, limit: int, window_seconds: int = 60) -> bool:
@@ -403,7 +302,7 @@ def get_or_create_referral_code(c: sqlite3.Connection, guest_id: str) -> str:
 
 def loyalty_tier(c: sqlite3.Connection, guest_id: str) -> dict:
     since = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=365)).isoformat(timespec="seconds")
-    row = c.execute("SELECT COALESCE(SUM(MAX(0,subtotal_rub-discount_rub)),0) spend,COUNT(*) orders FROM orders WHERE guest_id=? AND status IN ('paid','preparing','ready','completed') AND created_at>=?", (guest_id, since)).fetchone()
+    row = c.execute("SELECT COALESCE(SUM(CASE WHEN subtotal_rub>discount_rub THEN subtotal_rub-discount_rub ELSE 0 END),0) spend,COUNT(*) orders FROM orders WHERE guest_id=? AND status IN ('paid','preparing','ready','completed') AND created_at>=?", (guest_id, since)).fetchone()
     spend = int(row["spend"] or 0)
     sailor = referral_setting(c, "tier_sailor_rub", 5000, 0, 1000000)
     captain = max(sailor, referral_setting(c, "tier_captain_rub", 15000, 0, 1000000))
@@ -454,9 +353,18 @@ def resolve_guest_id(value: Any = None) -> str:
     if max_guest:
         return clean_guest_id(max_guest)
     candidate = clean_guest_id(value or request.args.get("guest_id", ""))
+    if candidate.startswith("max_"):
+        abort(403, description="max_identity_requires_authentication")
     bound = session.get("guest_id")
     if bound and not hmac.compare_digest(str(bound), candidate):
         abort(403, description="visitor_identity_mismatch")
+    if not bound:
+        # Public IDs do not prove ownership. Reserve a new browser identity
+        # atomically; an existing profile needs its signed cookie or MAX auth.
+        with connect_db() as c:
+            if c.execute("SELECT 1 FROM visitors WHERE guest_id=?", (candidate,)).fetchone():
+                abort(403, description="visitor_identity_unproven")
+            get_visitor(c, candidate)
     session["guest_id"] = candidate
     return candidate
 
@@ -512,11 +420,14 @@ def discount_for(c: sqlite3.Connection, code: str, subtotal: int) -> tuple[int, 
 def normalize_cart(c: sqlite3.Connection, items: Any) -> tuple[list[dict], int]:
     if not isinstance(items, list) or not items or len(items) > 30:
         abort(400, description="invalid_cart")
-    normalized, subtotal = [], 0
+    normalized, subtotal, seen = [], 0, set()
     for item in items:
         if not isinstance(item, dict):
             abort(400, description="invalid_cart_item")
         pid, qty = str(item.get("id", "")), item.get("quantity")
+        if pid in seen:
+            abort(400, description="duplicate_cart_item")
+        seen.add(pid)
         if not isinstance(qty, int) or isinstance(qty, bool) or qty < 1 or qty > 50:
             abort(400, description="invalid_quantity")
         product = c.execute("SELECT * FROM products WHERE id=? AND active=1", (pid,)).fetchone()
@@ -573,7 +484,9 @@ def storefront():
 
 @app.get("/admin/login")
 def admin_login():
-    if not ADMIN_PASSWORD_HASH:
+    with connect_db() as c:
+        configured = bool(ADMIN_PASSWORD_HASH or c.execute("SELECT 1 FROM staff_accounts LIMIT 1").fetchone())
+    if not configured:
         return render_template("admin_login.html", error="Администрирование не настроено: задайте ADMIN_PASSWORD_HASH в переменных окружения."), 503
     session["admin_csrf"] = secrets.token_urlsafe(32)
     return render_template("admin_login.html", error=None, csrf_token=session["admin_csrf"])
@@ -581,39 +494,33 @@ def admin_login():
 
 @app.post("/admin/login")
 def admin_login_post():
-    if not ADMIN_PASSWORD_HASH:
-        abort(503)
     if not csrf_valid():
         abort(400)
-    ip_key = request.remote_addr or "unknown"
-    attempts, locked_until = _LOGIN_FAILURES.get(ip_key, (0, 0.0))
-    if locked_until > time.monotonic():
-        return render_template("admin_login.html", error="Слишком много попыток. Попробуйте позже.", csrf_token=session.get("admin_csrf", "")), 429
-    password = request.form.get("password", "")
-    if check_password_hash(ADMIN_PASSWORD_HASH, password):
-        _LOGIN_FAILURES.pop(ip_key, None)
-        session.clear()
-        session["admin"] = True
-        session["admin_csrf"] = secrets.token_urlsafe(32)
-        session.permanent = True
+    try:
+        staff_access.login(request.form.get("username", "owner"), request.form.get("password", ""), request.form.get("otp", ""))
         return redirect(url_for("admin_panel"))
-    attempts += 1
-    _LOGIN_FAILURES[ip_key] = (attempts, time.monotonic() + 900 if attempts >= 5 else 0.0)
-    session["admin_csrf"] = secrets.token_urlsafe(32)
-    return render_template("admin_login.html", error="Неверный пароль", csrf_token=session["admin_csrf"]), 401
+    except StaffError as error:
+        message = {
+            "login_throttled": "Слишком много попыток. Попробуйте через 15 минут.",
+            "mfa_required_or_invalid": "Проверьте пароль и код из приложения аутентификации.",
+            "mfa_enrollment_required": "Владелец должен завершить настройку MFA до включения обязательной проверки.",
+        }.get(error.code, "Неверные данные для входа.")
+        session["admin_csrf"] = secrets.token_urlsafe(32)
+        return render_template("admin_login.html", error=message, csrf_token=session["admin_csrf"]), error.status
 
 
 @app.get("/admin")
 @admin_required
 def admin_panel():
-    return render_template("admin.html", csrf_token=session.get("admin_csrf", ""), demo_mode=DEMO_MODE)
+    return render_template("admin.html", csrf_token=session.get("admin_csrf", ""), demo_mode=DEMO_MODE,
+                           principal=staff_access.current_principal())
 
 
 @app.post("/admin/logout")
 @admin_required
 def admin_logout():
     require_csrf()
-    session.clear()
+    staff_access.logout()
     return redirect(url_for("storefront"))
 
 
@@ -647,20 +554,24 @@ def max_webhook():
     fingerprint = hashlib.sha256(
         json.dumps(update, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
     ).hexdigest()
+    lease_token = secrets.token_hex(24)
+    now = int(time.time())
     with connect_db() as c:
         c.execute(
-            """CREATE TABLE IF NOT EXISTS max_webhook_events (
-                event_hash TEXT PRIMARY KEY,
-                received_at TEXT NOT NULL,
-                processed_at TEXT
-            )"""
-        )
-        inserted = c.execute(
             "INSERT OR IGNORE INTO max_webhook_events(event_hash, received_at) VALUES(?, ?)",
             (fingerprint, NOW()),
         )
-        if inserted.rowcount == 0:
+        stored = c.execute("SELECT processed_at FROM max_webhook_events WHERE event_hash=?", (fingerprint,)).fetchone()
+        if stored["processed_at"]:
             return jsonify(status="duplicate"), 200
+        lease = c.execute("SELECT lease_until FROM max_webhook_leases WHERE event_hash=?", (fingerprint,)).fetchone()
+        if lease and lease["lease_until"] > now:
+            response = jsonify(error="event_processing_in_progress")
+            response.headers["Retry-After"] = "5"
+            return response, 503
+        c.execute("""INSERT INTO max_webhook_leases(event_hash,lease_token,lease_until) VALUES(?,?,?)
+            ON CONFLICT(event_hash) DO UPDATE SET lease_token=excluded.lease_token,lease_until=excluded.lease_until""",
+            (fingerprint, lease_token, now + 120))
 
     try:
         # Import lazily to avoid an app <-> bot import cycle during startup.
@@ -668,16 +579,28 @@ def max_webhook():
         handle_update(update, MAX_BOT_USERNAME)
     except Exception:
         with connect_db() as c:
-            c.execute("DELETE FROM max_webhook_events WHERE event_hash=?", (fingerprint,))
-        app.logger.exception("MAX webhook event processing failed")
+            c.execute("DELETE FROM max_webhook_leases WHERE event_hash=? AND lease_token=?", (fingerprint, lease_token))
+        # Avoid logging a provider exception that may embed request credentials.
+        app.logger.error("MAX webhook processing failed; delivery remains retryable")
         return jsonify(error="event_processing_failed"), 500
 
     with connect_db() as c:
+        lease = c.execute("SELECT lease_token FROM max_webhook_leases WHERE event_hash=?", (fingerprint,)).fetchone()
+        if not lease or not hmac.compare_digest(lease["lease_token"], lease_token):
+            return jsonify(error="event_lease_expired"), 503
         c.execute(
             "UPDATE max_webhook_events SET processed_at=? WHERE event_hash=?",
             (NOW(), fingerprint),
         )
+        c.execute("DELETE FROM max_webhook_leases WHERE event_hash=? AND lease_token=?", (fingerprint, lease_token))
     return jsonify(status="ok"), 200
+
+
+def wheel_snapshot(c):
+    art = ("crayfish", "shrimp", "crab", "mussel", "langoustine", "set", "bonus", "gift")
+    rows = c.execute("SELECT id,title,kind FROM prizes WHERE active=1 AND weight>0 ORDER BY id").fetchall()
+    return [dict(id=row["id"], title=row["title"], kind=row["kind"], artwork=art[i % len(art)])
+            for i, row in enumerate(rows)]
 
 
 @app.get("/api/bootstrap")
@@ -692,8 +615,11 @@ def bootstrap():
         visitor = dict(get_visitor(c, clean_guest_id(guest_id))) if guest_id else None
         referral_code = get_or_create_referral_code(c, clean_guest_id(guest_id)) if guest_id else ""
         tier = loyalty_tier(c, clean_guest_id(guest_id)) if guest_id else None
+        sectors = wheel_snapshot(c)
         return jsonify(demo_mode=DEMO_MODE, csrf_token=csrf_token(), products=products, promotions=promos,
-                       contests=contests, prizes=prizes, settings=settings, visitor=visitor, referral_code=referral_code, loyalty_tier=tier,
+                       contests=contests, prizes=prizes, wheel_sectors=sectors,
+                       wheel_configuration_error="too_many_sectors" if len(sectors) > 32 else None,
+                       settings=settings, visitor=visitor, referral_code=referral_code, loyalty_tier=tier,
                        loyalty_rules={"rub_per_ticket":LOYALTY_RUB_PER_TICKET,"purchase_credit_on":"paid_status_only"},
                        max_bot_configured=bool(MAX_BOT_TOKEN),
                        notice="Предварительный каталог. Цены, наличие, условия и права на фотографии требуют подтверждения компании.")
@@ -740,7 +666,6 @@ def referral_attach():
         except sqlite3.IntegrityError:
             return jsonify(error="referral_already_attached"), 409
         event(c, "referral_attached", guest_id, {"code":code})
-        audit(c, "attach_referral", "referral", guest_id, {"code":code}) if session.get("admin") else None
         return jsonify(status="attached", message="Приглашение закреплено. Бонусы начислятся после первой подтверждённой покупки друга и проверки условий."), 201
 
 
@@ -795,6 +720,9 @@ def create_order():
     if len(name) < 2 or len(name) > 80 or len(phone) < 6 or len(phone) > 32 or data.get("consent") is not True:
         return jsonify(error="invalid_checkout", message="Укажите имя, телефон и подтвердите согласие для демонстрации."), 400
     with connect_db() as c:
+        receipt, replay = request_receipt(c, guest_id, "order", data)
+        if replay:
+            return jsonify(replay[0]), replay[1]
         items, subtotal = normalize_cart(c, data.get("items"))
         code = str(data.get("promo_code", "")).strip().upper()
         discount, promo_message = discount_for(c, code, subtotal)
@@ -812,12 +740,18 @@ def create_order():
                   (order_id, NOW(), "ДЕМО-ПОКУПАТЕЛЬ", "НЕ СОХРАНЕНО", mode, "НЕ СОХРАНЕНО",
                    json.dumps(items, ensure_ascii=False), subtotal, discount, delivery, total, applied_code, "demo_received", guest_id, source_channel))
         if promo_row:
-            c.execute("UPDATE promotions SET uses=uses+1 WHERE code=?", (code,))
+            updated = c.execute("UPDATE promotions SET uses=uses+1 WHERE code=? AND (max_uses=0 OR uses<max_uses)", (code,))
+            if updated.rowcount != 1:
+                abort(409, description="promotion_exhausted")
             event(c, "promo_applied", guest_id, {"code":code,"ticket_reward":int(promo_row["ticket_reward"] or 0)})
         event(c, "order_created", guest_id, {"order_id": order_id, "total_rub": total})
+        c.execute("INSERT INTO order_status_history(id,order_id,previous_status,new_status,actor,created_at) VALUES(?,?,?,?,?,?)",
+                  (secrets.token_hex(16), order_id, "", "demo_received", "visitor", dt.datetime.now(dt.timezone.utc).isoformat()))
+        result = dict(status="demo_order_created", order_id=order_id, total_rub=total,
+                      message="Тестовый заказ сохранён в демонстрационной админке. Компания его не получит; контакты не сохранены.")
+        save_receipt(c, guest_id, "order", receipt, result, 201, NOW())
     notify_max_admin_order(order_id, total, len(items), source_channel)
-    return jsonify(status="demo_order_created", order_id=order_id, total_rub=total,
-                   message="Тестовый заказ сохранён в демонстрационной админке. Компания его не получит; контакты не сохранены."), 201
+    return jsonify(result), 201
 
 
 @app.get("/api/game/profile")
@@ -839,13 +773,20 @@ def game_spin():
     if not DEMO_MODE:
         return jsonify(error="game_not_configured"), 503
     require_csrf()
-    guest_id = resolve_guest_id(json_body().get("guest_id"))
+    data = json_body()
+    guest_id = resolve_guest_id(data.get("guest_id"))
     with connect_db() as c:
         c.execute("BEGIN IMMEDIATE")
+        receipt, replay = request_receipt(c, guest_id, "spin", data)
+        if replay:
+            return jsonify(replay[0]), replay[1]
         visitor = get_visitor(c, guest_id)
         if visitor["tickets"] < 1:
             return jsonify(error="no_tickets", message="Нет клубных билетов. Их можно получить за подтверждённые покупки и участие в акциях."), 409
-        candidates = c.execute("SELECT * FROM prizes WHERE active=1 AND stock>0 AND weight>0").fetchall()
+        sectors = wheel_snapshot(c)
+        if len(sectors) > 32:
+            return jsonify(error="wheel_configuration_invalid", message="Призовой фонд временно недоступен: администратору нужно оставить не более 32 активных призов."), 409
+        candidates = c.execute("SELECT * FROM prizes WHERE active=1 AND stock>0 AND weight>0 ORDER BY id").fetchall()
         if not candidates:
             return jsonify(error="no_prizes"), 409
         total_weight = sum(int(p["weight"]) for p in candidates)
@@ -857,8 +798,7 @@ def game_spin():
                 chosen = prize
                 break
         c.execute("UPDATE visitors SET tickets=tickets-1 WHERE guest_id=?", (guest_id,))
-        if chosen["stock"] < 9999:
-            c.execute("UPDATE prizes SET stock=stock-1 WHERE id=? AND stock>0", (chosen["id"],))
+        c.execute("UPDATE prizes SET stock=stock-1 WHERE id=? AND stock>0", (chosen["id"],))
         if chosen["kind"] == "points":
             c.execute("UPDATE visitors SET points=points+50 WHERE guest_id=?", (guest_id,))
         redemption_code = ""
@@ -874,9 +814,15 @@ def game_spin():
         event(c, "wheel_spin", guest_id, {"prize_id": chosen["id"]})
         remaining = c.execute("SELECT tickets FROM visitors WHERE guest_id=?", (guest_id,)).fetchone()[0]
         points = c.execute("SELECT points FROM visitors WHERE guest_id=?", (guest_id,)).fetchone()[0]
-        return jsonify(status="won", prize={"id":chosen["id"],"title":chosen["title"],"description":chosen["description"],"partner":chosen["partner"]},
+        result = dict(status="won", spin_id=spin_cur.lastrowid, sectors=sectors,
+                       sector_index=next(i for i, sector in enumerate(sectors) if sector["id"] == chosen["id"]),
+                       prize={"id":chosen["id"],"title":chosen["title"],"description":chosen["description"],"partner":chosen["partner"]},
                        redemption_code=redemption_code, tickets=remaining, points=points,
                        message="Демонстрационный розыгрыш: приз не является обещанием реальной выдачи.")
+        save_receipt(c, guest_id, "spin", receipt, result, 200, NOW())
+        c.execute("INSERT INTO audit_log(actor,action,entity,entity_id,details_json,created_at) VALUES(?,?,?,?,?,?)",
+                  ("visitor", "spin", "prize", chosen["id"], json.dumps({"spin_id":spin_cur.lastrowid}), NOW()))
+        return jsonify(result)
 
 
 @app.get("/api/game/history")
@@ -901,6 +847,7 @@ def contest_entry(contest_id):
     if len(alias) < 2 or len(answer) < 5:
         return jsonify(error="invalid_entry", message="Укажите имя участника и короткий ответ."), 400
     with connect_db() as c:
+        get_visitor(c, guest_id)
         contest = c.execute("SELECT * FROM contests WHERE id=? AND status='active'", (contest_id,)).fetchone()
         if not contest or TODAY() < contest["starts_at"] or TODAY() > contest["ends_at"]:
             return jsonify(error="contest_closed"), 409
@@ -965,6 +912,11 @@ def admin_order_update(order_id):
         if not order:
             abort(404)
         previous = order["status"]
+        if previous == status:
+            return jsonify(status="updated", tickets_awarded=0, tickets_reversed=0)
+        if status not in ORDER_TRANSITIONS.get(previous, set()):
+            return jsonify(error="invalid_order_transition", previous_status=previous,
+                           allowed_statuses=sorted(ORDER_TRANSITIONS.get(previous, set()))), 409
         if status == "paid":
             reversed_before = c.execute("SELECT 1 FROM ticket_ledger WHERE guest_id=? AND source_type IN ('purchase_reversal','purchase_promo_reversal') AND source_id=?",(order["guest_id"],order_id)).fetchone() if order["guest_id"] else None
             if previous == "cancelled" or reversed_before:
@@ -991,7 +943,7 @@ def admin_order_update(order_id):
             if referral_result.get("awarded"):
                 awarded += int(referral_result.get("friend_tickets", 0))
         reversed_tickets = 0
-        if status == "cancelled" and previous == "paid" and order["guest_id"]:
+        if status == "cancelled" and order["guest_id"]:
             # Reverse the exact ledger amounts originally granted, not today's loyalty/promo settings.
             purchase_ledger = c.execute("SELECT delta FROM ticket_ledger WHERE guest_id=? AND source_type='purchase' AND source_id=?",
                                         (order["guest_id"],order_id)).fetchone()
@@ -1017,7 +969,20 @@ def admin_order_update(order_id):
                         reversed_tickets += reward
                 c.execute("UPDATE referral_attributions SET status='reversed' WHERE referred_guest_id=?", (order["guest_id"],))
         audit(c, "update_status", "order", order_id, {"status":status,"tickets_awarded":awarded,"tickets_reversed":reversed_tickets})
+        c.execute("INSERT INTO order_status_history(id,order_id,previous_status,new_status,actor,created_at) VALUES(?,?,?,?,?,?)",
+                  (secrets.token_hex(16), order_id, previous, status, staff_access.actor(), dt.datetime.now(dt.timezone.utc).isoformat()))
     return jsonify(status="updated", tickets_awarded=awarded, tickets_reversed=reversed_tickets)
+
+
+@app.get("/api/admin/orders/<order_id>/history")
+@admin_required
+def admin_order_history(order_id):
+    with connect_db() as c:
+        if not c.execute("SELECT 1 FROM orders WHERE id=?", (order_id,)).fetchone():
+            abort(404)
+        return jsonify([dict(row) for row in c.execute(
+            "SELECT previous_status,new_status,actor,created_at FROM order_status_history WHERE order_id=? ORDER BY created_at,id",
+            (order_id,))])
 
 
 @app.get("/api/admin/products")
@@ -1162,6 +1127,8 @@ def admin_prize_create():
     kind=str(d.get("kind","gift"))
     if len(title)<2 or stock<0 or weight<1 or weight>1000 or reward_value<0 or reward_value>90 or kind not in {"gift","coupon","points","delivery"}: abort(400)
     with connect_db() as c:
+        if c.execute("SELECT COUNT(*) FROM prizes WHERE active=1 AND weight>0").fetchone()[0] >= 32:
+            return jsonify(error="prize_limit_reached", message="Колесо поддерживает не более 32 активных призов. Сначала скройте один из существующих."), 409
         c.execute("INSERT INTO prizes(id,title,kind,description,stock,weight,partner,reward_value,active) VALUES(?,?,?,?,?,?,?,?,1)",
           (pid,title,kind,str(d.get("description",""))[:500],stock,weight,str(d.get("partner","РАКОВАРЪ"))[:80],reward_value))
         audit(c,"create","prize",pid)
@@ -1183,6 +1150,13 @@ def admin_prize_update(prize_id):
     if "title" in fields and len(fields["title"].strip())<2: abort(400)
     if fields.get("stock",0)<0 or fields.get("stock",0)>100000 or fields.get("weight",1)<1 or fields.get("weight",1)>1000 or fields.get("active",1) not in (0,1) or fields.get("reward_value",0)<0 or fields.get("reward_value",0)>90: abort(400)
     with connect_db() as c:
+        current = c.execute("SELECT active,weight FROM prizes WHERE id=?", (prize_id,)).fetchone()
+        if not current:
+            abort(404)
+        enabled = fields.get("active", current["active"]) == 1 and fields.get("weight", current["weight"]) > 0
+        was_enabled = current["active"] == 1 and current["weight"] > 0
+        if enabled and not was_enabled and c.execute("SELECT COUNT(*) FROM prizes WHERE active=1 AND weight>0").fetchone()[0] >= 32:
+            return jsonify(error="prize_limit_reached", message="Колесо поддерживает не более 32 активных призов."), 409
         cur=c.execute("UPDATE prizes SET "+",".join(f"{k}=?" for k in fields)+" WHERE id=?",(*fields.values(),prize_id))
         if not cur.rowcount: abort(404)
         audit(c,"update","prize",prize_id,fields)
@@ -1284,16 +1258,16 @@ def admin_contest_draw(contest_id):
         contest=c.execute("SELECT * FROM contests WHERE id=?",(contest_id,)).fetchone()
         if not contest: abort(404)
         if contest["status"]!="active": return jsonify(error="contest_not_active"),409
-        if TODAY() < contest["ends_at"]: return jsonify(error="contest_not_ended",message="Срок приёма заявок ещё не завершён."),409
+        if TODAY() <= contest["ends_at"]: return jsonify(error="contest_not_ended",message="Заявки принимаются включительно по последнюю дату по московскому времени."),409
         entries=c.execute("SELECT * FROM contest_entries WHERE contest_id=?",(contest_id,)).fetchall()
         if not entries: return jsonify(error="no_entries"),409
         selected=secrets.SystemRandom().sample(list(entries),min(winners,len(entries)))
-        c.execute("UPDATE contests SET status='drawn' WHERE id=?",(contest_id,))
+        if c.execute("UPDATE contests SET status='drawn' WHERE id=? AND status='active'",(contest_id,)).rowcount != 1:
+            return jsonify(error="contest_not_active"),409
         for row in selected:
             c.execute("INSERT INTO contest_winners(contest_id,entry_id,alias,answer,created_at) VALUES(?,?,?,?,?)",
                       (contest_id,row["id"],row["alias"],row["answer"],NOW()))
-            c.execute("INSERT INTO audit_log(actor,action,entity,entity_id,details_json,created_at) VALUES(?,?,?,?,?,?)",
-              ("admin","draw_winner","contest",contest_id,json.dumps({"alias":row["alias"],"entry_id":row["id"]},ensure_ascii=False),NOW()))
+            audit(c, "draw_winner", "contest", contest_id, {"alias":row["alias"],"entry_id":row["id"]})
         return jsonify(status="drawn",winners=[{"alias":r["alias"],"answer":r["answer"]} for r in selected],
                        note="Результат демо-розыгрыша. Перед реальным объявлением проверьте правила и личность участника.")
 
@@ -1351,7 +1325,7 @@ def admin_content_update(post_id):
     for key in ("title","body","scheduled_at"):
         if key in d: fields[key]=str(d[key])[:5000]
     if "status" in d:
-        if d["status"] not in {"draft","planned","approved","published","failed"}: abort(400)
+        if d["status"] not in {"draft","planned","approved"}: abort(400, description="status_managed_by_publisher")
         fields["status"]=d["status"]
     if "channels" in d:
         if not isinstance(d["channels"],list) or any(x not in {"vk","max","telegram"} for x in d["channels"]): abort(400)
@@ -1418,7 +1392,7 @@ def admin_analytics():
     with connect_db() as c:
         rows=c.execute("SELECT substr(created_at,1,10) day,COUNT(*) orders,COALESCE(SUM(total_rub),0) revenue FROM orders WHERE created_at>=? GROUP BY day ORDER BY day",(cutoff,)).fetchall()
         events=c.execute("SELECT event_name,COUNT(*) count FROM events WHERE created_at>=? GROUP BY event_name",(cutoff,)).fetchall()
-        top=c.execute("SELECT p.title,COUNT(*) qty FROM orders o,json_each(o.items_json) j JOIN products p ON p.id=json_extract(j.value,'$.id') WHERE o.created_at>=? GROUP BY p.id ORDER BY qty DESC LIMIT 5",(cutoff,)).fetchall()
+        top=top_products(c, cutoff)
         return jsonify(days=days,daily=[dict(r) for r in rows],events=[dict(r) for r in events],top_products=[dict(r) for r in top])
 
 
@@ -1509,9 +1483,20 @@ def health():
     except sqlite3.Error:
         return jsonify(status="degraded", service="rakovar-preview", dependency="database_unavailable"), 503
     return jsonify(status="ok", service="rakovar-preview", mode="demo" if DEMO_MODE else "production_guarded",
+                   database="postgresql" if os.environ.get("DATABASE_URL", "").strip() else "sqlite",
                    ordering="demo_only" if DEMO_MODE else "disabled_until_integrations_verified",
                    max_bot_token_configured=bool(MAX_BOT_TOKEN), max_miniapp_url_configured=bool(MAX_MINIAPP_URL),
                    integrations="credentials_are_not_connection_proof")
+
+
+@app.get("/api/live")
+def liveness():
+    return jsonify(status="ok", service="rakovar")
+
+
+@app.get("/api/ready")
+def readiness():
+    return health()
 
 
 @app.errorhandler(400)
@@ -1523,6 +1508,18 @@ def bad_request(error):
 def not_found(error):
     if request.path.startswith("/api/"): return jsonify(error="not_found"),404
     return "Страница не найдена",404
+
+
+@app.errorhandler(HTTPException)
+def http_error(error):
+    if not request.path.startswith("/api/"):
+        return error
+    description = str(error.description)
+    code = description if re.fullmatch(r"[a-z][a-z0-9_]{2,100}", description) else error.name.lower().replace(" ", "_")
+    response = error.get_response()
+    response.data = app.json.dumps({"error": code, "message": description})
+    response.content_type = "application/json"
+    return response
 
 
 if __name__ == "__main__":

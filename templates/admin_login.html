@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Вход для команды · РАКОВАРЪ</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='staff.css') }}">
+</head>
+<body class="admin-login-body">
+  <main class="login-card">
+    <a class="brand" href="/"><span class="brand-mark">Р</span><span><b>РАКОВАРЪ</b><small>административная система</small></span></a>
+    <div class="eyebrow">ЗАЩИЩЁННЫЙ ДОСТУП</div><h1>Вход для команды</h1>
+    {% if error %}<div class="alert" role="alert">{{ error }}</div>{% endif %}
+    <form method="post" action="/admin/login">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token or '' }}">
+      <label>Логин сотрудника<input name="username" value="owner" maxlength="64" required autocomplete="username" autocapitalize="none" spellcheck="false" autofocus></label>
+      <label>Пароль<input type="password" name="password" maxlength="256" required autocomplete="current-password"></label>
+      <label>Код MFA, если подключена<input name="otp" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" autocomplete="one-time-code" aria-describedby="mfaLoginHint"></label>
+      <p id="mfaLoginHint" class="fine-print">Шестизначный код из приложения аутентификации. Без подключённой MFA оставьте поле пустым.</p>
+      <button class="btn btn-primary btn-wide" type="submit">Войти в панель</button>
+    </form>
+    <p class="fine-print">Каждый сотрудник входит под своим логином. Учётная запись owner предназначена для первоначальной настройки владельцем.</p>
+    <a class="text-link" href="/">← Вернуться на витрину</a>
+  </main>
+</body>
+</html>

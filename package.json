@@ -1,0 +1,7 @@
+{
+  "name": "rakovar-development-preview",
+  "private": true,
+  "scripts": {
+    "dev": ".venv/bin/python scripts/dev_preview.py"
+  }
+}

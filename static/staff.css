@@ -1,0 +1,21 @@
+[hidden]{display:none!important}
+.admin-identity{color:#dec493;font-size:12px;line-height:1.5}
+.admin-view .access-note{border-left:3px solid #bc965b;padding:10px 14px;color:#d5c5aa;font-size:12px;background:#d9b46a0a}
+.staff-grid{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1.2fr);gap:20px;align-items:start}
+.staff-account{border:1px solid var(--line);border-radius:9px;padding:18px;margin-bottom:14px;background:#142019}
+.staff-account h3{margin:0;font-size:19px}.staff-account p,.session-item p{color:#b6c0b3;font-size:12px;line-height:1.6}
+.staff-account>label,.staff-reset-form label{display:grid;gap:7px;font-size:12px;color:#bfc8b9}
+.staff-account select,.staff-reset-form input{width:100%;min-height:42px;background:#101813;color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:10px}
+.staff-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.staff-reset-form{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.staff-actions .btn,.staff-reset-form .btn{font-size:11px;min-height:40px}
+.session-item{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.session-item:last-child{border-bottom:0}.session-item b{font-size:13px}.session-item .btn{font-size:11px}
+.security-state{font-size:13px;color:#e1c38f}.mfa-provisioning{border:1px solid #dfbc78;border-radius:8px;background:#0f1913;padding:16px;margin-block:16px}
+.mfa-provisioning code{display:block;overflow-wrap:anywhere;user-select:all;letter-spacing:.08em;padding:12px 0;color:#f0cf96;font-size:15px}
+.mfa-provisioning p{font-size:12px;color:#c2cabd;line-height:1.65}.mfa-provisioning .staff-actions{margin-top:12px}
+.order-history-dialog{width:min(660px,calc(100% - 24px));max-height:85vh;overflow:auto;color:var(--ink);background:#17251d;border:1px solid #d9b46a88;border-radius:12px;padding:24px;box-shadow:0 25px 80px #0009}
+.order-history-dialog::backdrop{background:#000b}.order-history-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.order-history-head h2{margin:0;font:700 24px var(--serif)}
+.order-history-entry{padding:15px 0;border-bottom:1px solid var(--line)}.order-history-entry b{display:block;font-size:13px}.order-history-entry p{font-size:11px;color:#b6c1b3;margin:6px 0 0}
+input:disabled,select:disabled,textarea:disabled{opacity:.75;cursor:default}.admin-sidebar button[aria-selected=true]{color:#edc98b}
+@media(max-width:850px){.staff-grid{grid-template-columns:1fr}.session-item{align-items:flex-start;flex-direction:column}.staff-reset-form{grid-template-columns:1fr}.admin-identity{display:none}}
+@media(prefers-reduced-motion:reduce){.order-history-dialog{scroll-behavior:auto}}
