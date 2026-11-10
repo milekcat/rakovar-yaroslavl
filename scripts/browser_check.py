@@ -146,17 +146,31 @@ def main():
                     expect(page.locator("#adminNav")).to_be_visible()
                     page.locator('[data-tab="orders"]').click()
                     expect(page.locator(f'[data-save-order="{order_id}"]')).to_be_visible()
+                    pending_order_refresh = []
+                    # Hold each refresh until the UI proves it prevents a second edit.
+                    page.route("**/api/admin/orders", lambda route: pending_order_refresh.append(route))
                     for status in ("paid", "preparing", "cancelled"):
                         page.locator(f'[data-order-status="{order_id}"]').select_option(status)
-                        with page.expect_response(lambda response: f"/api/admin/orders/{order_id}" in response.url and response.request.method == "PATCH"):
-                            page.locator(f'[data-save-order="{order_id}"]').click()
+                        with page.expect_request(lambda request: request.url.endswith("/api/admin/orders") and request.method == "GET"):
+                            with page.expect_response(lambda response: f"/api/admin/orders/{order_id}" in response.url and response.request.method == "PATCH") as saved:
+                                page.locator(f'[data-save-order="{order_id}"]').click()
+                        assert saved.value.status == 200
+                        expect(page.locator(f'[data-order-status="{order_id}"]')).to_be_disabled()
+                        expect(page.locator(f'[data-save-order="{order_id}"]')).to_be_disabled()
+                        assert len(pending_order_refresh) == 1
+                        refresh = pending_order_refresh.pop()
+                        refresh.fulfill(response=refresh.fetch())
+                        expect(page.locator(f'[data-save-order="{order_id}"]')).to_be_enabled()
                         expect(page.locator(f'[data-order-status="{order_id}"]')).to_have_value(status)
+                        persisted = next(row for row in context.request.get(origin + "/api/admin/orders").json() if row['id'] == order_id)
+                        assert persisted['status'] == status
+                    page.unroute("**/api/admin/orders")
                     page.locator(f'[data-order-history="{order_id}"]').click()
                     expect(page.locator("#orderHistoryDialog")).to_be_visible()
                     expect(page.locator("#orderHistoryBody")).to_contain_text("Готовится")
                     page.screenshot(path=str(output / "order-history.png"))
                     page.locator("#closeOrderHistory").click()
-                    checks.append("Manager changes statuses, reverses tickets and sees persisted order history")
+                    checks.append("Manager changes persisted statuses, blocks edits during delayed refresh, reverses tickets and sees order history")
 
                     page.locator('[data-tab="staff"]').click()
                     expect(page.locator("#staffCreateRole option").first).to_be_attached()

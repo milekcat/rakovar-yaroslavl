@@ -9,6 +9,7 @@
   const can = permission => Array.isArray(principal.permissions) && (principal.permissions.includes('*') || principal.permissions.includes(permission));
   const tabPermissions = {overview:'dashboard.read',orders:'orders.read',products:'catalog.read',site:'settings.read',promotions:'promotions.read',games:'games.read',content:'content.read',integrations:'integrations.read',analytics:'analytics.read',loyalty:'loyalty.read',referrals:'loyalty.read',audit:'audit.read',staff:'staff.manage',security:'shell'};
   let activeTab = '';
+  let ordersLoading = false, orderSaving = false, ordersRequest = 0;
   const statusLabels = {demo_received:'Тестовый заказ',confirmed:'Подтверждён',paid:'Оплачен (демо)',preparing:'Готовится',ready:'Готов',completed:'Завершён',cancelled:'Отменён'};
   const transitions = {demo_received:['confirmed','paid','cancelled'],confirmed:['paid','cancelled'],paid:['preparing','ready','completed','cancelled'],preparing:['ready','completed','cancelled'],ready:['completed','cancelled'],completed:['cancelled'],cancelled:[]};
   function applyViewRights() {
@@ -44,22 +45,35 @@
     loadTab(name);
   }
   async function loadOverview(){if(!can('dashboard.read'))return;const d=await api('/api/admin/dashboard');$('#metrics').innerHTML=[['Тестовые заказы',d.orders,'записано в демо'],['Сумма заказов',money(d.demo_revenue),'не реальные продажи'],['Товаров на витрине',d.products,'активные позиции'],['Посетители клуба',d.visitors,'анонимные demo ID'],['Реферальные конверсии',d.qualified_referrals,'первые подтверждённые покупки']].map(x=>`<div class="metric-card"><span>${x[0]}</span><strong>${x[1]}</strong><small>${x[2]}</small></div>`).join('');$('#lowStockCount').textContent=d.low_stock;$('#draftCount').textContent=d.content_drafts;$('#entriesCount').textContent=d.contest_entries;$('#spinsCount').textContent=d.spins;$('#recentOrders').innerHTML=d.recent_orders.length?d.recent_orders.map(o=>`<div class="admin-list-item"><div><b>${esc(o.id)}</b><small>${esc(o.created_at)} · ${JSON.parse(o.items_json).length} поз.</small></div><b>${money(o.total_rub)}</b></div>`).join(''):'<div class="empty-state">Тестовых заказов пока нет. Оформите заказ на витрине.</div>';}
+  function syncOrderControls(){
+    const busy=ordersLoading||orderSaving;
+    $('#ordersTable').setAttribute('aria-busy',String(busy));
+    $$('[data-order-status],[data-save-order],#refreshOrders').forEach(control=>{control.disabled=busy;});
+  }
   async function loadOrders(){
+    const request=++ordersRequest;ordersLoading=true;syncOrderControls();
+    try{
     const rows=await api('/api/admin/orders');
+    if(request!==ordersRequest)return;
     $('#ordersTable').innerHTML=rows.length?rows.map(order=>{
       const options=[order.status,...(transitions[order.status]||[])];
       return `<tr><td><b>${esc(order.id)}</b><br><small>DEMO · контакты не сохранены</small></td><td>${esc(order.created_at)}</td><td>${JSON.parse(order.items_json).map(item=>`${esc(item.title)} × ${Number(item.quantity)}`).join('<br>')}</td><td>${money(order.total_rub)}</td><td>${can('orders.write')?`<select aria-label="Статус заказа ${esc(order.id)}" data-order-status="${esc(order.id)}">${options.map(value=>`<option value="${esc(value)}">${esc(statusLabels[value]||value)}</option>`).join('')}</select>`:esc(statusLabels[order.status]||order.status)}</td><td><div class="mini-actions">${can('orders.write')?`<button type="button" data-save-order="${esc(order.id)}">Сохранить</button>`:''}<button type="button" data-order-history="${esc(order.id)}">История</button></div></td></tr>`;
     }).join(''):'<tr><td colspan="6">Заказов пока нет.</td></tr>';
     $$('[data-save-order]').forEach(button=>button.addEventListener('click',async()=>{
-      const id=button.dataset.saveOrder;button.disabled=true;
+      if(orderSaving||ordersLoading)return;
+      const id=button.dataset.saveOrder;
+      const status=$(`[data-order-status="${CSS.escape(id)}"]`).value;
+      orderSaving=true;syncOrderControls();
       try{
-        const result=await api(`/api/admin/orders/${encodeURIComponent(id)}`,{method:'PATCH',body:JSON.stringify({status:$(`[data-order-status="${CSS.escape(id)}"]`).value})});
+        const result=await api(`/api/admin/orders/${encodeURIComponent(id)}`,{method:'PATCH',body:JSON.stringify({status})});
         toast(result.tickets_awarded?`Начислено билетов: ${result.tickets_awarded}`:result.tickets_reversed?`Сторнировано билетов: ${result.tickets_reversed}`:'Статус сохранён');
         await loadOrders();await loadOverview();
-      }catch(error){toast(error.message);button.disabled=false;}
+      }catch(error){toast(error.message);}
+      finally{orderSaving=false;syncOrderControls();}
     }));
     $$('[data-order-history]').forEach(button=>button.addEventListener('click',()=>showOrderHistory(button.dataset.orderHistory)));
     applyViewRights();
+    }finally{if(request===ordersRequest){ordersLoading=false;syncOrderControls();}}
   }
   async function showOrderHistory(id){
     const dialog=$('#orderHistoryDialog');$('#orderHistoryTitle').textContent=`История ${id}`;
