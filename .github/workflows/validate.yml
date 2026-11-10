@@ -57,12 +57,12 @@ jobs:
       - run: pip install -r requirements-browser.txt
       - run: python -m playwright install --with-deps chromium
       - name: Run synthetic browser acceptance checks
-        run: python scripts/browser_check.py --app-python "$(command -v python)" --chromium "$(python -c 'from playwright.sync_api import sync_playwright;p=sync_playwright().start();print(p.chromium.executable_path);p.stop()')" --output docs/qa
+        run: python scripts/browser_check.py --app-python "$(command -v python)" --chromium "$(python -c 'from playwright.sync_api import sync_playwright;p=sync_playwright().start();print(p.chromium.executable_path);p.stop()')" --output test-results/browser
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: rakovar-browser-evidence
           path: |
-            docs/qa/*.png
-            docs/qa/browser-results.json
+            test-results/browser/*.png
+            test-results/browser/browser-results.json
           if-no-files-found: ignore
