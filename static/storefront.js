@@ -13,7 +13,7 @@
   const tabStorage = browserStorage('sessionStorage');
   const spinRequests = new window.RakovarWheel.PendingRequests(local);
   const orderRequests = new window.RakovarWheel.PendingRequests(tabStorage);
-  const state = { products: [], csrf: '', guestId: '', cart: {}, category: 'all', search: '', sort: 'popular', promo: '', delivery: 'delivery', contests: [], referral: null, maxStartParam: '', spinning: false, orderBusy: false, wheel: null, tickets: 0 };
+  const state = { products: [], csrf: '', guestId: '', cart: {}, category: 'all', search: '', sort: 'popular', catalogLimit: 12, promo: '', delivery: 'delivery', contests: [], referral: null, maxStartParam: '', spinning: false, orderBusy: false, wheel: null, tickets: 0 };
   let modalReturnFocus = null;
   let cartReturnFocus = null;
 
@@ -108,7 +108,7 @@
     const rank = category => order.includes(category) ? order.indexOf(category) : order.length;
     const cats = ['all', ...[...new Set(state.products.map(p => p.category))].sort((a,b) => rank(a)-rank(b) || a.localeCompare(b,'ru'))];
     $('#categories').innerHTML = cats.map(c => `<button class="chip ${state.category === c ? 'active' : ''}" data-category="${esc(c)}">${c === 'all' ? 'Всё' : esc(c)}</button>`).join('');
-    $$('#categories [data-category]').forEach(btn => btn.addEventListener('click', () => { state.category = btn.dataset.category; renderCategories(); renderProducts(); }));
+    $$('#categories [data-category]').forEach(btn => btn.addEventListener('click', () => { state.category = btn.dataset.category; state.catalogLimit=12; renderCategories(); renderProducts(); }));
   }
   function renderProducts() {
     let list = [...state.products].filter(p => (state.category === 'all' || p.category === state.category) && `${p.title} ${p.description}`.toLowerCase().includes(state.search.toLowerCase()));
@@ -120,6 +120,9 @@
     if (state.sort === 'price-asc') list.sort((a,b) => Number(!!a.price_on_request)-Number(!!b.price_on_request) || a.price-b.price);
     if (state.sort === 'price-desc') list.sort((a,b) => Number(!!a.price_on_request)-Number(!!b.price_on_request) || b.price-a.price);
     if (state.sort === 'title') list.sort((a,b) => a.title.localeCompare(b.title, 'ru'));
+    const total=list.length; list=list.slice(0,state.catalogLimit);
+    $('#catalogMore').hidden=state.catalogLimit>=total;
+    $('#catalogMore').textContent='Показать ещё '+Math.min(12,Math.max(0,total-state.catalogLimit))+' позиций';
     $('#products').innerHTML = list.length ? list.map(p => {
       const fallback = `/static/images/${(p.image || 'opt_hero.svg').split('/').map(encodeURIComponent).join('/')}`;
       const photo = p.image_url ? esc(p.image_url) : fallback;
@@ -129,21 +132,25 @@
       const action = p.price_on_request ? `<a class="add-button" href="https://vk.ru/rakovar_yar" target="_blank" rel="noopener">Уточнить ↗</a>` : `<button class="add-button" data-add="${esc(p.id)}">В корзину +</button>`;
       return `<article class="product-card">
       <div class="product-image"><img loading="lazy" src="${photo}" data-fallback="${fallback}" alt="${esc(p.title)}"><span class="product-badge">${esc(p.badge || 'РАКОВАРЪ')}</span></div>
-      <div class="product-body"><div class="product-meta"><span>${esc(p.category)}</span><span>${stockNote}</span></div><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>
+      <div class="product-body"><div class="product-meta"><span>${esc(p.category)}</span><span>${stockNote}</span></div><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p><button type="button" class="product-details" data-details="${esc(p.id)}">Состав и подробности</button>
       <div class="product-foot"><div class="price"><strong>${priceLabel}</strong><small>${priceNote}</small></div>${action}</div></div></article>`;
     }).join('') : '<div class="empty-state">Ничего не найдено. Попробуйте изменить запрос.</div>';
     $$('[data-add]').forEach(btn => btn.addEventListener('click', () => addToCart(btn.dataset.add)));
+    $$('[data-details]').forEach(btn=>btn.addEventListener('click',()=>{
+      const p=productById(btn.dataset.details);if(!p)return;
+      openModal(`<div class="product-dialog"><img src="${esc(window.RakovarStudio.image(p))}" alt="${esc(p.title)}"><div class="eyebrow">${esc(p.category)}${p.weight_label?' · '+esc(p.weight_label):''}</div><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p><p>${p.ingredients?esc(p.ingredients):'Пожелания к приготовлению, состав и аллергены уточните у администратора перед заказом.'}</p><strong>${p.price_on_request?'Цена по запросу':money(p.price)+' · '+esc(p.unit)}</strong><button type="button" class="btn btn-primary btn-wide" id="detailToSet">Добавить в мой сет</button></div>`);
+      $('#detailToSet').onclick=()=>{state.studio?.select(p.id);closeModal();document.querySelector('#sets').scrollIntoView({behavior:'smooth'});};
+    }));
     $$('#products img[data-fallback]').forEach(img => img.addEventListener('error', () => { img.src = img.dataset.fallback; }, { once: true }));
   }
   function renderBuilder() {
-    const preferred = ['crayfish-medium-kg','set-firmenny','shrimp-assorted-boiled','mussels-wine'];
-    const picks = preferred.map(id => productById(id)).filter(p => p && !p.price_on_request);
-    $('#builderItems').innerHTML = picks.map((p, i) => `<div class="builder-item"><label><input type="checkbox" data-build="${esc(p.id)}" ${i < 2 ? 'checked' : ''}> <span>${esc(p.title)}</span></label><b>${money(p.price)}</b></div>`).join('');
-    $$('[data-build]').forEach(el => el.addEventListener('change', updateBuilderTotal)); updateBuilderTotal();
-  }
-  function updateBuilderTotal() {
-    const sum = $$('[data-build]:checked').reduce((n, el) => n + (productById(el.dataset.build)?.price || 0), 0);
-    $('#builderTotal').textContent = money(sum);
+    state.studio = window.RakovarStudio.mount(state.products,{toast,addBatch(rows){
+      const combined={...state.cart};
+      for(const row of rows){const p=productById(row.id);const qty=(combined[row.id]||0)+row.quantity;if(!p||p.price_on_request||qty>Math.min(50,p.stock))return toast('Проверьте количество и наличие выбранных блюд.');combined[row.id]=qty;}
+      if(Object.keys(combined).length>30)return toast('В одном заказе доступно до 30 разных позиций.');
+      state.cart=combined;saveCart();updateCart();toast('Ваш набор добавлен в корзину.');openCart();
+    }});
+    window.RakovarStudio.mountLive(state.products.find(p=>p.id==='live-crayfish-request'));
   }
   function addToCart(id, qty = 1) {
     const p = productById(id); if (!p) return;
@@ -264,7 +271,8 @@
     });
   }
   function bindEvents() {
-    $('#search').addEventListener('input', e => { state.search=e.target.value; renderProducts(); });
+    $('#catalogMore').addEventListener('click',()=>{state.catalogLimit+=12;renderProducts();});
+    $('#search').addEventListener('input', e => { state.catalogLimit=12; state.search=e.target.value; renderProducts(); });
     $('#sort').addEventListener('change', e => { state.sort=e.target.value; renderProducts(); });
     $('#cartOpen').addEventListener('click', () => { openCart(); updateCart(); track('checkout_started'); });
     $('#cartClose').addEventListener('click', closeCart);
@@ -316,9 +324,9 @@
       track('referral_shared',{code:state.referral.code});
       try{if(window.WebApp?.shareMaxContent)await window.WebApp.shareMaxContent({text:message,link:maxLink});else if(navigator.share)await navigator.share({title:'Клуб РАКОВАРЪ',text:message,url:maxLink});else{await navigator.clipboard.writeText(message);toast('Приглашение скопировано.');}}catch(e){if(e?.name!=='AbortError')toast('Не удалось поделиться приглашением.');}
     });
-    $('#addBundle').addEventListener('click',()=>{const chosen=$$('[data-build]:checked').map(el=>el.dataset.build);if(!chosen.length)return toast('Выберите хотя бы одну позицию.');chosen.forEach(id=>{const p=productById(id);if(p&&((state.cart[id]||0)<p.stock))state.cart[id]=(state.cart[id]||0)+1;});saveCart();updateCart();toast('Состав набора добавлен в корзину.');openCart();});
+    $('#addBundle').addEventListener('click',()=>state.studio?.add());
     $$('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(btn.dataset.copy);toast(`Промокод ${btn.dataset.copy} скопирован`);}catch{ $('#promoCode').value=btn.dataset.copy; openCart();toast('Промокод перенесён в корзину.');}}));
-    $$('[data-category-select]').forEach(btn => btn.addEventListener('click', () => { state.category = btn.dataset.categorySelect; renderCategories(); renderProducts(); $('#catalog').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); }));
+    $$('[data-category-select]').forEach(btn => btn.addEventListener('click', () => { state.category = btn.dataset.categorySelect; state.catalogLimit=12; renderCategories(); renderProducts(); $('#catalog').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); }));
     $('#mobileMenu').addEventListener('click', () => { const expanded = $('.main-nav').classList.toggle('open'); $('#mobileMenu').setAttribute('aria-expanded', String(expanded)); });
     $$('.main-nav a').forEach(a=>a.addEventListener('click',()=>$('.main-nav').classList.remove('open')));
   }

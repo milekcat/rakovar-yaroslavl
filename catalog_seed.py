@@ -10,7 +10,7 @@ EDA7_URL = "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/"
 CHIBBIS_URL = "https://chibbis.ru/yar/restaurant/rakovar/menu"
 EDA_DOSTAVKA_URL = "https://eda-dostavka.com/yaroslavl/restorany/rakovar-fnxcs/"
 SOURCE_URL = EDA7_URL
-CATALOG_VERSION = "brand-catalog-2026-11-10-v7"
+CATALOG_VERSION = "meeting-release-2026-11-10-v8"
 NON_BRAND_PRODUCT_TERMS = ("пицц", "pizza", "пепперони", "pepperoni", "военные раки")
 # Opaque upstream banner filenames evade title-only checks.
 REJECTED_MEDIA_IDS = ("df9c6ef11fd698f6963dbb540a41dc1f",)

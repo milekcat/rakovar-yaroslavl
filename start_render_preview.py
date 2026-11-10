@@ -56,10 +56,10 @@ try:
     if not ready:
         raise SystemExit(f"web service failed storefront readiness check: {last_error}")
 
-    if os.getenv("MAX_BOT_TOKEN", "").strip():
+    if os.getenv("MAX_BOT_TOKEN", "").strip() and os.getenv("MAX_BOT_MODE", "webhook") == "polling":
         bot = subprocess.Popen([sys.executable, os.path.join(ROOT, "max_bot.py")], cwd=ROOT)
     else:
-        print("MAX_BOT_TOKEN not set; preview runs without MAX bot.", flush=True)
+        print("Web app ready; MAX webhook is configured explicitly in the admin panel.", flush=True)
 
     code = web.wait()
 finally:

@@ -110,7 +110,7 @@ def test_social_publish_is_not_faked(client, monkeypatch):
     assert post.status_code == 201
     response=client.post(f"/api/admin/content/{post.json['id']}/publish",headers=headers,json={})
     assert response.status_code == 409
-    assert response.json['error'] == 'integration_not_configured'
+    assert response.json['error'] == 'content_approval_required'
 
 def test_admin_apis_require_auth(client):
     assert client.get('/api/admin/dashboard').status_code == 401

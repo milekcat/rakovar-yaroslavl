@@ -27,9 +27,10 @@ TABLES = (
     "contest_entries", "contest_winners", "content_posts", "site_settings", "events",
     "integration_health", "ticket_ledger", "referral_codes", "referral_attributions",
     "audit_log", "operation_receipts", "order_status_history", "max_webhook_events",
+    "provider_deliveries", "provider_events",
 )
 SKIPPED = frozenset({"schema_migrations", "max_webhook_leases", "staff_accounts",
-    "staff_sessions", "staff_mfa", "staff_login_events", "staff_login_guards"})
+    "staff_sessions", "staff_mfa", "staff_login_events", "staff_login_guards", "provider_connections"})
 IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 

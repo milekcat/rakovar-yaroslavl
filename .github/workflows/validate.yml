@@ -26,7 +26,7 @@ jobs:
       - name: Check source and catalog invariants
         run: python scripts/validate_preview.py
       - name: Compile Python modules
-        run: python -m compileall -q app.py max_auth.py max_client.py max_bot.py catalog_seed.py prepare_render.py storage.py staff_auth.py commerce_safety.py scripts
+        run: python -m compileall -q app.py max_auth.py max_client.py max_bot.py catalog_seed.py prepare_render.py storage.py staff_auth.py commerce_safety.py connections.py scripts
       - name: Run tests
         run: python -m pytest -q
       - name: Check storefront scripts
@@ -35,6 +35,8 @@ jobs:
           node --check static/admin.js
           node --check static/staff.js
           node --check static/wheel.js
+          node --check static/studio.js
+          node --check static/connections.js
   postgres:
     runs-on: ubuntu-latest
     steps:

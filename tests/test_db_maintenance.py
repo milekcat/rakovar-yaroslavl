@@ -43,7 +43,7 @@ def test_sqlite_backup_is_recoverable_without_overwrite(tmp_path):
     with closing(sqlite3.connect(backup)) as c:
         assert c.execute("PRAGMA integrity_check").fetchone()[0] == "ok"
         assert c.execute("SELECT tickets FROM visitors").fetchone()[0] == 7
-        assert c.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == 3
+        assert c.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == 4
     with pytest.raises(ValueError, match="already exists"):
         backup_sqlite(source, backup)
 
@@ -148,7 +148,7 @@ def test_postgres_dump_restores_into_separate_disposable_database(tmp_path, post
         with psycopg.connect(host=parts.hostname, port=parts.port, user=parts.username,
                             dbname=restored_name, options="-c search_path=" + schema) as c:
             assert c.execute("SELECT tickets FROM visitors").fetchone()[0] == 7
-            assert c.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == 3
+            assert c.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == 4
             assert c.execute("SELECT COUNT(*) FROM orders").fetchone()[0] == 1
             assert c.execute("SELECT event_name FROM events").fetchone()[0] == "synthetic-event"
     finally:

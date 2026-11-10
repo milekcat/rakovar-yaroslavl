@@ -1346,7 +1346,7 @@
     "unit": "по запросу",
     "weight": "",
     "description": "Живые раки разных размеров. Подберём размер и количество.",
-    "image": "menu/illustration-crayfish.svg",
+    "image": "menu/live-company-1.jpg",
     "image_url": "",
     "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
     "badge": "Живые раки",
@@ -1362,6 +1362,48 @@
         "original_url": null,
         "checked_at": "2026-11-10",
         "original_access": "unavailable"
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2186101/",
+      "kind": "company listing",
+      "current_price_verified": false
+    },
+    "live_size_options": [
+      {
+        "name": "Mini",
+        "weight": "15–30 г/шт.",
+        "image": "menu/live-company-0.jpg",
+        "source_url": "https://www.ds76.ru/goods/2185866/",
+        "availability_confirmed": false
+      },
+      {
+        "name": "Standart",
+        "weight": "30–50 г/шт.",
+        "image": "menu/live-company-1.jpg",
+        "source_url": "https://www.ds76.ru/goods/2186101/",
+        "availability_confirmed": false
+      },
+      {
+        "name": "Maxi",
+        "weight": "50–70 г/шт.",
+        "image": "menu/live-company-2.jpg",
+        "source_url": "https://www.ds76.ru/goods/2186102/",
+        "availability_confirmed": false
+      },
+      {
+        "name": "Mega",
+        "weight": "70–90 г/шт.",
+        "image": "menu/live-company-3.jpg",
+        "source_url": "https://www.ds76.ru/goods/2186103/",
+        "availability_confirmed": false
+      },
+      {
+        "name": "XXL",
+        "weight": "90–110 г/шт.",
+        "source_url": "https://www.ds76.ru/goods/2186104/",
+        "availability_confirmed": false,
+        "image": "menu/live-company-4.jpg"
       }
     ]
   },

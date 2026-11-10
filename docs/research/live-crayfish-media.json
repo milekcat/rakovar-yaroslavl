@@ -1,0 +1,37 @@
+[
+  {
+    "source_url": "https://www.ds76.ru/goods/2185866/",
+    "image_url": "https://f1.ds-russia.ru/u_dirs/186/186812/b36415d656605e1e005165c0b66e6135.jpg",
+    "file": "static/images/menu/live-company-0.jpg",
+    "title": "Живые раки \"Mini\"",
+    "sha256": "40416ce7a33a2496da8dd410d5835aec37baf29ff731816a07a3f71a621c1c9e"
+  },
+  {
+    "source_url": "https://www.ds76.ru/goods/2186101/",
+    "image_url": "https://f1.ds-russia.ru/u_dirs/186/186812/50ac3dac5bdf30be9f94db4cb85ca0a8.jpg",
+    "file": "static/images/menu/live-company-1.jpg",
+    "title": "Живые раки \"Standart\"",
+    "sha256": "08ad339a4bc1024269d0d03d9ba90632044ef4252429ff5fe4761b0a4a770ce8"
+  },
+  {
+    "source_url": "https://www.ds76.ru/goods/2186102/",
+    "image_url": "https://f1.ds-russia.ru/u_dirs/186/186812/d31ad3bd392705e53170d34d4a571094.jpg",
+    "file": "static/images/menu/live-company-2.jpg",
+    "title": "Живые раки \"Maxi\"",
+    "sha256": "fdd386b5ef7a82d4dde0096b12e78e3b0be4dc6bfdc78b930f059074a3738cf9"
+  },
+  {
+    "source_url": "https://www.ds76.ru/goods/2186103/",
+    "image_url": "https://f1.ds-russia.ru/u_dirs/186/186812/59bf3b79b9813ad1de261c9f17c3b379.jpg",
+    "file": "static/images/menu/live-company-3.jpg",
+    "title": "Живые раки \"Mega\"",
+    "sha256": "de61935f321357ea34afe4bae66966a2d6dff0043aaf2ace0e3b97f4111e4805"
+  },
+  {
+    "source_url": "https://www.ds76.ru/goods/2186104/",
+    "image_url": "https://f1.ds-russia.ru/u_dirs/186/186812/1b3eaca2c4b0eee1a3d2c4eb1754a41d.jpg",
+    "file": "static/images/menu/live-company-4.jpg",
+    "title": "Живые раки \"XXL\"",
+    "sha256": "4102cd142d1f3c10b5c2444cf2c4c458d228add9d96484072182e9893d9c2ba7"
+  }
+]

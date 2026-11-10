@@ -24,7 +24,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 ROLE_PERMISSIONS = {
     "owner": {"*"},
-    "admin": {"shell", "dashboard.read", "orders.read", "orders.write", "catalog.read", "catalog.write", "promotions.read", "promotions.write", "games.read", "games.write", "content.read", "content.write", "integrations.read", "analytics.read", "loyalty.read", "loyalty.write", "settings.read", "settings.write", "audit.read", "staff.manage"},
+    "admin": {"shell", "dashboard.read", "orders.read", "orders.write", "catalog.read", "catalog.write", "promotions.read", "promotions.write", "games.read", "games.write", "content.read", "content.write", "integrations.read", "integrations.manage", "analytics.read", "loyalty.read", "loyalty.write", "settings.read", "settings.write", "audit.read", "staff.manage"},
     "store_manager": {"shell", "dashboard.read", "orders.read", "orders.write", "catalog.read", "catalog.write", "promotions.read", "games.read", "loyalty.read", "settings.read"},
     "catalog_manager": {"shell", "catalog.read", "catalog.write"},
     "warehouse_operator": {"shell", "catalog.read"},
@@ -52,6 +52,7 @@ ENDPOINT_PERMISSIONS = {
     "admin_contests": "games.read", "admin_contest_create": "games.write", "admin_contest_update": "games.write", "admin_contest_draw": "games.write",
     "admin_settings": "settings.read", "admin_settings_update": "settings.write",
     "admin_content": "content.read", "admin_content_create": "content.write", "admin_content_update": "content.write", "admin_content_publish": "content.write",
+    "connections_list": "integrations.read", "connections_save": "integrations.manage", "connections_check": "integrations.manage", "connections_send": "integrations.manage", "connections_subscribe": "integrations.manage",
     "admin_integrations": "integrations.read", "admin_analytics": "analytics.read",
     "admin_loyalty_ledger": "loyalty.read", "admin_loyalty_rules_update": "loyalty.write", "admin_loyalty_award": "loyalty.write",
     "admin_referrals": "loyalty.read", "admin_referral_rules_update": "loyalty.write", "admin_audit": "audit.read",

@@ -29,7 +29,7 @@ def test_menu_coverage_and_product_specific_media():
         if path.suffix != '.svg':
             asset = next(a for a in assets.values() if ROOT/a['file'] == path)
             assert hashlib.sha256(path.read_bytes()).hexdigest() == asset['sha256']
-            assert asset['url'] in {offer['image_url'] for offer in all_offers if offer['catalog_id'] == product['id']}
+            assert asset['url'] in {offer['image_url'] for offer in all_offers if offer['catalog_id'] == product['id']} or product.get('photo_evidence',{}).get('source') == asset.get('source_url')
     bacon = products['langoustine-bacon']
     assert bacon['price_on_request'] == 1 and bacon['price'] == 0
 

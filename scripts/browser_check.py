@@ -56,7 +56,7 @@ def main():
         env = os.environ.copy()
         env.update(DEMO_MODE="true", COOKIE_SECURE="false", DATABASE_URL="",
                    SQLITE_DB_PATH=str(database), ADMIN_PASSWORD_HASH=password_hash,
-                   FLASK_SECRET_KEY=secrets.token_hex(32), STAFF_REQUIRE_MFA="false",
+                   FLASK_SECRET_KEY=secrets.token_hex(32), INTEGRATION_ENCRYPTION_KEY=secrets.token_hex(32), STAFF_REQUIRE_MFA="false",
                    MAX_BOT_TOKEN="", MAX_ADMIN_USER_ID="", MAX_WEBHOOK_SECRET="")
         with (Path(temporary) / "server.log").open("w+") as log:
             server = subprocess.Popen([args.app_python, "-m", "gunicorn", "app:app", "--bind",
@@ -84,7 +84,8 @@ def main():
                     expect(page.locator("#wheel svg")).to_be_visible()
                     assert page.locator(".hero-visual > img").get_attribute("src").startswith("/static/images/menu/")
                     expect(page.locator(".hero-visual > img")).to_have_attribute("alt", "Сет «4 моря»: раки, креветки, лангустины и мидии")
-                    assert page.locator("#products .product-card").count() == 69
+                    assert page.locator("#products .product-card").count() == 12
+                    assert len(context.request.get(origin + "/api/bootstrap").json()["products"]) == 69
                     expect(page.locator("#products .product-card h3").first).to_have_text("Средние варёные раки")
                     assert page.locator(".demo-banner").count() == 0
                     assert page.locator("#products .product-source").count() == 0
@@ -93,7 +94,7 @@ def main():
                     for image in page.locator("#products img").all():
                         assert image.get_attribute("src").startswith("/static/images/menu/")
                     page.locator('[data-category="all"]').click()
-                    expect(page.locator("#products .product-card")).to_have_count(69)
+                    expect(page.locator("#products .product-card")).to_have_count(12)
                     page.screenshot(path=str(output / "storefront-desktop.png"))
                     checks.append("Storefront loads 69 sourced items, seafood hero, per-product sauces and clean customer copy")
 
@@ -124,6 +125,17 @@ def main():
                     page.screenshot(path=str(output / "wheel-desktop.png"))
                     checks.append("Lost spin response retries same key, consumes one ticket and lands on server sector")
 
+                    expect(page.locator('#liveSizes input')).to_have_count(5)
+                    page.locator('#liveSizes input').last.check()
+                    expect(page.locator('#liveSummary')).to_contain_text('XXL')
+                    assert 'live-company-4.jpg' in page.locator('#livePhoto').get_attribute('src')
+                    page.locator('#liveWeight').fill('3')
+                    expect(page.locator('#liveSummary')).to_contain_text('3')
+                    page.locator('#studioSearch').fill('кревет')
+                    assert 3 < page.locator('#builderItems .studio-product').count() < 69
+                    page.locator('#studioSearch').fill('')
+                    page.locator('[data-studio-preset="two"]').click()
+                    expect(page.locator("#builderItems .studio-product")).to_have_count(69)
                     page.locator("#addBundle").click()
                     page.locator("#customerName").fill("Synthetic Browser Customer")
                     page.locator("#customerPhone").fill("+79990000000")
@@ -171,6 +183,14 @@ def main():
                     page.screenshot(path=str(output / "order-history.png"))
                     page.locator("#closeOrderHistory").click()
                     checks.append("Manager changes persisted statuses, blocks edits during delayed refresh, reverses tickets and sees order history")
+
+                    page.locator('[data-tab="integrations"]').click()
+                    expect(page.locator('.connection-card')).to_have_count(3)
+                    expect(page.locator('[data-connection-form="max"] input[name="bot_token"]')).to_have_attribute('type','password')
+                    for button in page.locator('.connection-form button[type="submit"]').all():
+                        expect(button).to_be_enabled()
+                    page.screenshot(path=str(output / 'connections-admin.png'))
+                    checks.append('Owner sees three encrypted provider forms; saving and sending are separate explicit actions')
 
                     page.locator('[data-tab="staff"]').click()
                     expect(page.locator("#staffCreateRole option").first).to_be_attached()

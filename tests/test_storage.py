@@ -41,7 +41,7 @@ def database(request, tmp_path):
 
 def test_versioned_migrations_are_idempotent_and_preserve_rows(database):
     with database() as connection:
-        assert storage.migrate(connection) == ["0001_core", "0002_legacy_columns", "0003_staff_and_safety"]
+        assert storage.migrate(connection) == ["0001_core", "0002_legacy_columns", "0003_staff_and_safety", "0004_provider_connections"]
         connection.execute("INSERT INTO visitors(guest_id,tickets,created_at) VALUES(?,?,?)", ("visitor-migration", 7, "2026-11-09"))
     with database() as connection:
         assert storage.migrate(connection) == []

@@ -43,7 +43,7 @@ if not DEMO_MODE:
         raise RuntimeError("Non-demo startup requires a stable FLASK_SECRET_KEY of at least 32 characters")
 MAX_BOT_TOKEN = os.environ.get("MAX_BOT_TOKEN", "").strip()
 MAX_MINIAPP_URL = os.environ.get("MAX_MINIAPP_URL", "").strip()
-MAX_BOT_USERNAME = os.environ.get("MAX_BOT_USERNAME", "id7606139934_5_bot").strip().lstrip("@")
+MAX_BOT_USERNAME = os.environ.get("MAX_BOT_USERNAME", "").strip().lstrip("@")
 MAX_ADMIN_USER_ID = os.environ.get("MAX_ADMIN_USER_ID", "").strip()
 MAX_WEBHOOK_SECRET = os.environ.get("MAX_WEBHOOK_SECRET", "").strip()
 LOYALTY_RUB_PER_TICKET = max(100, min(int(os.environ.get("LOYALTY_RUB_PER_TICKET", "1000")), 100000))
@@ -107,7 +107,17 @@ def connect_db():
 def public_catalog_products(c: sqlite3.Connection) -> list[dict]:
     """Return active, brand-relevant items only; keep legacy rows available to admins."""
     rows = c.execute("SELECT * FROM products WHERE active=1 ORDER BY category,title").fetchall()
-    return [dict(row) for row in rows if not is_non_brand_product(dict(row))]
+    metadata = {p['id']: p for p in CATALOG_PRODUCTS}
+    result = []
+    for row in rows:
+        product = dict(row)
+        if is_non_brand_product(product):
+            continue
+        seed = metadata.get(product['id'], {})
+        for key in ('live_size_options', 'preparation_options', 'photo_evidence', 'ingredients', 'allergens'):
+            if key in seed: product[key] = seed[key]
+        result.append(product)
+    return result
 
 
 def get_loyalty_rate(c: sqlite3.Connection) -> int:
@@ -463,9 +473,21 @@ def normalize_cart(c: sqlite3.Connection, items: Any) -> tuple[list[dict], int]:
     return normalized, subtotal
 
 
+def active_max_token():
+    manager = globals().get('connections')
+    config = manager.config('max') if manager else {}
+    if config.get('enabled', True) is False:
+        return ''
+    return config.get('bot_token') or MAX_BOT_TOKEN
+
+
+def active_max_username():
+    return connections.config('max').get('bot_username') or MAX_BOT_USERNAME
+
+
 def validate_max_init_data(init_data: str) -> dict:
     try:
-        return verify_max_init_data(init_data, MAX_BOT_TOKEN)
+        return verify_max_init_data(init_data, active_max_token())
     except MaxInitDataError as exc:
         abort(exc.status, description=exc.code)
 
@@ -570,10 +592,14 @@ def max_auth():
 @app.post("/api/max/webhook")
 def max_webhook():
     """Receive authenticated MAX bot events through the production webhook."""
-    if not MAX_WEBHOOK_SECRET:
+    config = connections.config('max')
+    if config.get('enabled', True) is False:
+        return jsonify(error='connection_disabled'), 403
+    webhook_secret = config.get('webhook_secret') or MAX_WEBHOOK_SECRET
+    if not webhook_secret:
         return jsonify(error="max_webhook_not_configured"), 503
     supplied_secret = request.headers.get("X-Max-Bot-Api-Secret", "")
-    if not hmac.compare_digest(supplied_secret, MAX_WEBHOOK_SECRET):
+    if not hmac.compare_digest(supplied_secret, webhook_secret):
         return jsonify(error="unauthorized"), 401
     update = request.get_json(silent=True)
     if not isinstance(update, dict):
@@ -604,7 +630,7 @@ def max_webhook():
     try:
         # Import lazily to avoid an app <-> bot import cycle during startup.
         from max_bot import handle_update
-        handle_update(update, MAX_BOT_USERNAME)
+        handle_update(update, active_max_username())
     except Exception:
         with connect_db() as c:
             c.execute("DELETE FROM max_webhook_leases WHERE event_hash=? AND lease_token=?", (fingerprint, lease_token))
@@ -633,6 +659,7 @@ def wheel_snapshot(c):
 
 @app.get("/api/bootstrap")
 def bootstrap():
+    max_configured = bool(active_max_token())
     guest_id = resolve_guest_id(request.args.get("guest_id", "")) if request.args.get("guest_id") or session.get("max_guest_id") else ""
     with connect_db() as c:
         products = public_catalog_products(c)
@@ -649,7 +676,7 @@ def bootstrap():
                        wheel_configuration_error="too_many_sectors" if len(sectors) > 32 else None,
                        settings=settings, visitor=visitor, referral_code=referral_code, loyalty_tier=tier,
                        loyalty_rules={"rub_per_ticket":LOYALTY_RUB_PER_TICKET,"purchase_credit_on":"paid_status_only"},
-                       max_bot_configured=bool(MAX_BOT_TOKEN),
+                       max_bot_configured=max_configured,
                        notice="Предварительный каталог. Цены, наличие, условия и права на фотографии требуют подтверждения компании.")
 
 
@@ -1375,16 +1402,23 @@ def admin_content_publish(post_id):
     with connect_db() as c:
         post=c.execute("SELECT * FROM content_posts WHERE id=?",(post_id,)).fetchone()
         if not post: abort(404)
-        channels=json.loads(post["channels_json"])
-        missing=[]
-        for channel in channels:
-            if channel=="vk" and not (os.getenv("VK_GROUP_TOKEN") and os.getenv("VK_GROUP_ID")): missing.append("VK")
-            if channel=="max" and not os.getenv("MAX_BOT_TOKEN"): missing.append("MAX")
-            if channel=="telegram" and not os.getenv("TELEGRAM_BOT_TOKEN"): missing.append("Telegram")
-        if missing:
-            return jsonify(error="integration_not_configured",missing=missing,message="Публикация не отправлена. Сначала подключите и проверьте API.") ,409
-        # Credentials alone are not proof of working API access. Real publisher adapters are intentionally not faked.
-        return jsonify(error="publisher_adapter_pending",message="Ключи обнаружены, но адаптер публикации ещё не реализован и не проверен."),501
+        if post['status'] not in ('approved','published'):
+            return jsonify(error='content_approval_required'),409
+        channels=json.loads(post['channels_json'])
+    if not channels or any(channel not in ('vk','max','telegram') for channel in channels):
+        return jsonify(error='unsupported_publish_channel'),409
+    from connections import ConnectionError
+    results={}
+    for channel in channels:
+        try:
+            results[channel]=connections.deliver(channel,post['body'],'post:'+str(post_id)+':'+channel)
+        except ConnectionError as error:
+            return jsonify(error=error.code,channel=channel,completed=results),error.status
+    with connect_db() as c:
+        c.execute("UPDATE content_posts SET status='published' WHERE id=?",(post_id,))
+        audit(c,'publish','content',post_id,{'channels':list(results)})
+    return jsonify(status='published',results=results)
+
 
 
 @app.get("/api/admin/integrations")
@@ -1514,7 +1548,7 @@ def health():
     return jsonify(status="ok", service="rakovar-preview", mode="demo" if DEMO_MODE else "production_guarded",
                    database="postgresql" if os.environ.get("DATABASE_URL", "").strip() else "sqlite",
                    ordering="demo_only" if DEMO_MODE else "disabled_until_integrations_verified",
-                   max_bot_token_configured=bool(MAX_BOT_TOKEN), max_miniapp_url_configured=bool(MAX_MINIAPP_URL),
+                   max_bot_token_configured=bool(active_max_token()), max_miniapp_url_configured=bool(MAX_MINIAPP_URL),
                    integrations="credentials_are_not_connection_proof")
 
 
@@ -1550,6 +1584,14 @@ def http_error(error):
     response.content_type = "application/json"
     return response
 
+
+
+
+
+# Provider credentials are resolved from encrypted storage at request time.
+from connections import Connections
+connections = Connections(app, connect_db, staff_access, require_csrf, audit)
+connections.register(admin_required)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
