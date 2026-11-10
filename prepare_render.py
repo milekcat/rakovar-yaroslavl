@@ -11,6 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 REQUIRED = (
+    "data/catalog.json",
     "templates/storefront.html",
     "templates/admin_login.html",
     "templates/admin.html",

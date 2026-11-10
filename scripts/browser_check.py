@@ -82,9 +82,20 @@ def main():
                     page.goto(origin, wait_until="domcontentloaded")
                     expect(page.locator("#products .product-card").first).to_be_visible()
                     expect(page.locator("#wheel svg")).to_be_visible()
-                    assert "fe4c4a6a9dc1e91b6eee1127139e5bae" in page.locator(".hero-visual > img").get_attribute("src")
+                    assert page.locator(".hero-visual > img").get_attribute("src").startswith("/static/images/menu/")
+                    expect(page.locator(".hero-visual > img")).to_have_attribute("alt", "Сет «4 моря»: раки, креветки, лангустины и мидии")
+                    assert page.locator("#products .product-card").count() == 69
+                    expect(page.locator("#products .product-card h3").first).to_have_text("Средние варёные раки")
+                    assert page.locator(".demo-banner").count() == 0
+                    assert page.locator("#products .product-source").count() == 0
+                    page.locator('[data-category="Соусы"]').click()
+                    expect(page.locator("#products .product-card")).to_have_count(4)
+                    for image in page.locator("#products img").all():
+                        assert image.get_attribute("src").startswith("/static/images/menu/")
+                    page.locator('[data-category="all"]').click()
+                    expect(page.locator("#products .product-card")).to_have_count(69)
                     page.screenshot(path=str(output / "storefront-desktop.png"))
-                    checks.append("Storefront loads corrected seafood hero and real catalog API")
+                    checks.append("Storefront loads 69 sourced items, seafood hero, per-product sauces and clean customer copy")
 
                     # Lose the successful response AFTER the server commits it.
                     sent_keys = []

@@ -1,0 +1,220 @@
+[
+  {
+    "catalog_id": "shrimp-assorted-boiled",
+    "observed_prices_rub": [
+      2690,
+      2790
+    ],
+    "observed_weights": [
+      "800 г",
+      "800 г"
+    ],
+    "invalid_weight_1g": true,
+    "decision": "current_chibbis_price_if_present; valid explicitly listed weight only; company approval required",
+    "sources": [
+      {
+        "source": "chibbis",
+        "source_id": "76bb0683-05ee-42aa-9f6a-fe9673afd8ae",
+        "price_rub": 2790,
+        "weight_raw": "800 г"
+      },
+      {
+        "source": "chibbis",
+        "source_id": "2c72fa72-1042-40f4-8cf4-3c1318632766",
+        "price_rub": 2790,
+        "weight_raw": "1 г"
+      },
+      {
+        "source": "eda7",
+        "source_id": "3009366261_assorti-iz-varenykh-krevetok",
+        "price_rub": 2690,
+        "weight_raw": "800 г"
+      }
+    ]
+  },
+  {
+    "catalog_id": "shrimp-assorted-fried",
+    "observed_prices_rub": [
+      2690,
+      2790
+    ],
+    "observed_weights": [
+      "800 г",
+      "800 г"
+    ],
+    "invalid_weight_1g": true,
+    "decision": "current_chibbis_price_if_present; valid explicitly listed weight only; company approval required",
+    "sources": [
+      {
+        "source": "chibbis",
+        "source_id": "3249ec1a-ce56-43d7-b09c-e529951c26ec",
+        "price_rub": 2790,
+        "weight_raw": "800 г"
+      },
+      {
+        "source": "chibbis",
+        "source_id": "2e1b5da0-8fea-4f7f-bca6-1554b6110daf",
+        "price_rub": 2790,
+        "weight_raw": "1 г"
+      },
+      {
+        "source": "eda7",
+        "source_id": "3009366260_assorti-iz-zharenykh-krevetok",
+        "price_rub": 2690,
+        "weight_raw": "800 г"
+      }
+    ]
+  },
+  {
+    "catalog_id": "langoustine-bacon",
+    "observed_prices_rub": [
+      1490,
+      1590,
+      1690
+    ],
+    "observed_weights": [
+      "350 г"
+    ],
+    "invalid_weight_1g": true,
+    "decision": "inquiry_only",
+    "sources": [
+      {
+        "source": "chibbis",
+        "source_id": "c24b2684-29ce-41c9-8700-09e3589db64d",
+        "price_rub": 1690,
+        "weight_raw": "1 г"
+      },
+      {
+        "source": "chibbis",
+        "source_id": "b8549b85-0b96-4182-b655-fc11f13c1b9a",
+        "price_rub": 1590,
+        "weight_raw": "1 г"
+      },
+      {
+        "source": "eda7",
+        "source_id": "3009366262_langustiny-v-bekone",
+        "price_rub": 1490,
+        "weight_raw": "350 г"
+      }
+    ]
+  },
+  {
+    "catalog_id": "shrimp-tom-yam",
+    "observed_prices_rub": [
+      1490,
+      1790
+    ],
+    "observed_weights": [
+      "400 г",
+      "400 г"
+    ],
+    "invalid_weight_1g": false,
+    "decision": "current_chibbis_price_if_present; valid explicitly listed weight only; company approval required",
+    "sources": [
+      {
+        "source": "chibbis",
+        "source_id": "5e18748c-a11a-4d1f-8951-b7f2c8346682",
+        "price_rub": 1790,
+        "weight_raw": "400 г"
+      },
+      {
+        "source": "chibbis",
+        "source_id": "914967cf-085c-4837-834a-4f9e68db5c05",
+        "price_rub": 1790,
+        "weight_raw": "400 г"
+      },
+      {
+        "source": "eda7",
+        "source_id": "3009366263_assorti-krevetok-v-souse-tom-yam",
+        "price_rub": 1490,
+        "weight_raw": "400 г"
+      }
+    ]
+  },
+  {
+    "catalog_id": "shrimp-king-fried",
+    "observed_prices_rub": [
+      990
+    ],
+    "observed_weights": [
+      "450 г",
+      "500 г"
+    ],
+    "invalid_weight_1g": false,
+    "decision": "current_chibbis_price_if_present; valid explicitly listed weight only; company approval required",
+    "sources": [
+      {
+        "source": "chibbis",
+        "source_id": "9798a1aa-d8bd-4242-9689-a4fd4c233a2e",
+        "price_rub": 990,
+        "weight_raw": "500 г"
+      },
+      {
+        "source": "eda7",
+        "source_id": "3013593998_zharenye-korolevskie-krevetki",
+        "price_rub": 990,
+        "weight_raw": "450 г"
+      }
+    ]
+  },
+  {
+    "catalog_id": "seafood-assorted-cream",
+    "observed_prices_rub": [
+      2690
+    ],
+    "observed_weights": [],
+    "invalid_weight_1g": true,
+    "decision": "current_chibbis_price_if_present; valid explicitly listed weight only; company approval required",
+    "sources": [
+      {
+        "source": "chibbis",
+        "source_id": "c38d5d84-3836-437e-bf18-17789b4e2737",
+        "price_rub": 2690,
+        "weight_raw": "1 г"
+      }
+    ]
+  },
+  {
+    "catalog_id": "set-4-morya",
+    "observed_prices_rub": [
+      2790
+    ],
+    "observed_weights": [],
+    "invalid_weight_1g": true,
+    "decision": "current_chibbis_price_if_present; valid explicitly listed weight only; company approval required",
+    "sources": [
+      {
+        "source": "chibbis",
+        "source_id": "b99c94b1-0cbb-454c-896b-96429bd3c9c3",
+        "price_rub": 2790,
+        "weight_raw": "1 г"
+      }
+    ]
+  },
+  {
+    "catalog_id": "combo-3",
+    "observed_prices_rub": [
+      1990,
+      2190
+    ],
+    "observed_weights": [
+      "800 г"
+    ],
+    "invalid_weight_1g": true,
+    "decision": "current_chibbis_price_if_present; valid explicitly listed weight only; company approval required",
+    "sources": [
+      {
+        "source": "chibbis",
+        "source_id": "78fc5695-2142-4a19-9ef2-c3a208c28015",
+        "price_rub": 2190,
+        "weight_raw": "1 г"
+      },
+      {
+        "source": "eda7",
+        "source_id": "3013065733_kombo-3",
+        "price_rub": 1990,
+        "weight_raw": "800 г"
+      }
+    ]
+  }
+]

@@ -1,0 +1,70 @@
+﻿id,Категория,Название,"Цена в снимке, ₽",Единица,Вес в источнике,По запросу,Источники,Фото,Подтверждено компанией
+crayfish-boiled-400,Раки,Раки варёные,1690,за порцию,400 г,0,eda7,menu/menu-344d5d5c82c1.jpg,нет
+crayfish-small-kg,Раки,Мелкие варёные раки,2680,за кг,1 кг,0,eda7,menu/menu-6f962337b250.jpg,нет
+crayfish-medium-kg,Раки,Средние варёные раки,3580,за кг,1 кг,0,eda7,menu/menu-cc0a65579558.jpg,нет
+crayfish-medium-large-kg,Раки,Средне-крупные варёные раки,3880,за кг,1 кг,0,eda7,menu/menu-7117ec2a23c6.jpg,нет
+set-classic,Сеты,Сет «Классический»,3190,за сет,1 кг,0,eda7,menu/menu-c38c1570de9f.jpg,нет
+set-firmenny,Сеты,Сет «Фирменный»,3310,за сет,900 г,0,eda7,menu/menu-5b9f67ea2ae5.jpg,нет
+set-k-pennomu,Сеты,Набор «К пенному»,2890,за сет,800 г,0,eda7,menu/menu-ebf6f5e7c81d.jpg,нет
+set-grill,Сеты,Сет на гриле,2390,за сет,800 г,0,eda7,menu/menu-caaed36ff99b.jpg,нет
+set-4-morya,Сеты,Сет «4 моря»,2790,за сет,,0,chibbis,menu/menu-98f6bc7b54b3.jpg,нет
+set-for-two-mussels,Сеты,Сет для двоих с мидиями,2690,за сет,"1,2 кг",0,eda7,menu/menu-c803cb76f4e0.jpg,нет
+set-for-two-shrimp,Сеты,Сет для двоих с креветками,2690,за сет,"1,2 кг",0,eda7,menu/menu-a3698ff47e0f.jpg,нет
+set-for-two,Сеты,Сет «Для двоих»,,по запросу,,1,vk_index_secondary,menu/illustration-set.svg,нет
+combo-1,Комбо,Комбо №1,2490,за комбо,800 г,0,eda7,menu/menu-7c47af6be47b.jpg,нет
+combo-2,Комбо,Комбо №2,2390,за комбо,900 г,0,eda7,menu/menu-a4f77f9c1198.jpg,нет
+combo-3,Комбо,Комбо №3,2190,за комбо,800 г,0,chibbis; eda7,menu/menu-41e66b4dc89f.jpg,нет
+combo-fries-1,Закуски,Фри-комбо №1,1290,за комбо,600 г,0,eda7,menu/menu-2cd9a07a43b8.jpg,нет
+combo-fries-2,Закуски,Фри-комбо №2,1190,за комбо,550 г,0,eda7,menu/menu-9fed39b8fe9d.jpg,нет
+combo-fries-3,Закуски,Фри-комбо №3,1090,за комбо,650 г,0,eda7,menu/menu-6b08efadfbe4.jpg,нет
+mussels-chili-blue,Мидии и моллюски,Мидии чили в соусе «Блю Чиз»,890,за порцию,500 г,0,eda7,menu/menu-49dc85c6be8e.jpg,нет
+mussels-chili-cream,Мидии и моллюски,Мидии чили в сливочном соусе,890,за порцию,500 г,0,eda7,menu/menu-374a29544ce1.jpg,нет
+mussels-set-cream,Мидии и моллюски,Сет из моллюсков в сливочном соусе,1590,за сет,800 г,0,eda7,menu/menu-9f0b91ca2ae3.jpg,нет
+mussels-wine,Мидии и моллюски,Сет моллюсков в винном соусе,1590,за сет,800 г,0,chibbis; eda7,menu/menu-7e61081ab55b.jpg,нет
+mussels-blue-cheese,Мидии и моллюски,Сет моллюсков в соусе «Блю Чиз»,1590,за сет,800 г,0,chibbis; eda7,menu/menu-bb153e383607.jpg,нет
+mussels-greek,Мидии и моллюски,Сет мидий по-гречески,1590,за сет,,0,chibbis,menu/menu-8cfe0306f391.jpg,нет
+shrimp-assorted-fried,Креветки,Ассорти из жареных креветок,2790,за порцию,800 г,0,chibbis; eda7,menu/menu-b2d99c040112.jpg,нет
+shrimp-assorted-boiled,Креветки,Ассорти из варёных креветок,2790,за порцию,800 г,0,chibbis; eda7,menu/menu-c6a23b9e91ef.jpg,нет
+shrimp-tom-yam,Креветки,Ассорти креветок в соусе «Том Ям»,1790,за порцию,400 г,0,chibbis; eda7,menu/menu-d350c35289d6.jpg,нет
+shrimp-teriyaki,Креветки,Ассорти креветок в соусе «Терияки»,1490,за порцию,400 г,0,eda7,menu/menu-cedfb07d2ae9.jpg,нет
+shrimp-cream,Креветки,Ассорти креветок в сливочном соусе,1490,за порцию,400 г,0,eda7,menu/menu-9aa71e972031.jpg,нет
+shrimp-tiger-teriyaki,Креветки,Тигровая креветка в соусе «Терияки»,1490,за порцию,400 г,0,eda7,menu/menu-45a964fabaca.jpg,нет
+shrimp-argentinian,Креветки,Жареные аргентинские креветки (лангустины),1290,за порцию,500 г,0,eda7,menu/menu-a015cbc57d20.jpg,нет
+shrimp-peeled-teriyaki,Креветки,Очищенная креветка в соусе «Терияки»,1690,за порцию,450 г,0,eda7,menu/menu-9b7676623f7e.jpg,нет
+shrimp-tiger-asian,Креветки,Тигровые креветки по-азиатски,1590,за порцию,400 г,0,chibbis,menu/menu-f842e149d0ae.jpg,нет
+shrimp-king-fried,Креветки,Жареные королевские креветки,990,за порцию,500 г,0,chibbis; eda7,menu/menu-cc0f3d20a2dd.jpg,нет
+shrimp-king-boiled,Креветки,Королевские креветки варёные,990,за порцию,500 г,0,chibbis,menu/menu-77dc9f594bdd.jpg,нет
+shrimp-king-asian,Креветки,Королевские креветки по-азиатски,1090,за порцию,400 г,0,chibbis,menu/menu-33ce2a6ff04c.jpg,нет
+crab-strigun,Деликатесы,Краб-стригун,990,за порцию,330 г,0,eda7,menu/menu-f11211c7a79f.jpg,нет
+kamchatka-crab,Деликатесы,Камчатский краб,1890,за порцию,300 г,0,eda7,menu/menu-df3272d64006.jpg,нет
+lobster,Деликатесы,Лобстер,8800,за порцию,740 г,0,eda7,menu/menu-3ecf95630000.jpg,нет
+langoust,Деликатесы,Лангуст,7990,за порцию,800 г,0,eda7,menu/menu-159a45320f24.jpg,нет
+langoustine-bacon,Закуски,Лангустины в беконе,,по запросу,,1,chibbis; eda7,menu/menu-9927a7a3ef22.jpg,нет
+langoustine-honey-soy,Лангустины,Лангустины в медово-соевом соусе,1390,за порцию,500 г,0,chibbis,menu/menu-897ba2f136f2.jpg,нет
+langoustine-boiled,Лангустины,Лангустины варёные,1290,за порцию,500 г,0,chibbis,menu/menu-39b1b8b28fc4.jpg,нет
+burger-mango,Бургеры,Бургер с тигровой креветкой и соусом из манго,570,за шт.,270 г,0,eda7,menu/menu-c71f22476e45.jpg,нет
+burger-pineapple,Бургеры,Бургер с тигровой креветкой и ананасовым соусом,570,за шт.,270 г,0,eda7,menu/menu-6a0d41036c4a.jpg,нет
+dorado-grill,Рыба,Дорадо на гриле,990,за порцию,390 г,0,chibbis,menu/menu-b3fab797b4cd.jpg,нет
+sauce-creamy-garlic,Соусы,Соус сливочно-чесночный,90,за порцию,50 мл,0,eda7,menu/menu-c4a8642fc996.jpg,нет
+sauce-sweet-chili,Соусы,Соус кисло-сладкий чили,60,за порцию,50 мл,0,eda7,menu/menu-8a25b1deb22f.jpg,нет
+sauce-ketchup,Соусы,Кетчуп,60,за порцию,50 г,0,eda7,menu/menu-5f67fe7349de.jpg,нет
+sauce-cheese,Соусы,Соус сырный,60,за порцию,50 г,0,eda7,menu/menu-99fbb6d38014.jpg,нет
+edible-bouquet-request,Подарки,Съедобный букет из морепродуктов,,по запросу,,1,vk_index_secondary,menu/illustration-gift.svg,нет
+live-crayfish-request,Живые раки,Живые раки — подбор по размеру,,по запросу,,1,vk_index_secondary,menu/illustration-crayfish.svg,нет
+frozen-seafood-request,Деликатесы,Замороженные морепродукты — подбор по наличию,,по запросу,,1,vk_index_secondary,menu/illustration-fish.svg,нет
+fresh-murmansk-trout,Сезонное,Северная форель свежая,,по запросу,,1,vk_index_secondary,menu/illustration-fish.svg,нет
+smoked-trout,Сезонное,Форель холодного или горячего копчения,,по запросу,,1,vk_index_secondary,menu/illustration-fish.svg,нет
+red-salmon-caviar,Сезонное,Икра горбуши,,по запросу,,1,vk_index_secondary,menu/illustration-jar.svg,нет
+tiger-shrimp-butterfly,Креветки,Тигровые креветки «Бабочка» с фирменным соусом,,по запросу,,1,vk_index_secondary,menu/illustration-shrimp.svg,нет
+shrimp-peeled-cream,Креветки,Очищенные креветки в сливочном соусе,1690,за порцию,500 г,0,chibbis,menu/menu-a5236deb9a67.jpg,нет
+shrimp-asian-set,Креветки,Сет креветок по-азиатски,1790,за порцию,400 г,0,chibbis,menu/menu-e87b3893c851.jpg,нет
+shrimp-peeled-asian,Креветки,Очищенные креветки по-азиатски,1690,за порцию,400 г,0,chibbis,menu/menu-3e488a835c03.jpg,нет
+shrimp-tiger-fried,Креветки,Тигровые креветки обжаренные,1390,за порцию,350 г,0,chibbis,menu/menu-83de4395b212.jpg,нет
+seafood-assorted-cream,Сеты,Морское ассорти в сливочном соусе,2690,за сет,,0,chibbis,menu/menu-88e967f8b8d9.jpg,нет
+seafood-assorted-tomato,Сеты,Морское ассорти в томатном соусе,2690,за сет,,0,chibbis,menu/menu-4d1f55911ed6.jpg,нет
+spiny-crab-request,Деликатесы,Колючий краб,,по запросу,,1,vk_index_secondary,menu/illustration-crab.svg,нет
+dried-fish-request,Рыба,Рыба вяленая,,по запросу,,1,vk_index_secondary,menu/illustration-fish.svg,нет
+smoked-fish-request,Рыба,Рыба копчёная,,по запросу,,1,vk_index_secondary,menu/illustration-fish.svg,нет
+scallop-request,Деликатесы,Морской гребешок обжаренный,,по запросу,,1,vk_index_secondary,menu/illustration-scallop.svg,нет
+octopus-request,Деликатесы,Щупальца осьминога,,по запросу,,1,vk_index_secondary,menu/illustration-octopus.svg,нет
+crayfish-cooking-kit,Живые раки,Набор для варки раков,,по запросу,,1,vk_index_secondary,menu/illustration-crayfish.svg,нет

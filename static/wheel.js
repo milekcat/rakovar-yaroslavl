@@ -140,7 +140,7 @@
         item.append(dot, document.createTextNode(sector.title));
         item.dataset.sectorIndex = String(index); this.legend.append(item);
       });
-      this.status.textContent = 'Колесо готово. Все результаты в истории сохраняет сервер.';
+      this.status.textContent = 'Всё готово. Попробуйте морскую удачу.';
       return true;
     }
 
@@ -167,13 +167,13 @@
     }
 
     async reveal(result) {
-      if (!validSpinResult(result) || !this.render(result.sectors)) throw new Error('Ответ сервера не соответствует сектору. Откройте историю результатов.');
+      if (!validSpinResult(result) || !this.render(result.sectors)) throw new Error('Не удалось показать результат. Проверьте историю вращений.');
       this.legend.querySelectorAll('.is-winner').forEach(item => item.classList.remove('is-winner'));
       const duration = this.reduced.matches ? 0 : this.light ? 900 : 4800;
       const end = landingRotation(this.rotation, this.sectors.length, result.sector_index, duration > 1000 ? 5 : duration ? 1 : 0);
       const before = this.rotation;
       this.rotation = end;
-      this.status.textContent = duration ? 'Сервер сохранил результат. Колесо останавливается…' : 'Результат сохранён.';
+      this.status.textContent = duration ? 'Колесо останавливается…' : 'Результат сохранён.';
       this.rotor.closest('.wheel-stage')?.setAttribute('data-spinning', 'true');
       if (duration) {
         // One progress value drives both the dial and the sector click sound.

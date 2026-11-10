@@ -32,7 +32,7 @@
     const res = await fetch(url, { credentials: 'same-origin', ...options, headers });
     let data;
     try { data = await res.json(); }
-    catch { const error = new Error('Ответ сервера не подтверждён. Повторите отправку с теми же данными.'); error.status = res.status; error.retryable = true; throw error; }
+    catch { const error = new Error('Не удалось подтвердить результат. Повторите с теми же данными.'); error.status = res.status; error.retryable = true; throw error; }
     if (!res.ok) {
       const error = new Error(data?.message || data?.error || `Ошибка ${res.status}`);
       error.status = res.status; error.code = data?.error;
@@ -48,7 +48,7 @@
     const pending = await requests.prepare(scope, payload);
     try {
       const result = await api(url, { method: 'POST', headers: { 'Idempotency-Key': pending.key }, body: JSON.stringify(payload) });
-      if (!validate(result)) { const error = new Error('Ответ сервера не подтверждён. Повторите отправку с теми же данными.'); error.retryable = true; throw error; }
+      if (!validate(result)) { const error = new Error('Не удалось подтвердить результат. Повторите с теми же данными.'); error.retryable = true; throw error; }
       requests.clear(scope, pending.key);
       return result;
     } catch (error) {
@@ -96,40 +96,47 @@
   }
 
   function applySiteSettings(settings = {}) {
-    if (settings.hero_title) $('#heroTitle').textContent = settings.hero_title;
+    if (settings.hero_title && settings.hero_title !== 'Море ближе, чем кажется.') $('#heroTitle').textContent = settings.hero_title;
     if (settings.hero_text) $('#heroText').textContent = settings.hero_text;
     if (settings.hero_cta) $('#heroCta').textContent = settings.hero_cta;
-    if (settings.promo_title) $('#promoTitle').textContent = settings.promo_title;
+    if (settings.promo_title && settings.promo_title !== 'Вместо обычного букета — морские деликатесы.') $('#promoTitle').textContent = settings.promo_title;
     if (settings.promo_text) $('#promoText').textContent = settings.promo_text;
     if (settings.footer_notice) $('#footerNotice').textContent = settings.footer_notice;
   }
   function renderCategories() {
-    const cats = ['all', ...new Set(state.products.map(p => p.category))];
+    const order = ['Раки','Сеты','Креветки','Мидии и моллюски','Лангустины','Живые раки','Рыба','Сезонное','Подарки','Деликатесы','Комбо','Закуски','Бургеры','Соусы'];
+    const rank = category => order.includes(category) ? order.indexOf(category) : order.length;
+    const cats = ['all', ...[...new Set(state.products.map(p => p.category))].sort((a,b) => rank(a)-rank(b) || a.localeCompare(b,'ru'))];
     $('#categories').innerHTML = cats.map(c => `<button class="chip ${state.category === c ? 'active' : ''}" data-category="${esc(c)}">${c === 'all' ? 'Всё' : esc(c)}</button>`).join('');
     $$('#categories [data-category]').forEach(btn => btn.addEventListener('click', () => { state.category = btn.dataset.category; renderCategories(); renderProducts(); }));
   }
   function renderProducts() {
     let list = [...state.products].filter(p => (state.category === 'all' || p.category === state.category) && `${p.title} ${p.description}`.toLowerCase().includes(state.search.toLowerCase()));
+    if (state.sort === 'popular') {
+      const picks = ['crayfish-medium-kg','set-4-morya','shrimp-assorted-fried','mussels-wine','set-firmenny','dorado-grill','live-crayfish-request','edible-bouquet-request'];
+      const rank = product => picks.includes(product.id) ? picks.indexOf(product.id) : picks.length;
+      list.sort((a,b) => rank(a)-rank(b));
+    }
     if (state.sort === 'price-asc') list.sort((a,b) => Number(!!a.price_on_request)-Number(!!b.price_on_request) || a.price-b.price);
     if (state.sort === 'price-desc') list.sort((a,b) => Number(!!a.price_on_request)-Number(!!b.price_on_request) || b.price-a.price);
     if (state.sort === 'title') list.sort((a,b) => a.title.localeCompare(b.title, 'ru'));
     $('#products').innerHTML = list.length ? list.map(p => {
-      const fallback = `/static/images/${encodeURIComponent(p.image || 'opt_hero.svg')}`;
+      const fallback = `/static/images/${(p.image || 'opt_hero.svg').split('/').map(encodeURIComponent).join('/')}`;
       const photo = p.image_url ? esc(p.image_url) : fallback;
-      const priceNote = p.price_on_request ? 'Стоимость согласуется с менеджером' : (p.price_verified ? `${esc(p.unit)} · цена подтверждена` : `${esc(p.unit)} · предварительная цена`);
+      const priceNote = p.price_on_request ? 'Подберём для вас' : esc(p.unit);
       const priceLabel = p.price_on_request ? 'По запросу' : money(p.price);
-      const stockNote = p.stock_confirmed ? `Остаток: ${Number(p.stock)}` : 'Наличие уточняется';
+      const stockNote = p.weight_label ? esc(p.weight_label) : '';
       const action = p.price_on_request ? `<a class="add-button" href="https://vk.ru/rakovar_yar" target="_blank" rel="noopener">Уточнить ↗</a>` : `<button class="add-button" data-add="${esc(p.id)}">В корзину +</button>`;
       return `<article class="product-card">
       <div class="product-image"><img loading="lazy" src="${photo}" data-fallback="${fallback}" alt="${esc(p.title)}"><span class="product-badge">${esc(p.badge || 'РАКОВАРЪ')}</span></div>
-      <div class="product-body"><div class="product-meta"><span>${esc(p.category)}</span><span>${stockNote}</span></div><h3>${esc(p.title)}</h3><p>${esc(p.description)}${p.weight_label ? ` Вес: ${esc(p.weight_label)}.` : ''}</p>
-      <div class="product-foot"><div class="price"><strong>${priceLabel}</strong><small>${priceNote}</small></div>${action}</div>${p.source_url ? `<a class="product-source" href="${esc(p.source_url)}" target="_blank" rel="noopener">Источник позиции ↗</a>` : ''}</div></article>`;
+      <div class="product-body"><div class="product-meta"><span>${esc(p.category)}</span><span>${stockNote}</span></div><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>
+      <div class="product-foot"><div class="price"><strong>${priceLabel}</strong><small>${priceNote}</small></div>${action}</div></div></article>`;
     }).join('') : '<div class="empty-state">Ничего не найдено. Попробуйте изменить запрос.</div>';
     $$('[data-add]').forEach(btn => btn.addEventListener('click', () => addToCart(btn.dataset.add)));
     $$('#products img[data-fallback]').forEach(img => img.addEventListener('error', () => { img.src = img.dataset.fallback; }, { once: true }));
   }
   function renderBuilder() {
-    const preferred = ['crayfish-standart-trad','set-firmenny','shrimp-assorted-boiled','mussels-wine'];
+    const preferred = ['crayfish-medium-kg','set-firmenny','shrimp-assorted-boiled','mussels-wine'];
     const picks = preferred.map(id => productById(id)).filter(p => p && !p.price_on_request);
     $('#builderItems').innerHTML = picks.map((p, i) => `<div class="builder-item"><label><input type="checkbox" data-build="${esc(p.id)}" ${i < 2 ? 'checked' : ''}> <span>${esc(p.title)}</span></label><b>${money(p.price)}</b></div>`).join('');
     $$('[data-build]').forEach(el => el.addEventListener('change', updateBuilderTotal)); updateBuilderTotal();
@@ -141,7 +148,7 @@
   function addToCart(id, qty = 1) {
     const p = productById(id); if (!p) return;
     const next = (state.cart[id] || 0) + qty;
-    if (next > p.stock) { toast('В демо-каталоге недостаточно тестового остатка.'); return; }
+    if (next > p.stock) { toast('Такое количество сейчас недоступно. Уточните у администратора.'); return; }
     state.cart[id] = next; saveCart(); updateCart(); track('add_to_cart', { product_id:id, quantity:qty }); toast('Добавлено в корзину');
   }
   function updateCart() {
@@ -157,7 +164,7 @@
     const next = (state.cart[id] || 0) + delta;
     if (next <= 0) delete state.cart[id];
     else if (next <= p.stock) state.cart[id] = next;
-    else toast('Доступное количество ограничено тестовым остатком.');
+    else toast('Доступное количество ограничено.');
     saveCart(); updateCart();
   }
   async function quoteCart() {
@@ -167,7 +174,7 @@
     }
     try {
       const q = await api('/api/checkout/quote', { method:'POST', body:JSON.stringify({ items, promo_code:state.promo, delivery_mode:state.delivery }) });
-      $('#subtotal').textContent = money(q.subtotal_rub); $('#discount').textContent = '−' + money(q.discount_rub); $('#deliveryCost').textContent = money(q.delivery_rub); $('#total').textContent = money(q.total_rub);
+      $('#subtotal').textContent = money(q.subtotal_rub); $('#discount').textContent = '−' + money(q.discount_rub); $('#deliveryCost').textContent = (q.delivery_status === 'estimate' ? 'от ' : '') + money(q.delivery_rub); $('#total').textContent = money(q.total_rub);
       if (state.promo) $('#promoMessage').textContent = q.promo_valid ? `Промокод применён: ${q.promo_message}` : q.promo_message;
     } catch (e) { $('#promoMessage').textContent = e.message; }
   }
@@ -181,7 +188,7 @@
     $('#ticketBalance').textContent = p.tickets;
     $('#headerTicketBalance')?.remove();
     const history = await api(`/api/game/history?guest_id=${encodeURIComponent(state.guestId)}`);
-    $('#gameHistory').textContent = history.length ? 'Последние результаты: ' + history.slice(0,3).map(x => x.prize_title + (x.redemption_code ? ` [${x.redemption_code}]` : '')).join(' · ') : 'История ваших тестовых розыгрышей появится здесь.';
+    $('#gameHistory').textContent = history.length ? 'Последние результаты: ' + history.slice(0,3).map(x => x.prize_title + (x.redemption_code ? ` [${x.redemption_code}]` : '')).join(' · ') : 'Здесь появится история ваших вращений.';
     updateSpinButton();
   }
   function updateSpinButton() {
@@ -221,19 +228,19 @@
       const result = await sendOnce('spin', '/api/game/spin', { guest_id:state.guestId }, window.RakovarWheel.validSpinResult);
       state.tickets = Number(result.tickets); $('#ticketBalance').textContent = result.tickets;
       await state.wheel.reveal(result);
-      openModal(`<div class="eyebrow">ВАШ РЕЗУЛЬТАТ</div><h3>Поздравляем!</h3><p style="font:700 25px var(--serif);color:var(--gold2)">${esc(result.prize.title)}</p><p>${esc(result.prize.description)}</p>${result.redemption_code?`<p>Тестовый код: <b style="color:var(--gold2)">${esc(result.redemption_code)}</b></p>`:''}<p class="fine-print">${esc(result.message)}</p><button class="btn btn-primary btn-wide" id="prizeModalOk">Отлично</button>`);
+      openModal(`<div class="eyebrow">ВАШ РЕЗУЛЬТАТ</div><h3>Поздравляем!</h3><p style="font:700 25px var(--serif);color:var(--gold2)">${esc(result.prize.title)}</p><p>${esc(result.prize.description)}</p>${result.redemption_code?`<p>Код результата: <b style="color:var(--gold2)">${esc(result.redemption_code)}</b></p>`:''}<p class="fine-print">${esc(result.message)}</p><button class="btn btn-primary btn-wide" id="prizeModalOk">Отлично</button>`);
       $('#prizeModalOk').addEventListener('click', closeModal);
       refreshGame().catch(() => { $('#gameHistory').textContent = 'Результат сохранён. История обновится при следующем открытии.'; });
     } catch (error) {
       const pending = spinRequests.read(requestScope('spin'));
-      $('#spinRetry').textContent = pending ? 'Ответ пока не подтверждён. Повторите запрос: сохранённый ключ защищает от повторного списания билета.' : error.message;
+      $('#spinRetry').textContent = pending ? 'Не удалось получить ответ. Попробуйте ещё раз — второй билет за это вращение не спишется.' : error.message;
       state.wheel.status.textContent = error.message; toast(error.message);
     }
     finally { state.spinning = false; updateSpinButton(); }
   }
   function renderContests(contests) {
     state.contests = contests;
-    $('#contestList').innerHTML = contests.length ? contests.map(c => `<article class="contest-card"><span class="tiny-label">АКТИВНОСТЬ · ДО ${esc(c.ends_at)}</span><h3>${esc(c.title)}</h3><p>${esc(c.description)}</p><div class="contest-prize">Приз: ${esc(c.prize_title)}</div><p class="fine-print">${esc(c.rules)}</p><div class="contest-actions"><button class="btn btn-outline" data-enter-contest="${esc(c.id)}">Участвовать в демо</button><button class="btn btn-ghost" data-share-contest="${esc(c.id)}">Поделиться</button></div></article>`).join('') : '<div class="empty-state">Активных конкурсов сейчас нет.</div>';
+    $('#contestList').innerHTML = contests.length ? contests.map(c => `<article class="contest-card"><span class="tiny-label">АКТИВНОСТЬ · ДО ${esc(c.ends_at)}</span><h3>${esc(c.title)}</h3><p>${esc(c.description)}</p><div class="contest-prize">Приз: ${esc(c.prize_title)}</div><p class="fine-print">${esc(c.rules)}</p><div class="contest-actions"><button class="btn btn-outline" data-enter-contest="${esc(c.id)}">Попробовать участие</button><button class="btn btn-ghost" data-share-contest="${esc(c.id)}">Поделиться</button></div></article>`).join('') : '<div class="empty-state">Активных конкурсов сейчас нет.</div>';
     $$('[data-enter-contest]').forEach(btn => btn.addEventListener('click', () => contestModal(btn.dataset.enterContest)));
     $$('[data-share-contest]').forEach(btn => btn.addEventListener('click', () => shareContest(btn.dataset.shareContest)));
   }
@@ -249,7 +256,7 @@
   }
   function contestModal(id) {
     const c = state.contests.find(x => x.id === id); if (!c) return;
-    openModal(`<div class="eyebrow">ДЕМО-УЧАСТИЕ</div><h3>${esc(c.title)}</h3><p>${esc(c.description)}</p><form id="contestEntryForm"><label class="tiny-label">Ваше имя / псевдоним</label><input name="alias" minlength="2" maxlength="40" required placeholder="Например, Морской гурман"><label class="tiny-label">Почему вам нравится такая идея?</label><textarea name="answer" minlength="5" maxlength="500" required placeholder="Короткий ответ"></textarea><button class="btn btn-primary btn-wide" type="submit">Отправить тестовую заявку</button></form><p class="fine-print">Не указывайте телефон, адрес и другие личные данные. В демо-режиме это не настоящий конкурс.</p>`);
+    openModal(`<div class="eyebrow">ВАША ИДЕЯ</div><h3>${esc(c.title)}</h3><p>${esc(c.description)}</p><form id="contestEntryForm"><label class="tiny-label">Ваше имя / псевдоним</label><input name="alias" minlength="2" maxlength="40" required placeholder="Например, Морской гурман"><label class="tiny-label">Почему вам нравится такая идея?</label><textarea name="answer" minlength="5" maxlength="500" required placeholder="Короткий ответ"></textarea><button class="btn btn-primary btn-wide" type="submit">Сохранить идею</button></form><p class="fine-print">Не указывайте контактные данные. Участие ознакомительное, призы пока не выдаются.</p>`);
     $('#contestEntryForm').addEventListener('submit', async e => {
       e.preventDefault(); const f = new FormData(e.currentTarget);
       try { const r = await api(`/api/contests/${encodeURIComponent(id)}/entries`, { method:'POST', body:JSON.stringify({ guest_id:state.guestId, alias:f.get('alias'), answer:f.get('answer') }) }); closeModal(); await refreshGame(); toast(r.tickets_awarded ? `${r.message} Начислено билетов: ${r.tickets_awarded}.` : r.message); track('contest_entry',{contest_id:id}); }
@@ -281,16 +288,16 @@
       const form = e.currentTarget;
       const btn = e.submitter || form.querySelector('button[type="submit"]');
       const label = btn.textContent;
-      state.orderBusy = true; btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Сохраняем тестовый заказ…';
+      state.orderBusy = true; btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Сохраняем заказ…';
       $('#checkoutRetry').textContent = '';
       try {
         const result = await sendOnce('order', '/api/orders', { guest_id:state.guestId, items:cartItems(), promo_code:state.promo, delivery_mode:state.delivery, name:$('#customerName').value, phone:$('#customerPhone').value, consent:$('#consent').checked }, data => typeof data?.order_id === 'string' && data.status === 'demo_order_created' && Number.isFinite(data.total_rub));
         state.cart={}; saveCart(); closeCart(); form.reset(); state.promo=''; $('#promoCode').value=''; state.delivery = form.querySelector('input[name="delivery"]:checked')?.value || 'delivery'; updateCart();
-        openModal(`<div class="eyebrow">ДЕМО-ЗАКАЗ СОЗДАН</div><h3>Спасибо за тестирование!</h3><p style="font:700 24px var(--serif);color:var(--gold2)">${esc(result.order_id)}</p><p>${esc(result.message)}</p><p>Итого по расчёту: <b>${money(result.total_rub)}</b></p><button class="btn btn-primary btn-wide" id="orderDone">Вернуться на витрину</button>`);
-        $('#orderDone').addEventListener('click',closeModal); toast('Тестовый заказ появился в демо-админке.');
+        openModal(`<div class="eyebrow">ПРОБНЫЙ ЗАКАЗ СОХРАНЁН</div><h3>Вы посмотрели оформление</h3><p style="font:700 24px var(--serif);color:var(--gold2)">${esc(result.order_id)}</p><p>${esc(result.message)}</p><p>Итого по расчёту: <b>${money(result.total_rub)}</b></p><button class="btn btn-primary btn-wide" id="orderDone">Вернуться на витрину</button>`);
+        $('#orderDone').addEventListener('click',closeModal); toast('Пробный заказ сохранён. В магазин он не отправлен.');
       } catch (error) {
         const pending = orderRequests.read(requestScope('order'));
-        $('#checkoutRetry').textContent = pending ? 'Отправка пока не подтверждена. Повторите с тем же составом и данными: повторный заказ не создастся.' : error.message;
+        $('#checkoutRetry').textContent = pending ? 'Ответ пока не получен. Повторите с тем же составом и данными — заказ сохранится один раз.' : error.message;
         toast(error.message);
       }
       finally { state.orderBusy = false; btn.disabled = false; btn.setAttribute('aria-busy', 'false'); btn.textContent = label; }

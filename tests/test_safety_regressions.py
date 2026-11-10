@@ -18,7 +18,7 @@ def headers(csrf, key=None):
 
 
 def order_body(guest):
-    return {"guest_id": guest, "items": [{"id": "crayfish-standart-trad", "quantity": 1}],
+    return {"guest_id": guest, "items": [{"id": "crayfish-medium-kg", "quantity": 1}],
             "name": "Test User", "phone": "+79990000000", "consent": True, "delivery_mode": "pickup"}
 
 
@@ -35,10 +35,10 @@ def test_unsigned_max_identity_and_existing_browser_profile_are_rejected(client,
 
 def test_duplicate_sku_cannot_bypass_stock(client, app_module):
     with app_module.connect_db() as c:
-        c.execute("UPDATE products SET stock=1 WHERE id='crayfish-standart-trad'")
+        c.execute("UPDATE products SET stock=1 WHERE id='crayfish-medium-kg'")
     response = client.post("/api/checkout/quote", json={"items": [
-        {"id": "crayfish-standart-trad", "quantity": 1},
-        {"id": "crayfish-standart-trad", "quantity": 1}], "delivery_mode": "pickup"})
+        {"id": "crayfish-medium-kg", "quantity": 1},
+        {"id": "crayfish-medium-kg", "quantity": 1}], "delivery_mode": "pickup"})
     assert response.status_code == 400
     assert response.json["message"] == "duplicate_cart_item"
 

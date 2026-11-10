@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-10",
+  "scope": "private local preview; no Render mutation",
+  "sqlite": {
+    "passed": 95,
+    "skipped": 12
+  },
+  "postgres": {
+    "status": "pass",
+    "passed": 107,
+    "version": "17.11"
+  },
+  "source_checks": "pass; 28 Python and 4 JavaScript sources, local assets, unique 69-item catalog",
+  "browser_manual": {
+    "viewport_width": 1348,
+    "cards": 69,
+    "first_product": "Средние варёные раки",
+    "pizza_search_results": 0,
+    "opaque_banner_in_dom": false,
+    "technical_banner_in_dom": false,
+    "main_technical_copy_found": false,
+    "horizontal_overflow": false,
+    "sauce_cards": 4,
+    "delivery_label": "от 350 ₽",
+    "checkout_boundary_visible": true,
+    "screenshots": [
+      "hero-desktop.jpg",
+      "catalog-desktop.jpg",
+      "cart-desktop.jpg"
+    ],
+    "note": "One Chrome extension metadata error observed; no application error observed. Full automated browser suite pending CI."
+  },
+  "security": "No credentials changed. CSRF, RBAC, idempotency and guarded commercial checkout retained. No new complete security audit claimed.",
+  "database": "Disposable SQLite/PostgreSQL tests only. Conditional seed refresh preserves operator-confirmed fields and archives unapproved legacy rows without deletion.",
+  "deployment": "not performed",
+  "note": "Current main login CSRF recovery and duplicate-tab fix ported without weakening individual staff sessions."
+}

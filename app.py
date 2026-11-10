@@ -26,7 +26,7 @@ load_dotenv()
 from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash
 from werkzeug.exceptions import HTTPException
-from catalog_seed import CATALOG_PRODUCTS, is_non_brand_product
+from catalog_seed import CATALOG_PRODUCTS, CATALOG_VERSION, RETIRED_UNVERIFIED_IDS, is_non_brand_product
 from max_auth import validate_init_data as verify_max_init_data, MaxInitDataError
 from storage import connect_database, migrate, top_products
 from staff_auth import StaffAccess, StaffError
@@ -47,8 +47,8 @@ MAX_BOT_USERNAME = os.environ.get("MAX_BOT_USERNAME", "id7606139934_5_bot").stri
 MAX_ADMIN_USER_ID = os.environ.get("MAX_ADMIN_USER_ID", "").strip()
 MAX_WEBHOOK_SECRET = os.environ.get("MAX_WEBHOOK_SECRET", "").strip()
 LOYALTY_RUB_PER_TICKET = max(100, min(int(os.environ.get("LOYALTY_RUB_PER_TICKET", "1000")), 100000))
-PREVIEW_DELIVERY_RUB = max(0, min(int(os.environ.get("PREVIEW_DELIVERY_RUB", "200")), 5000))
-PREVIEW_DELIVERY_MIN_RUB = max(0, min(int(os.environ.get("PREVIEW_DELIVERY_MIN_RUB", "1000")), 100000))
+PREVIEW_DELIVERY_RUB = max(0, min(int(os.environ.get("PREVIEW_DELIVERY_RUB", "350")), 5000))
+PREVIEW_DELIVERY_MIN_RUB = max(0, min(int(os.environ.get("PREVIEW_DELIVERY_MIN_RUB", "0")), 100000))
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 app.config.update(
@@ -67,11 +67,11 @@ NOW = lambda: dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
 TODAY = lambda: dt.datetime.now(ZoneInfo("Europe/Moscow")).date().isoformat()
 
 SAMPLE_PRIZES = [
-    {"id":"prize-5","title":"Скидка 5% на заказ","kind":"coupon","description":"Демонстрационный промокод. Не является действующей акцией.","stock":50,"weight":35,"partner":"РАКОВАРЪ","reward_value":5},
-    {"id":"prize-delivery","title":"Бесплатная доставка","kind":"delivery","description":"Пример возможного приза при запуске программы.","stock":10,"weight":20,"partner":"РАКОВАРЪ"},
-    {"id":"prize-sauce","title":"Фирменный соус","kind":"gift","description":"Подарок-пример; наличие и состав необходимо подтвердить.","stock":8,"weight":20,"partner":"Партнёрский приз"},
-    {"id":"prize-10","title":"Скидка 10% на заказ","kind":"coupon","description":"Демонстрационный промокод. Не является действующей акцией.","stock":5,"weight":10,"partner":"РАКОВАРЪ","reward_value":10},
-    {"id":"prize-consolation","title":"+50 баллов клуба","kind":"points","description":"Тестовые баллы демонстрационной программы.","stock":9999,"weight":15,"partner":"РАКОВАРЪ"},
+    {"id":"prize-5","title":"Скидка 5% на заказ","kind":"coupon","description":"Бонус к следующему морскому вечеру.","stock":50,"weight":35,"partner":"РАКОВАРЪ","reward_value":5},
+    {"id":"prize-delivery","title":"Бесплатная доставка","kind":"delivery","description":"Доставка в подарок участнику клуба.","stock":10,"weight":20,"partner":"РАКОВАРЪ"},
+    {"id":"prize-sauce","title":"Фирменный соус","kind":"gift","description":"Дополнение к вашим любимым морепродуктам.","stock":8,"weight":20,"partner":"РАКОВАРЪ"},
+    {"id":"prize-10","title":"Скидка 10% на заказ","kind":"coupon","description":"Бонус к следующему морскому вечеру.","stock":5,"weight":10,"partner":"РАКОВАРЪ","reward_value":10},
+    {"id":"prize-consolation","title":"+50 баллов клуба","kind":"points","description":"Баллы на вашем клубном счёте.","stock":9999,"weight":15,"partner":"РАКОВАРЪ"},
 ]
 
 SAMPLE_PROMOTIONS = [
@@ -80,7 +80,7 @@ SAMPLE_PROMOTIONS = [
 ]
 
 SAMPLE_CONTESTS = [
-    {"id":"sea-evening","title":"Мой морской вечер","description":"Поделитесь идеей идеального морского ужина. В демо-версии принимается тестовая заявка без публикации фото и личных данных.","prize_title":"Подарочный сет от РАКОВАРЪ (пример)","starts_at":TODAY(),"ends_at":(dt.date.today()+dt.timedelta(days=21)).isoformat(),"status":"active","max_entries":1,"rules":"Демонстрационный конкурс. До реального запуска организатор утверждает официальные правила, сроки, критерии выбора и порядок выдачи призов."},
+    {"id":"sea-evening","title":"Мой морской вечер","description":"Какой морской ужин вы приготовили бы для друзей? Поделитесь своей идеей.","prize_title":"Подарочный сет от РАКОВАРЪ","starts_at":TODAY(),"ends_at":(dt.date.today()+dt.timedelta(days=21)).isoformat(),"status":"active","max_entries":1,"rules":"Сейчас участие ознакомительное. Настоящий конкурс начнётся после публикации правил и объявления о выдаче подарков."},
 ]
 
 
@@ -88,9 +88,9 @@ SITE_DEFAULTS = {
     "hero_title": "Море ближе, чем кажется.",
     "hero_text": "Живые и варёные раки, крабы, креветки, мидии, рыба, авторские сеты и съедобные подарки. Подберём деликатесы для вечера, праздника и особого повода.",
     "hero_cta": "Смотреть меню",
-    "promo_title": "Маленький бонус для большого вкуса.",
-    "promo_text": "Получайте клубные билеты за подтверждённые покупки и участие в специальных активностях. Тратьте их в игровой гавани РАКОВАРЪ.",
-    "footer_notice": "Демонстрационный проект · не является публичной офертой",
+    "promo_title": "Вместо обычного букета — морские деликатесы.",
+    "promo_text": "Съедобные букеты и подарочные композиции. Расскажите о поводе, а состав и оформление подберём вместе.",
+    "footer_notice": "РАКОВАРЪ · Морские и речные деликатесы",
     "loyalty_rub_per_ticket": str(LOYALTY_RUB_PER_TICKET),
     "contact_address": "Комсомольская, 14, Ярославль",
     "contact_phone": "+7 (920) 118-57-87",
@@ -125,7 +125,7 @@ def init_db() -> None:
         init_safety_schema(c)
         if DEMO_MODE:
             seed_row = c.execute("SELECT setting_value FROM site_settings WHERE setting_key='catalog_seed_version'").fetchone()
-            if not seed_row or seed_row[0] != "brand-refresh-2026-11-09-v6":
+            if not seed_row or seed_row[0] != CATALOG_VERSION:
                 # Refresh only unverified imported rows; operator-approved prices/stock are preserved.
                 for p in CATALOG_PRODUCTS:
                     c.execute("""INSERT INTO products
@@ -139,6 +139,8 @@ def init_db() -> None:
                         WHERE products.price_verified=0 AND products.stock_confirmed=0""",
                         (p['id'],p['title'],p['category'],p['price'],p['unit'],p['stock'],p['description'],p['image'],p['badge'],NOW(),p['image_url'],p['source_url'],0,0,p['weight'],p['price_on_request']))
                 c.execute("UPDATE products SET active=0 WHERE id IN ('crayfish-classic','seafood-platter','shrimp-tiger','crayfish-bouquet','seafood-gift')")
+                for retired_id in RETIRED_UNVERIFIED_IDS:
+                    c.execute("UPDATE products SET active=0 WHERE id=? AND price_verified=0 AND stock_confirmed=0", (retired_id,))
                 # Old preview databases can retain menu rows that are no longer part of the brand catalog.
                 legacy_rows = c.execute("SELECT id,title,category,description,image,badge,image_url FROM products WHERE active=1").fetchall()
                 for legacy_row in legacy_rows:
@@ -146,7 +148,7 @@ def init_db() -> None:
                         c.execute("UPDATE products SET active=0 WHERE id=?", (legacy_row["id"],))
                 c.execute("UPDATE promotions SET ticket_reward=1 WHERE code IN ('WELCOME10','SEA300') AND ticket_reward=0")
                 c.execute("UPDATE contests SET ticket_reward=1 WHERE id='sea-evening' AND ticket_reward=0")
-                c.execute("INSERT OR REPLACE INTO site_settings(setting_key,setting_value,updated_at) VALUES('catalog_seed_version',?,?)", ("brand-refresh-2026-11-09-v6", NOW()))
+                c.execute("INSERT OR REPLACE INTO site_settings(setting_key,setting_value,updated_at) VALUES('catalog_seed_version',?,?)", (CATALOG_VERSION, NOW()))
         if DEMO_MODE and c.execute("SELECT COUNT(*) FROM prizes").fetchone()[0] == 0:
             c.executemany("INSERT INTO prizes(id,title,kind,description,stock,weight,partner,reward_value) VALUES(?,?,?,?,?,?,?,?)",
               [(p['id'],p['title'],p['kind'],p['description'],p['stock'],p['weight'],p['partner'],p.get('reward_value',0)) for p in SAMPLE_PRIZES])
@@ -162,12 +164,31 @@ def init_db() -> None:
             # Migrate untouched preview defaults to the refreshed brand copy;
             # preserve values that an administrator has explicitly customized.
             default_migrations = [
+                ("promo_title", "Маленький бонус для большого вкуса.", SITE_DEFAULTS["promo_title"]),
+                ("promo_text", "Получайте клубные билеты за подтверждённые покупки и участие в специальных активностях. Тратьте их в игровой гавани РАКОВАРЪ.", SITE_DEFAULTS["promo_text"]),
+                ("footer_notice", "Демонстрационный проект · не является публичной офертой", SITE_DEFAULTS["footer_notice"]),
                 ("hero_title", "РАКОВАРЪ. Морская история со вкусом.", SITE_DEFAULTS["hero_title"]),
                 ("hero_text", "Живые и варёные раки, морские деликатесы, авторские сеты и съедобные подарки. Выбирайте любимое, собирайте свой набор и присоединяйтесь к клубу РАКОВАРЪ.", SITE_DEFAULTS["hero_text"]),
                 ("hero_cta", "Выбрать продукты", SITE_DEFAULTS["hero_cta"]),
                 ("contact_address", "Малый Московский переулок, 1/17, Ярославль", SITE_DEFAULTS["contact_address"]),
                 ("contact_hours", "Ежедневно · точное время подтвердить у менеджера", SITE_DEFAULTS["contact_hours"]),
             ]
+            # Upgrade only untouched copy. Operator-written content is preserved.
+            prize_copy = {
+                "Демонстрационный промокод. Не является действующей акцией.": "Бонус к следующему морскому вечеру.",
+                "Пример возможного приза при запуске программы.": "Доставка в подарок участнику клуба.",
+                "Подарок-пример; наличие и состав необходимо подтвердить.": "Дополнение к вашим любимым морепродуктам.",
+                "Тестовые баллы демонстрационной программы.": "Баллы на вашем клубном счёте.",
+            }
+            for old_copy, new_copy in prize_copy.items():
+                c.execute("UPDATE prizes SET description=? WHERE description=? AND id IN ('prize-5','prize-delivery','prize-sauce','prize-10','prize-consolation')", (new_copy, old_copy))
+            contest = SAMPLE_CONTESTS[0]
+            for query, column, old_copy in (
+                ("UPDATE contests SET description=? WHERE id='sea-evening' AND description=?", "description", "Поделитесь идеей идеального морского ужина. В демо-версии принимается тестовая заявка без публикации фото и личных данных."),
+                ("UPDATE contests SET prize_title=? WHERE id='sea-evening' AND prize_title=?", "prize_title", "Подарочный сет от РАКОВАРЪ (пример)"),
+                ("UPDATE contests SET rules=? WHERE id='sea-evening' AND rules=?", "rules", "Демонстрационный конкурс. До реального запуска организатор утверждает официальные правила, сроки, критерии выбора и порядок выдачи призов."),
+            ):
+                c.execute(query, (contest[column], old_copy))
             for key, old_value, new_value in default_migrations:
                 c.execute(
                     "UPDATE site_settings SET setting_value=?,updated_at=? WHERE setting_key=? AND setting_value=?",
@@ -488,14 +509,21 @@ def admin_login():
         configured = bool(ADMIN_PASSWORD_HASH or c.execute("SELECT 1 FROM staff_accounts LIMIT 1").fetchone())
     if not configured:
         return render_template("admin_login.html", error="Администрирование не настроено: задайте ADMIN_PASSWORD_HASH в переменных окружения."), 503
-    session["admin_csrf"] = secrets.token_urlsafe(32)
-    return render_template("admin_login.html", error=None, csrf_token=session["admin_csrf"])
+    # Preserve the current main fix: duplicate login tabs keep the same token.
+    token = session.get("admin_csrf")
+    if not token:
+        token = secrets.token_urlsafe(32)
+        session["admin_csrf"] = token
+    return render_template("admin_login.html", error=None, csrf_token=token)
 
 
 @app.post("/admin/login")
 def admin_login_post():
     if not csrf_valid():
-        abort(400)
+        session["admin_csrf"] = secrets.token_urlsafe(32)
+        return render_template("admin_login.html",
+                               error="Сессия входа устарела. Повторите попытку с этой страницы.",
+                               csrf_token=session["admin_csrf"]), 400
     try:
         staff_access.login(request.form.get("username", "owner"), request.form.get("password", ""), request.form.get("otp", ""))
         return redirect(url_for("admin_panel"))
@@ -701,7 +729,8 @@ def checkout_quote():
             abort(400, description="delivery_min_order")
         delivery = 0 if mode == "pickup" else PREVIEW_DELIVERY_RUB
         return jsonify(items=items, subtotal_rub=subtotal, discount_rub=discount, delivery_rub=delivery,
-                       total_rub=max(0, subtotal-discount+delivery), promo_message=promo_result, promo_valid=promo_valid)
+                       total_rub=max(0, subtotal-discount+delivery), promo_message=promo_result, promo_valid=promo_valid,
+                       delivery_status="estimate" if mode == "delivery" else "pickup", delivery_finalized=mode == "pickup")
 
 
 @app.post("/api/orders")
@@ -718,7 +747,7 @@ def create_order():
     name = str(data.get("name", "")).strip()
     phone = str(data.get("phone", "")).strip()
     if len(name) < 2 or len(name) > 80 or len(phone) < 6 or len(phone) > 32 or data.get("consent") is not True:
-        return jsonify(error="invalid_checkout", message="Укажите имя, телефон и подтвердите согласие для демонстрации."), 400
+        return jsonify(error="invalid_checkout", message="Укажите имя, телефон и подтвердите согласие."), 400
     with connect_db() as c:
         receipt, replay = request_receipt(c, guest_id, "order", data)
         if replay:
@@ -748,7 +777,7 @@ def create_order():
         c.execute("INSERT INTO order_status_history(id,order_id,previous_status,new_status,actor,created_at) VALUES(?,?,?,?,?,?)",
                   (secrets.token_hex(16), order_id, "", "demo_received", "visitor", dt.datetime.now(dt.timezone.utc).isoformat()))
         result = dict(status="demo_order_created", order_id=order_id, total_rub=total,
-                      message="Тестовый заказ сохранён в демонстрационной админке. Компания его не получит; контакты не сохранены.")
+                      message="Пробный заказ сохранён. В магазин он не отправлен, оплата не проводилась, контакты не сохранены.")
         save_receipt(c, guest_id, "order", receipt, result, 201, NOW())
     notify_max_admin_order(order_id, total, len(items), source_channel)
     return jsonify(result), 201
@@ -818,7 +847,7 @@ def game_spin():
                        sector_index=next(i for i, sector in enumerate(sectors) if sector["id"] == chosen["id"]),
                        prize={"id":chosen["id"],"title":chosen["title"],"description":chosen["description"],"partner":chosen["partner"]},
                        redemption_code=redemption_code, tickets=remaining, points=points,
-                       message="Демонстрационный розыгрыш: приз не является обещанием реальной выдачи.")
+                       message="Ознакомительный результат. Обмен призов на товары будет доступен после открытия клуба.")
         save_receipt(c, guest_id, "spin", receipt, result, 200, NOW())
         c.execute("INSERT INTO audit_log(actor,action,entity,entity_id,details_json,created_at) VALUES(?,?,?,?,?,?)",
                   ("visitor", "spin", "prize", chosen["id"], json.dumps({"spin_id":spin_cur.lastrowid}), NOW()))
@@ -863,7 +892,7 @@ def contest_entry(contest_id):
         event(c, "contest_entry", guest_id, {"contest_id": contest_id, "tickets_awarded":ticket_reward})
         count = c.execute("SELECT COUNT(*) FROM contest_entries WHERE contest_id=?", (contest_id,)).fetchone()[0]
         balance = c.execute("SELECT tickets FROM visitors WHERE guest_id=?", (guest_id,)).fetchone()[0]
-        return jsonify(status="entered", entries=count, tickets_awarded=ticket_reward, tickets=balance, message="Тестовая заявка сохранена в демо-системе."), 201
+        return jsonify(status="entered", entries=count, tickets_awarded=ticket_reward, tickets=balance, message="Идея сохранена. Настоящий конкурс пока не проводится."), 201
 
 
 @app.get("/api/contests/<contest_id>/entries/count")

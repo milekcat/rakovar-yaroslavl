@@ -51,18 +51,18 @@ def test_health_and_demo_bootstrap(client):
 
 def test_quote_uses_server_prices_and_coupon(client):
     data = client.post('/api/checkout/quote', json={
-        'items':[{'id':'crayfish-standart-trad','quantity':1,'price':1}],
+        'items':[{'id':'crayfish-medium-kg','quantity':1,'price':1}],
         'promo_code':'WELCOME10','delivery_mode':'pickup'
     })
     assert data.status_code == 200
-    assert data.json['subtotal_rub'] == 3680
-    assert data.json['discount_rub'] == 368
-    assert data.json['total_rub'] == 3312
+    assert data.json['subtotal_rub'] == 3580
+    assert data.json['discount_rub'] == 358
+    assert data.json['total_rub'] == 3222
 
 def test_demo_order_discards_personal_data(client):
     csrf = bootstrap(client)
     response = client.post('/api/orders', headers={'X-CSRF-Token':csrf,'Idempotency-Key':uuid.uuid4().hex}, json={
-        'guest_id':'guest-test-identifier-12345','items':[{'id':'crayfish-standart-trad','quantity':1}],
+        'guest_id':'guest-test-identifier-12345','items':[{'id':'crayfish-medium-kg','quantity':1}],
         'name':'Test User','phone':'+79990000000','consent':True,'delivery_mode':'pickup'
     })
     assert response.status_code == 201
@@ -153,7 +153,7 @@ def test_ticket_only_promotion_awards_tickets_after_payment(client):
     guest='guest-ticket-promo-12345'
     csrf=bootstrap(client,guest)
     order=client.post('/api/orders',headers={'X-CSRF-Token':csrf,'Idempotency-Key':uuid.uuid4().hex},json={
-        'guest_id':guest,'items':[{'id':'crayfish-standart-trad','quantity':1}],
+        'guest_id':guest,'items':[{'id':'crayfish-medium-kg','quantity':1}],
         'name':'Test User','phone':'+79990000000','consent':True,'delivery_mode':'pickup','promo_code':'TICKETSONLY'
     })
     assert order.status_code==201
@@ -168,7 +168,7 @@ def test_admin_can_change_loyalty_rate_and_order_uses_it(client):
     guest='guest-custom-loyalty-12345'
     csrf=bootstrap(client,guest)
     order=client.post('/api/orders',headers={'X-CSRF-Token':csrf,'Idempotency-Key':uuid.uuid4().hex},json={
-        'guest_id':guest,'items':[{'id':'crayfish-standart-trad','quantity':1}],
+        'guest_id':guest,'items':[{'id':'crayfish-medium-kg','quantity':1}],
         'name':'Test User','phone':'+79990000000','consent':True,'delivery_mode':'pickup'
     })
     admin_csrf=admin_login(client); headers={'X-CSRF-Token':admin_csrf}
@@ -192,17 +192,17 @@ def test_admin_can_edit_prize_weight_and_contest_ticket_reward(client):
 
 def test_admin_can_confirm_price_and_stock(client):
     token=admin_login(client); headers={'X-CSRF-Token':token}
-    updated=client.patch('/api/admin/products/crayfish-standart-trad',headers=headers,json={'price_verified':1,'stock_confirmed':1,'stock':12})
+    updated=client.patch('/api/admin/products/crayfish-medium-kg',headers=headers,json={'price_verified':1,'stock_confirmed':1,'stock':12})
     assert updated.status_code==200
     rows=client.get('/api/admin/products').json
-    product=next(x for x in rows if x['id']=='crayfish-standart-trad')
+    product=next(x for x in rows if x['id']=='crayfish-medium-kg')
     assert product['price_verified']==1 and product['stock_confirmed']==1 and product['stock']==12
 
 def test_paid_demo_order_awards_tickets_once(client, app_module):
     guest='guest-paid-order-123456'
     csrf=bootstrap(client,guest)
     order=client.post('/api/orders',headers={'X-CSRF-Token':csrf,'Idempotency-Key':uuid.uuid4().hex},json={
-        'guest_id':guest,'items':[{'id':'crayfish-standart-trad','quantity':1}],
+        'guest_id':guest,'items':[{'id':'crayfish-medium-kg','quantity':1}],
         'name':'Test User','phone':'+79990000000','consent':True,'delivery_mode':'pickup'
     })
     assert order.status_code == 201
@@ -230,7 +230,7 @@ def test_paid_order_cancellation_reverses_ticket_ledger(client):
     guest='guest-refund-order-123456'
     csrf=bootstrap(client,guest)
     order=client.post('/api/orders',headers={'X-CSRF-Token':csrf,'Idempotency-Key':uuid.uuid4().hex},json={
-        'guest_id':guest,'items':[{'id':'crayfish-standart-trad','quantity':1}],
+        'guest_id':guest,'items':[{'id':'crayfish-medium-kg','quantity':1}],
         'name':'Test User','phone':'+79990000000','consent':True,'delivery_mode':'pickup'
     })
     assert order.status_code == 201
@@ -306,7 +306,7 @@ def test_referral_rewards_both_sides_only_after_first_paid_order(app_module):
     duplicate = friend_client.post('/api/referrals/attach', headers={'X-CSRF-Token': friend_csrf}, json={'guest_id': friend, 'code': code})
     assert duplicate.status_code == 409
     order = friend_client.post('/api/orders', headers={'X-CSRF-Token': friend_csrf, 'Idempotency-Key': uuid.uuid4().hex}, json={
-        'guest_id': friend, 'items': [{'id':'crayfish-standart-trad','quantity':1}],
+        'guest_id': friend, 'items': [{'id':'crayfish-medium-kg','quantity':1}],
         'name':'Test User', 'phone':'+79990000000', 'consent':True, 'delivery_mode':'pickup'
     })
     assert order.status_code == 201
@@ -333,7 +333,7 @@ def test_referral_bonus_is_reversed_when_qualifying_order_is_cancelled(app_modul
     code = referrer_client.get('/api/referrals/profile', query_string={'guest_id':referrer}).json['code']
     assert friend_client.post('/api/referrals/attach', headers={'X-CSRF-Token':friend_csrf}, json={'guest_id':friend,'code':code}).status_code == 201
     order = friend_client.post('/api/orders', headers={'X-CSRF-Token':friend_csrf,'Idempotency-Key':uuid.uuid4().hex}, json={
-        'guest_id':friend,'items':[{'id':'crayfish-standart-trad','quantity':1}],
+        'guest_id':friend,'items':[{'id':'crayfish-medium-kg','quantity':1}],
         'name':'Test User','phone':'+79990000000','consent':True,'delivery_mode':'pickup'
     })
     admin_client = app_module.app.test_client(); admin_csrf=admin_login(admin_client); headers={'X-CSRF-Token':admin_csrf}

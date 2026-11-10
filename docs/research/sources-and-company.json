@@ -1,0 +1,205 @@
+{
+  "checked_at": "2026-11-10",
+  "scope": "Public sources attributable to Rakovar Yaroslavl. Completeness not guaranteed; private albums, VK market and owner menu are unavailable.",
+  "sources": [
+    {
+      "id": "chibbis",
+      "url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+      "kind": "restaurant platform listing",
+      "access": "retrieved HTML and hydration data",
+      "offers": 27,
+      "distinct_titles": 22,
+      "company_approved": false
+    },
+    {
+      "id": "eda7",
+      "url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/",
+      "kind": "third-party menu mirror; not official Yandex",
+      "access": "retrieved HTML",
+      "offers": 41,
+      "listing_date": "2026-10-08",
+      "company_approved": false
+    },
+    {
+      "id": "vk",
+      "url": "https://vk.ru/rakovar_yar",
+      "kind": "brand social channel provided by user",
+      "access": "Site Unavailable; original posts not retrieved"
+    },
+    {
+      "id": "vk_index_secondary",
+      "url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+      "kind": "secondary indexed reproduction of brand description and posts",
+      "access": "search service indexed extraction; direct HTTP browser check, not bypassed",
+      "company_approved": false
+    },
+    {
+      "id": "brand_site_candidate",
+      "url": "https://rakovar76.clients.site/",
+      "kind": "previously supplied candidate",
+      "access": "Site Unavailable",
+      "attribution": "not independently established"
+    },
+    {
+      "id": "eda_dostavka",
+      "url": "https://eda-dostavka.com/yaroslavl/restorany/rakovar-fnxcs/",
+      "kind": "third-party directory",
+      "access": "HTTP 503; search excerpt only",
+      "warning": "city copy says Moscow in Yaroslavl listing; not authoritative"
+    },
+    {
+      "id": "eda_yandex_actual",
+      "url": "https://eda.yandex.ru/r/subway?placeSlug=rakovar_fnxcs",
+      "kind": "official platform domain, referral from Eda7",
+      "access": "search fetch failed; not used as current price authority"
+    },
+    {
+      "id": "eda_yandex_named_mirror",
+      "url": "https://xn--80aafbg2bzayj.xn--p1ai/yaroslavl/restaurant/rakovar_367kr/",
+      "kind": "third-party mirror, NOT official Yandex Eda",
+      "access": "indexed excerpt only",
+      "warning": "removed misleading Yandex Eda label from storefront"
+    },
+    {
+      "id": "spravka",
+      "url": "https://yaroslavl.spravka.city/company/rakovar-0",
+      "kind": "secondary local directory",
+      "access": "indexed excerpt; phone and historic address"
+    },
+    {
+      "id": "jsprav",
+      "url": "https://yaroslavl.jsprav.ru/dostavka-edyi-i-obedov/rakovar-1/",
+      "kind": "secondary local directory",
+      "access": "indexed excerpt; historical address/hours"
+    },
+    {
+      "id": "ds76",
+      "url": "https://www.ds76.ru/firms/2185862/",
+      "kind": "historical business listing",
+      "access": "indexed excerpt",
+      "warning": "old Republican street address and old live-crayfish prices; prices excluded from current catalog"
+    },
+    {
+      "id": "zakypki",
+      "url": "https://vk.ru/zakypkiyar",
+      "kind": "related group supplied by user",
+      "access": "no current menu retrieved; retain separate channel, do not attribute all goods to Rakovar"
+    }
+  ],
+  "facts": {
+    "brand": "РАКОВАРЪ",
+    "city": "Ярославль",
+    "phone": "+79201185787",
+    "retail_address": "Комсомольская, 14",
+    "address_evidence": {
+      "source": "vk_index_secondary",
+      "post_date": "2026-11-09",
+      "original_url": "https://vk.com/wall-1227486_248163",
+      "original_access": "unavailable"
+    },
+    "retail_hours": "10:00–21:00 daily",
+    "delivery_hours": "11:30–21:00 daily",
+    "direct_delivery_from_rub": 350,
+    "delivery_policy_status": "secondary brand profile; final rate depends on address; not owner-approved",
+    "historic_addresses": [
+      "Малый Московский переулок, 1/17",
+      "Республиканская, 3 к. 4",
+      "Победы, 34 (old coupon listing)"
+    ],
+    "public_email_secondary": "rakovar76@mail.ru",
+    "seller_secondary": {
+      "name": "ИП Румянцев Алексей Михайлович",
+      "inn": "760303378712",
+      "ogrnip": "324762700017711",
+      "source": "eda7",
+      "registry_verified": false
+    },
+    "not_published_unverified_claims": [
+      "years in business",
+      "number of sets",
+      "number of gift designs",
+      "ratings",
+      "founder biography",
+      "real partner gifts",
+      "payments enabled",
+      "MAX bot association"
+    ]
+  },
+  "social_findings": [
+    {
+      "topic": "Переезд",
+      "date": "2026-11-09",
+      "original_url": "https://vk.com/wall-1227486_248163"
+    },
+    {
+      "topic": "Форель: предзаказ",
+      "date": "2026-11-06",
+      "arrival_window": "2026-11-23/2026-11-24",
+      "price_snapshot_rub_per_kg": 1290,
+      "weight_kg": [
+        2.5,
+        4
+      ],
+      "original_url": "https://vk.com/wall-1227486_248162",
+      "decision": "inquiry_only; batch conditions expire"
+    },
+    {
+      "topic": "Колючий краб",
+      "date": "2026-11-07",
+      "original_url": "https://vk.com/wall-1227486_248120"
+    },
+    {
+      "topic": "Вяленая и копчёная рыба",
+      "date": "2026-11-03",
+      "original_url": "https://vk.com/wall-1227486_248158"
+    },
+    {
+      "topic": "Гребешок, осьминог, краб с чесночным маслом, креветки гриль",
+      "date": "2026-10-28",
+      "original_url": "https://vk.com/wall-1227486_248151"
+    },
+    {
+      "topic": "Живые раки; набор для варки",
+      "date": "2026-10-23",
+      "original_url": null
+    },
+    {
+      "topic": "Копчение форели",
+      "date": "2026-10-22",
+      "original_url": null
+    },
+    {
+      "topic": "Тигровые креветки Бабочка",
+      "date": "2026-10-21",
+      "original_url": null,
+      "corrects_previous_date": "2026-10-17"
+    },
+    {
+      "topic": "Для двоих",
+      "date": "2026-10-17",
+      "price_snapshot_rub": 2890,
+      "original_url": null,
+      "decision": "inquiry_only; equivalence to old variants unconfirmed"
+    },
+    {
+      "topic": "Икра горбуши",
+      "date": "2026-10-24",
+      "original_url": null
+    }
+  ],
+  "media": {
+    "downloaded_reviewed": 66,
+    "total_bytes": 2602817,
+    "rights_status": "company approval required before publication",
+    "rejected_upstream_banner": "df9c6ef11fd698f6963dbb540a41dc1f",
+    "fallback": "nine original SVG line illustrations, never a mismatched product photograph"
+  },
+  "owner_decisions_needed": [
+    "Approve direct-order menu and prices separate from aggregator prices",
+    "Approve recipes, allergens, yields and variants",
+    "Confirm direct delivery zones, minimum, prices, preparation times and pickup point",
+    "Supply product-specific gift and seasonal photos with usage permission",
+    "Verify seller legal details and privacy/offer texts",
+    "Approve club mechanics, gifts and competition rules before commercial use"
+  ]
+}
