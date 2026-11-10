@@ -134,6 +134,9 @@ def main():
                     page.locator('#studioSearch').fill('кревет')
                     assert 3 < page.locator('#builderItems .studio-product').count() < 69
                     page.locator('#studioSearch').fill('')
+                    page.locator('#sets').scroll_into_view_if_needed()
+                    page.screenshot(path=str(output / 'set-studio-desktop.png'))
+                    checks.append('Five live-crayfish sizes switch source photos and all 69 builder items remain searchable')
                     page.locator('[data-studio-preset="two"]').click()
                     expect(page.locator("#builderItems .studio-product")).to_have_count(69)
                     page.locator("#addBundle").click()
@@ -240,6 +243,10 @@ def main():
                     mobile.on("pageerror", lambda error: console_errors.append(str(error)))
                     mobile.goto(origin, wait_until="domcontentloaded")
                     expect(mobile.locator("#wheel svg")).to_be_visible()
+                    for section in ('#liveCrayfish','#sets'):
+                        mobile.locator(section).scroll_into_view_if_needed()
+                        assert mobile.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+                    mobile.screenshot(path=str(output / 'set-studio-mobile.png'))
                     mobile.locator("#club").scroll_into_view_if_needed()
                     assert mobile.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
                     mobile.screenshot(path=str(output / "wheel-mobile.png"))

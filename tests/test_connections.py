@@ -90,6 +90,8 @@ def test_content_editor_cannot_read_or_change_connections(setup):
     with client.session_transaction() as session:csrf=session['admin_csrf']
     assert client.post('/admin/login',data={'username':'limited_editor','password':'synthetic-staff-password','csrf_token':csrf}).status_code==302
     assert client.get('/api/admin/connections').status_code==403
+    with client.session_transaction() as session:editor_csrf=session['admin_csrf']
+    assert client.post('/api/admin/content/1/publish',headers={'X-CSRF-Token':editor_csrf},json={}).status_code==403
 
 @pytest.mark.parametrize('provider,action,payload,remote_id',[
     ('vk','send',{'response':{'post_id':7}},'7'),
