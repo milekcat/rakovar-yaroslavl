@@ -59,6 +59,24 @@ app.config.update(
     MAX_CONTENT_LENGTH=3 * 1024 * 1024,
     PERMANENT_SESSION_LIFETIME=dt.timedelta(hours=12),
 )
+
+# Old previews cached unversioned scripts for five minutes. Revalidation headers
+# on a new response cannot evict those entries from an existing browser cache.
+STATIC_ASSET_VERSIONS = {
+    path.relative_to(BASE_DIR / "static").as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()[:16]
+    for path in sorted((BASE_DIR / "static").rglob("*"))
+    if path.is_file() and path.suffix in {".js", ".css"}
+}
+
+
+@app.url_defaults
+def version_static_assets(endpoint, values):
+    if endpoint == "static":
+        version = STATIC_ASSET_VERSIONS.get(values.get("filename"))
+        if version:
+            values.setdefault("v", version)
+
+
 ADMIN_PASSWORD_HASH = os.environ.get("ADMIN_PASSWORD_HASH", "")
 _LOGIN_FAILURES: dict[str, tuple[int, float]] = {}
 _RATE_BUCKETS: dict[str, tuple[float, int]] = {}
