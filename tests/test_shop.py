@@ -156,6 +156,7 @@ def test_inventory_optimistic_conflict_and_customer_bonus_replay(shop):
     assert c.put('/api/admin/store/inventory/'+p['product_id'],headers=ah,json=body).status_code==409
     bh={**ah,'Idempotency-Key':'unique-customer-bonus-request-111'}
     for _ in range(2):assert c.patch('/api/admin/store/customers/'+g,headers=bh,json={'bonus_delta':200,'reason':'Компенсация'}).status_code==200
+    assert c.patch('/api/admin/store/customers/'+g,headers=bh,json={'bonus_delta':300,'reason':'Компенсация'}).status_code==409
     assert c.get('/api/store/profile').json['balance']==200
 
 def test_uploaded_photos_persist_in_database_and_cannot_be_html(shop):
@@ -170,6 +171,7 @@ def test_uploaded_photos_persist_in_database_and_cannot_be_html(shop):
     a.init_db()
     public=a.app.test_client().get(first.json['url'])
     assert public.status_code==200 and public.data==original and public.headers['X-Content-Type-Options']=='nosniff'
+    assert 'immutable' in public.headers['Cache-Control']
     bad={**body,'base64':base64.b64encode(b'<script>alert(1)</script>').decode()}
     assert c.post('/api/admin/store/media',headers=ah,json=bad).status_code==400
     assert c.patch('/api/admin/products/crayfish-medium-kg',headers=ah,json={'image_url':first.json['url']}).status_code==200
@@ -194,3 +196,5 @@ def test_operator_photo_override_survives_seed_refresh_and_private_pages_are_not
     for path in ['/account','/team/rakovar-control/login']:
         response=c.get(path)
         assert response.headers['Cache-Control']=='no-store' and 'noindex' in response.headers['X-Robots-Tag']
+    for path in ['/','/static/storefront.js','/static/shop.css']:
+        assert c.get(path).headers['Cache-Control']=='no-cache'

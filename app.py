@@ -507,7 +507,14 @@ def security_headers(resp):
     resp.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     resp.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
     private_page=request.path.startswith(('/api/','/admin','/team/','/account'))
-    resp.headers["Cache-Control"] = "no-store" if private_page else "public, max-age=300"
+    if private_page:
+        resp.headers["Cache-Control"] = "no-store"
+    elif request.path.startswith('/media/'):
+        pass  # Content-addressed uploads already carry an immutable cache policy.
+    elif resp.mimetype=='text/html' or request.path.endswith(('.js','.css')):
+        resp.headers["Cache-Control"] = "no-cache"
+    else:
+        resp.headers["Cache-Control"] = "public, max-age=300"
     if request.path.startswith(('/admin','/team/','/account')):resp.headers['X-Robots-Tag']='noindex, nofollow'
     resp.headers["Content-Security-Policy"] = "default-src 'self' https: data:; script-src 'self' https://st.max.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https: data:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
     return resp
