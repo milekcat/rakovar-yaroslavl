@@ -1,0 +1,2032 @@
+[
+  {
+    "id": "crayfish-boiled-400",
+    "title": "Раки варёные",
+    "category": "Раки",
+    "price": 1690,
+    "unit": "за порцию",
+    "weight": "400 г",
+    "description": "Раки варёные.",
+    "image": "menu/menu-344d5d5c82c1.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366266_raki-varenye/",
+    "badge": "Раки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 16,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "crayfish-small-kg",
+    "title": "Мелкие варёные раки",
+    "category": "Раки",
+    "price": 2680,
+    "unit": "за кг",
+    "weight": "1 кг",
+    "description": "Мелкие варёные раки.",
+    "image": "menu/menu-6f962337b250.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3010008280_melkie-varyonye-raki/",
+    "badge": "Раки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 17,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "crayfish-medium-kg",
+    "title": "Средние варёные раки",
+    "category": "Раки",
+    "price": 3580,
+    "unit": "за кг",
+    "weight": "1 кг",
+    "description": "Средние варёные раки.",
+    "image": "menu/menu-cc0a65579558.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3010008281_srednie-varyonye-raki/",
+    "badge": "Раки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 18,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "crayfish-medium-large-kg",
+    "title": "Средне-крупные варёные раки",
+    "category": "Раки",
+    "price": 3880,
+    "unit": "за кг",
+    "weight": "1 кг",
+    "description": "Средне-крупные варёные раки.",
+    "image": "menu/menu-7117ec2a23c6.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3011081993_srednekrupnye-raki/",
+    "badge": "Раки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 19,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "set-classic",
+    "title": "Сет «Классический»",
+    "category": "Сеты",
+    "price": 3190,
+    "unit": "за сет",
+    "weight": "1 кг",
+    "description": "Морской сет для совместного ужина.",
+    "image": "menu/menu-c38c1570de9f.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009680306_set-klassicheskij/",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 30,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "set-firmenny",
+    "title": "Сет «Фирменный»",
+    "category": "Сеты",
+    "price": 3310,
+    "unit": "за сет",
+    "weight": "900 г",
+    "description": "Фирменный набор морепродуктов для компании.",
+    "image": "menu/menu-5b9f67ea2ae5.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3010990882_firmennyj/",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 31,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "set-k-pennomu",
+    "title": "Набор «К пенному»",
+    "category": "Сеты",
+    "price": 2890,
+    "unit": "за сет",
+    "weight": "800 г",
+    "description": "Набор «К пенному».",
+    "image": "menu/menu-ebf6f5e7c81d.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366258_nabor-k-pennomu/",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 26,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "set-grill",
+    "title": "Сет на гриле",
+    "category": "Сеты",
+    "price": 2390,
+    "unit": "за сет",
+    "weight": "800 г",
+    "description": "Ассорти морепродуктов, приготовленных на гриле.",
+    "image": "menu/menu-caaed36ff99b.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366259_nabor-na-dvoikh/",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 27,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "set-4-morya",
+    "title": "Сет «4 моря»",
+    "category": "Сеты",
+    "price": 2790,
+    "unit": "за сет",
+    "weight": "",
+    "description": "Раки, лангустины, королевские креветки, мидии и соус РАКОВАРЪ.",
+    "image": "menu/menu-98f6bc7b54b3.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 23,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "set-for-two-mussels",
+    "title": "Сет для двоих с мидиями",
+    "category": "Сеты",
+    "price": 2690,
+    "unit": "за сет",
+    "weight": "1,2 кг",
+    "description": "Сет для двоих с мидиями.",
+    "image": "menu/menu-c803cb76f4e0.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3016898180_set-dlya-dvoikh-s-midiyami/",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 35,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "set-for-two-shrimp",
+    "title": "Сет для двоих с креветками",
+    "category": "Сеты",
+    "price": 2690,
+    "unit": "за сет",
+    "weight": "1,2 кг",
+    "description": "Сет для двоих с креветками.",
+    "image": "menu/menu-a3698ff47e0f.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3016898187_set-dlya-dvoikh-s-krevetkami/",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 36,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "set-for-two",
+    "title": "Сет «Для двоих»",
+    "category": "Сеты",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "description": "Рыба на гриле, креветки или мидии и салаты. Набор для двоих.",
+    "image": "menu/illustration-set.svg",
+    "image_url": "",
+    "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-10-17",
+        "original_url": null,
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "combo-1",
+    "title": "Комбо №1",
+    "category": "Комбо",
+    "price": 2490,
+    "unit": "за комбо",
+    "weight": "800 г",
+    "description": "Комбо №1.",
+    "image": "menu/menu-7c47af6be47b.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013064953_kombo-1/",
+    "badge": "Комбо",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 32,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "combo-2",
+    "title": "Комбо №2",
+    "category": "Комбо",
+    "price": 2390,
+    "unit": "за комбо",
+    "weight": "900 г",
+    "description": "Комбо №2.",
+    "image": "menu/menu-a4f77f9c1198.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013065116_kombo-2/",
+    "badge": "Комбо",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 33,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "combo-3",
+    "title": "Комбо №3",
+    "category": "Комбо",
+    "price": 2190,
+    "unit": "за комбо",
+    "weight": "800 г",
+    "description": "Мидии чили, тигровые креветки и соус.",
+    "image": "menu/menu-41e66b4dc89f.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Комбо",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 34,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 24,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "combo-fries-1",
+    "title": "Фри-комбо №1",
+    "category": "Закуски",
+    "price": 1290,
+    "unit": "за комбо",
+    "weight": "600 г",
+    "description": "Фри-комбо №1.",
+    "image": "menu/menu-2cd9a07a43b8.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009752637_fri-kombo-1/",
+    "badge": "Закуски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 23,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "combo-fries-2",
+    "title": "Фри-комбо №2",
+    "category": "Закуски",
+    "price": 1190,
+    "unit": "за комбо",
+    "weight": "550 г",
+    "description": "Фри-комбо №2.",
+    "image": "menu/menu-9fed39b8fe9d.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009754587_fri-kombo-2/",
+    "badge": "Закуски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 24,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "combo-fries-3",
+    "title": "Фри-комбо №3",
+    "category": "Закуски",
+    "price": 1090,
+    "unit": "за комбо",
+    "weight": "650 г",
+    "description": "Фри-комбо №3.",
+    "image": "menu/menu-6b08efadfbe4.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009754600_fri-kombo-3/",
+    "badge": "Закуски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 25,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "mussels-chili-blue",
+    "title": "Мидии чили в соусе «Блю Чиз»",
+    "category": "Мидии и моллюски",
+    "price": 890,
+    "unit": "за порцию",
+    "weight": "500 г",
+    "description": "Мидии чили в соусе «Блю Чиз».",
+    "image": "menu/menu-49dc85c6be8e.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013529722_midii-chili-v-souse-blyu-chiz/",
+    "badge": "Мидии и моллюски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 0,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "mussels-chili-cream",
+    "title": "Мидии чили в сливочном соусе",
+    "category": "Мидии и моллюски",
+    "price": 890,
+    "unit": "за порцию",
+    "weight": "500 г",
+    "description": "Мидии чили в сливочном соусе.",
+    "image": "menu/menu-374a29544ce1.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013529723_midii-chili-v-slivochnom-souse/",
+    "badge": "Мидии и моллюски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 1,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "mussels-set-cream",
+    "title": "Сет из моллюсков в сливочном соусе",
+    "category": "Мидии и моллюски",
+    "price": 1590,
+    "unit": "за сет",
+    "weight": "800 г",
+    "description": "Сет из моллюсков в сливочном соусе.",
+    "image": "menu/menu-9f0b91ca2ae3.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3014801189_set-iz-mollyuskov-v-slivochnom-souse/",
+    "badge": "Мидии и моллюски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 2,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "mussels-wine",
+    "title": "Сет моллюсков в винном соусе",
+    "category": "Мидии и моллюски",
+    "price": 1590,
+    "unit": "за сет",
+    "weight": "800 г",
+    "description": "Сет моллюсков в винном соусе.",
+    "image": "menu/menu-7e61081ab55b.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Мидии и моллюски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 4,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 18,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "mussels-blue-cheese",
+    "title": "Сет моллюсков в соусе «Блю Чиз»",
+    "category": "Мидии и моллюски",
+    "price": 1590,
+    "unit": "за сет",
+    "weight": "800 г",
+    "description": "Сет моллюсков в соусе «Блю Чиз».",
+    "image": "menu/menu-bb153e383607.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Мидии и моллюски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 3,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 22,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "mussels-greek",
+    "title": "Сет мидий по-гречески",
+    "category": "Мидии и моллюски",
+    "price": 1590,
+    "unit": "за сет",
+    "weight": "",
+    "description": "Сет мидий по-гречески.",
+    "image": "menu/menu-8cfe0306f391.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Мидии и моллюски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 21,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-assorted-fried",
+    "title": "Ассорти из жареных креветок",
+    "category": "Креветки",
+    "price": 2790,
+    "unit": "за порцию",
+    "weight": "800 г",
+    "description": "Ассорти из жареных креветок.",
+    "image": "menu/menu-b2d99c040112.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 28,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 1,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 10,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-assorted-boiled",
+    "title": "Ассорти из варёных креветок",
+    "category": "Креветки",
+    "price": 2790,
+    "unit": "за порцию",
+    "weight": "800 г",
+    "description": "Ассорти из варёных креветок.",
+    "image": "menu/menu-c6a23b9e91ef.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 29,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 0,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 5,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-tom-yam",
+    "title": "Ассорти креветок в соусе «Том Ям»",
+    "category": "Креветки",
+    "price": 1790,
+    "unit": "за порцию",
+    "weight": "400 г",
+    "description": "Ассорти креветок в соусе «Том Ям».",
+    "image": "menu/menu-d350c35289d6.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 5,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 8,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 17,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-teriyaki",
+    "title": "Ассорти креветок в соусе «Терияки»",
+    "category": "Креветки",
+    "price": 1490,
+    "unit": "за порцию",
+    "weight": "400 г",
+    "description": "Ассорти креветок в соусе «Терияки».",
+    "image": "menu/menu-cedfb07d2ae9.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366264_assorti-krevetok-v-souse-teriyaki/",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 6,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-cream",
+    "title": "Ассорти креветок в сливочном соусе",
+    "category": "Креветки",
+    "price": 1490,
+    "unit": "за порцию",
+    "weight": "400 г",
+    "description": "Ассорти креветок в сливочном соусе.",
+    "image": "menu/menu-9aa71e972031.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366265_assorti-krevetok-v-slivochnom-souse/",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 7,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-tiger-teriyaki",
+    "title": "Тигровая креветка в соусе «Терияки»",
+    "category": "Креветки",
+    "price": 1490,
+    "unit": "за порцию",
+    "weight": "400 г",
+    "description": "Тигровая креветка в соусе «Терияки».",
+    "image": "menu/menu-45a964fabaca.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013593967_tigrovaya-krevetka-po-aziatski/",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 9,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-argentinian",
+    "title": "Жареные аргентинские креветки (лангустины)",
+    "category": "Креветки",
+    "price": 1290,
+    "unit": "за порцию",
+    "weight": "500 г",
+    "description": "Жареные аргентинские креветки (лангустины).",
+    "image": "menu/menu-a015cbc57d20.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013593948_zharenye-argentinskie-krevetki-langustiny/",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 8,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-peeled-teriyaki",
+    "title": "Очищенная креветка в соусе «Терияки»",
+    "category": "Креветки",
+    "price": 1690,
+    "unit": "за порцию",
+    "weight": "450 г",
+    "description": "Очищенная креветка в соусе «Терияки».",
+    "image": "menu/menu-9b7676623f7e.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013594127_vannamej-po-aziatski/",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 11,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-tiger-asian",
+    "title": "Тигровые креветки по-азиатски",
+    "category": "Креветки",
+    "price": 1590,
+    "unit": "за порцию",
+    "weight": "400 г",
+    "description": "Тигровые креветки по-азиатски.",
+    "image": "menu/menu-f842e149d0ae.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 9,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-king-fried",
+    "title": "Жареные королевские креветки",
+    "category": "Креветки",
+    "price": 990,
+    "unit": "за порцию",
+    "weight": "500 г",
+    "description": "Жареные королевские креветки.",
+    "image": "menu/menu-cc0f3d20a2dd.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 10,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 16,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-king-boiled",
+    "title": "Королевские креветки варёные",
+    "category": "Креветки",
+    "price": 990,
+    "unit": "за порцию",
+    "weight": "500 г",
+    "description": "Королевские креветки варёные.",
+    "image": "menu/menu-77dc9f594bdd.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 15,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-king-asian",
+    "title": "Королевские креветки по-азиатски",
+    "category": "Креветки",
+    "price": 1090,
+    "unit": "за порцию",
+    "weight": "400 г",
+    "description": "Королевские креветки по-азиатски.",
+    "image": "menu/menu-33ce2a6ff04c.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 14,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "crab-strigun",
+    "title": "Краб-стригун",
+    "category": "Деликатесы",
+    "price": 990,
+    "unit": "за порцию",
+    "weight": "330 г",
+    "description": "Краб-стригун.",
+    "image": "menu/menu-f11211c7a79f.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013610827_krab-strigun/",
+    "badge": "Деликатесы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 12,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "kamchatka-crab",
+    "title": "Камчатский краб",
+    "category": "Деликатесы",
+    "price": 1890,
+    "unit": "за порцию",
+    "weight": "300 г",
+    "description": "Камчатский краб.",
+    "image": "menu/menu-df3272d64006.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013709836_kamchatskij-krab/",
+    "badge": "Деликатесы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 13,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "lobster",
+    "title": "Лобстер",
+    "category": "Деликатесы",
+    "price": 8800,
+    "unit": "за порцию",
+    "weight": "740 г",
+    "description": "Лобстер.",
+    "image": "menu/menu-3ecf95630000.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3015072317_lobster/",
+    "badge": "Деликатесы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 14,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "langoust",
+    "title": "Лангуст",
+    "category": "Деликатесы",
+    "price": 7990,
+    "unit": "за порцию",
+    "weight": "800 г",
+    "description": "Лангуст.",
+    "image": "menu/menu-159a45320f24.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3019591507_langust/",
+    "badge": "Деликатесы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 15,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "langoustine-bacon",
+    "title": "Лангустины в беконе",
+    "category": "Закуски",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "description": "Лангустины в беконе.",
+    "image": "menu/menu-9927a7a3ef22.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Закуски",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 22,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 3,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 6,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "langoustine-honey-soy",
+    "title": "Лангустины в медово-соевом соусе",
+    "category": "Лангустины",
+    "price": 1390,
+    "unit": "за порцию",
+    "weight": "500 г",
+    "description": "Лангустины в медово-соевом соусе.",
+    "image": "menu/menu-897ba2f136f2.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Лангустины",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 4,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "langoustine-boiled",
+    "title": "Лангустины варёные",
+    "category": "Лангустины",
+    "price": 1290,
+    "unit": "за порцию",
+    "weight": "500 г",
+    "description": "Лангустины варёные.",
+    "image": "menu/menu-39b1b8b28fc4.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Лангустины",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 13,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "burger-mango",
+    "title": "Бургер с тигровой креветкой и соусом из манго",
+    "category": "Бургеры",
+    "price": 570,
+    "unit": "за шт.",
+    "weight": "270 г",
+    "description": "Бургер с тигровой креветкой и соусом из манго.",
+    "image": "menu/menu-c71f22476e45.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3011189037_s-tigrovoj-krevetkoj-i-sousom-iz-mango/",
+    "badge": "Бургеры",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 20,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "burger-pineapple",
+    "title": "Бургер с тигровой креветкой и ананасовым соусом",
+    "category": "Бургеры",
+    "price": 570,
+    "unit": "за шт.",
+    "weight": "270 г",
+    "description": "Бургер с тигровой креветкой и ананасовым соусом.",
+    "image": "menu/menu-6a0d41036c4a.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3011189052_burger-s-tigrovoj-krevetkoj-i-ananasovym-sousom/",
+    "badge": "Бургеры",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 21,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "dorado-grill",
+    "title": "Дорадо на гриле",
+    "category": "Рыба",
+    "price": 990,
+    "unit": "за порцию",
+    "weight": "390 г",
+    "description": "Дорадо на гриле.",
+    "image": "menu/menu-b3fab797b4cd.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Рыба",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 26,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "sauce-creamy-garlic",
+    "title": "Соус сливочно-чесночный",
+    "category": "Соусы",
+    "price": 90,
+    "unit": "за порцию",
+    "weight": "50 мл",
+    "description": "Соус сливочно-чесночный.",
+    "image": "menu/menu-c4a8642fc996.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009422357_slivochno-chesnochnyj/",
+    "badge": "Соусы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 37,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "sauce-sweet-chili",
+    "title": "Соус кисло-сладкий чили",
+    "category": "Соусы",
+    "price": 60,
+    "unit": "за порцию",
+    "weight": "50 мл",
+    "description": "Соус кисло-сладкий чили.",
+    "image": "menu/menu-8a25b1deb22f.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009422358_kislo-sladkij-chili/",
+    "badge": "Соусы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 38,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "sauce-ketchup",
+    "title": "Кетчуп",
+    "category": "Соусы",
+    "price": 60,
+    "unit": "за порцию",
+    "weight": "50 г",
+    "description": "Кетчуп.",
+    "image": "menu/menu-5f67fe7349de.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009825306_ketchup/",
+    "badge": "Соусы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 39,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "sauce-cheese",
+    "title": "Соус сырный",
+    "category": "Соусы",
+    "price": 60,
+    "unit": "за порцию",
+    "weight": "50 г",
+    "description": "Соус сырный.",
+    "image": "menu/menu-99fbb6d38014.jpg",
+    "image_url": "",
+    "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009825307_syrnyj/",
+    "badge": "Соусы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "eda7",
+        "offer_index": 40,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "edible-bouquet-request",
+    "title": "Съедобный букет из морепродуктов",
+    "category": "Подарки",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "description": "Съедобная композиция из морепродуктов. Состав и оформление под ваш повод.",
+    "image": "menu/company-20261111-photos-027.jpg",
+    "image_url": "",
+    "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+    "badge": "Подарки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "profile",
+        "original_url": null,
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "kind": "company_card_photo",
+      "current_price_verified": false
+    }
+  },
+  {
+    "id": "live-crayfish-request",
+    "title": "Живые раки — подбор по размеру",
+    "category": "Живые раки",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "description": "Живые раки разных размеров. Подберём размер и количество.",
+    "image": "menu/live-company-1.jpg",
+    "image_url": "",
+    "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+    "badge": "Живые раки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-10-23",
+        "original_url": null,
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2186101/",
+      "kind": "company listing",
+      "current_price_verified": false
+    },
+    "live_size_options": [
+      {
+        "name": "Mini",
+        "weight": "15–30 г/шт.",
+        "image": "menu/live-company-0.jpg",
+        "source_url": "https://www.ds76.ru/goods/2185866/",
+        "availability_confirmed": false
+      },
+      {
+        "name": "Standart",
+        "weight": "30–50 г/шт.",
+        "image": "menu/live-company-1.jpg",
+        "source_url": "https://www.ds76.ru/goods/2186101/",
+        "availability_confirmed": false
+      },
+      {
+        "name": "Maxi",
+        "weight": "50–70 г/шт.",
+        "image": "menu/live-company-2.jpg",
+        "source_url": "https://www.ds76.ru/goods/2186102/",
+        "availability_confirmed": false
+      },
+      {
+        "name": "Mega",
+        "weight": "70–90 г/шт.",
+        "image": "menu/live-company-3.jpg",
+        "source_url": "https://www.ds76.ru/goods/2186103/",
+        "availability_confirmed": false
+      },
+      {
+        "name": "XXL",
+        "weight": "90–110 г/шт.",
+        "source_url": "https://www.ds76.ru/goods/2186104/",
+        "availability_confirmed": false,
+        "image": "menu/live-company-4.jpg"
+      }
+    ]
+  },
+  {
+    "id": "frozen-seafood-request",
+    "title": "Замороженные морепродукты — подбор по наличию",
+    "category": "Деликатесы",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "description": "Креветки, моллюски, крабы и другие морепродукты для приготовления дома.",
+    "image": "menu/illustration-fish.svg",
+    "image_url": "",
+    "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+    "badge": "Деликатесы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "profile",
+        "original_url": null,
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "fresh-murmansk-trout",
+    "title": "Северная форель свежая",
+    "category": "Сезонное",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "description": "Свежая северная форель по предзаказу. Привоз и вес рыбы согласуем с вами.",
+    "image": "menu/illustration-fish.svg",
+    "image_url": "",
+    "source_url": "https://vk.com/wall-1227486_248162",
+    "badge": "Сезонное",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-11-06",
+        "original_url": "https://vk.com/wall-1227486_248162",
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "smoked-trout",
+    "title": "Форель холодного или горячего копчения",
+    "category": "Сезонное",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "description": "Форель холодного или горячего копчения под заказ.",
+    "image": "menu/illustration-fish.svg",
+    "image_url": "",
+    "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+    "badge": "Сезонное",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-10-22",
+        "original_url": null,
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "red-salmon-caviar",
+    "title": "Икра горбуши",
+    "category": "Сезонное",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "description": "Икра горбуши. Фасовку и производителя подберёт администратор.",
+    "image": "menu/illustration-jar.svg",
+    "image_url": "",
+    "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+    "badge": "Сезонное",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-10-24",
+        "original_url": null,
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "tiger-shrimp-butterfly",
+    "title": "Тигровые креветки «Бабочка» с фирменным соусом",
+    "category": "Креветки",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "description": "Тигровые креветки на гриле в пряном маринаде, с фирменным соусом.",
+    "image": "menu/illustration-shrimp.svg",
+    "image_url": "",
+    "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-10-21",
+        "original_url": null,
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-peeled-cream",
+    "title": "Очищенные креветки в сливочном соусе",
+    "category": "Креветки",
+    "description": "Очищенные креветки на хвосте в сливочном соусе.",
+    "price": 1690,
+    "unit": "за порцию",
+    "weight": "500 г",
+    "image": "menu/menu-a5236deb9a67.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 2,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-asian-set",
+    "title": "Сет креветок по-азиатски",
+    "category": "Креветки",
+    "description": "Ассорти креветок в азиатском соусе.",
+    "price": 1790,
+    "unit": "за порцию",
+    "weight": "400 г",
+    "image": "menu/menu-e87b3893c851.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 7,
+        "checked_at": "2026-11-10"
+      },
+      {
+        "source": "chibbis",
+        "offer_index": 19,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-peeled-asian",
+    "title": "Очищенные креветки по-азиатски",
+    "category": "Креветки",
+    "description": "Очищенные креветки в азиатском соусе.",
+    "price": 1690,
+    "unit": "за порцию",
+    "weight": "400 г",
+    "image": "menu/menu-3e488a835c03.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 11,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "shrimp-tiger-fried",
+    "title": "Тигровые креветки обжаренные",
+    "category": "Креветки",
+    "description": "Обжаренные тигровые креветки.",
+    "price": 1390,
+    "unit": "за порцию",
+    "weight": "350 г",
+    "image": "menu/menu-83de4395b212.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Креветки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 12,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "seafood-assorted-cream",
+    "title": "Морское ассорти в сливочном соусе",
+    "category": "Сеты",
+    "description": "Креветки, мидии, вонголе и фаланги краба в сливочном соусе.",
+    "price": 2690,
+    "unit": "за сет",
+    "weight": "",
+    "image": "menu/menu-88e967f8b8d9.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 20,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "seafood-assorted-tomato",
+    "title": "Морское ассорти в томатном соусе",
+    "category": "Сеты",
+    "description": "Креветки, мидии, вонголе и фаланги краба в томатном соусе.",
+    "price": 2690,
+    "unit": "за сет",
+    "weight": "",
+    "image": "menu/menu-4d1f55911ed6.jpg",
+    "image_url": "",
+    "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+    "badge": "Сеты",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "chibbis",
+        "offer_index": 25,
+        "checked_at": "2026-11-10"
+      }
+    ]
+  },
+  {
+    "id": "spiny-crab-request",
+    "title": "Колючий краб",
+    "category": "Деликатесы",
+    "description": "Варёный колючий краб. Также для подарочных композиций.",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "image": "menu/illustration-crab.svg",
+    "image_url": "",
+    "source_url": "https://vk.com/wall-1227486_248120",
+    "badge": "Деликатесы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-11-07",
+        "original_url": "https://vk.com/wall-1227486_248120",
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "dried-fish-request",
+    "title": "Рыба вяленая",
+    "category": "Рыба",
+    "description": "Рыба из розничного ассортимента. Подбор вида и фасовки у администратора.",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "image": "menu/illustration-fish.svg",
+    "image_url": "",
+    "source_url": "https://vk.com/wall-1227486_248158",
+    "badge": "Рыба",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-11-03",
+        "original_url": "https://vk.com/wall-1227486_248158",
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "smoked-fish-request",
+    "title": "Рыба копчёная",
+    "category": "Рыба",
+    "description": "Рыба из розничного ассортимента. Подбор вида и способа копчения.",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "image": "menu/illustration-fish.svg",
+    "image_url": "",
+    "source_url": "https://vk.com/wall-1227486_248158",
+    "badge": "Рыба",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-11-03",
+        "original_url": "https://vk.com/wall-1227486_248158",
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "scallop-request",
+    "title": "Морской гребешок обжаренный",
+    "category": "Деликатесы",
+    "description": "Обжаренный морской гребешок под заказ.",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "image": "menu/illustration-scallop.svg",
+    "image_url": "",
+    "source_url": "https://vk.com/wall-1227486_248151",
+    "badge": "Деликатесы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-10-28",
+        "original_url": "https://vk.com/wall-1227486_248151",
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "octopus-request",
+    "title": "Щупальца осьминога",
+    "category": "Деликатесы",
+    "description": "Морской деликатес под заказ. Порцию согласуем при обращении.",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "image": "menu/illustration-octopus.svg",
+    "image_url": "",
+    "source_url": "https://vk.com/wall-1227486_248151",
+    "badge": "Деликатесы",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-10-28",
+        "original_url": "https://vk.com/wall-1227486_248151",
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "crayfish-cooking-kit",
+    "title": "Набор для варки раков",
+    "category": "Живые раки",
+    "description": "Дополнение к живым ракам для приготовления дома.",
+    "price": 0,
+    "unit": "по запросу",
+    "weight": "",
+    "image": "menu/illustration-crayfish.svg",
+    "image_url": "",
+    "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+    "badge": "Живые раки",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 1,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "vk_index_secondary",
+        "post_date": "2026-10-23",
+        "original_url": null,
+        "checked_at": "2026-11-10",
+        "original_access": "unavailable"
+      }
+    ]
+  },
+  {
+    "id": "live-crayfish-mini-kg",
+    "title": "Живые раки «Mini»",
+    "category": "Живые раки",
+    "price": 3190,
+    "unit": "за кг",
+    "weight": "15–30 г/шт.",
+    "description": "Живые раки «Mini». Вес одного рака 15–30 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/live-company-0.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "Mini",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2185866/",
+      "kind": "company_listing",
+      "current_price_verified": false
+    },
+    "live_size": "Mini",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
+  },
+  {
+    "id": "live-crayfish-standart-kg",
+    "title": "Живые раки «Standart»",
+    "category": "Живые раки",
+    "price": 3790,
+    "unit": "за кг",
+    "weight": "30–50 г/шт.",
+    "description": "Живые раки «Standart». Вес одного рака 30–50 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/live-company-1.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "Standart",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2186101/",
+      "kind": "company_listing",
+      "current_price_verified": false
+    },
+    "live_size": "Standart",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
+  },
+  {
+    "id": "live-crayfish-maxi-kg",
+    "title": "Живые раки «Maxi»",
+    "category": "Живые раки",
+    "price": 4190,
+    "unit": "за кг",
+    "weight": "50–70 г/шт.",
+    "description": "Живые раки «Maxi». Вес одного рака 50–70 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/company-20261111-0.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "Maxi",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://yandex.com/maps/org/213608255711/",
+      "kind": "company_card_photo",
+      "current_price_verified": false
+    },
+    "live_size": "Maxi",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
+  },
+  {
+    "id": "live-crayfish-mega-kg",
+    "title": "Живые раки «Mega»",
+    "category": "Живые раки",
+    "price": 4790,
+    "unit": "за кг",
+    "weight": "70–90 г/шт.",
+    "description": "Живые раки «Mega». Вес одного рака 70–90 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/live-company-3.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "Mega",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2186103/",
+      "kind": "company_listing",
+      "current_price_verified": false
+    },
+    "live_size": "Mega",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
+  },
+  {
+    "id": "live-crayfish-xxl-kg",
+    "title": "Живые раки «XXL»",
+    "category": "Живые раки",
+    "price": 5190,
+    "unit": "за кг",
+    "weight": "90–110 г/шт.",
+    "description": "Живые раки «XXL». Вес одного рака 90–110 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/live-company-4.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "XXL",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2186104/",
+      "kind": "company_listing",
+      "current_price_verified": false
+    },
+    "live_size": "XXL",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
+  }
+]

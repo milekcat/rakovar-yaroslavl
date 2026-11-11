@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS shop_media (
+ id TEXT PRIMARY KEY, filename TEXT NOT NULL, mime_type TEXT NOT NULL,
+ content_base64 TEXT NOT NULL, sha256 TEXT NOT NULL UNIQUE, size_bytes INTEGER NOT NULL,
+ created_at TEXT NOT NULL
+);

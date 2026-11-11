@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from max_client import MaxAPIError, api_request, get_me, get_updates, send_message, set_commands
-from app import DEMO_MODE, connect_db, get_loyalty_rate, get_visitor, get_or_create_referral_code, loyalty_tier, referral_setting
+from app import DEMO_MODE, connect_db, get_loyalty_rate, get_visitor, get_or_create_referral_code, loyalty_tier, referral_setting, active_max_token
 
 STOP = False
 
@@ -59,18 +59,19 @@ def _buttons(username: str | None) -> list | None:
 
 
 def _send_user(user_id: int, text: str, username: str | None = None):
-    return send_message(user_id=user_id, text=text, buttons=_buttons(username))
+    return send_message(user_id=user_id, text=text, buttons=_buttons(username), token=active_max_token())
 
 
 def _catalog_text() -> str:
     with connect_db() as c:
-        rows = c.execute("SELECT title,price,unit,price_verified FROM products WHERE active=1 ORDER BY category,title LIMIT 12").fetchall()
+        rows = c.execute("SELECT title,price,unit,price_verified,price_on_request FROM products WHERE active=1 ORDER BY category,title LIMIT 12").fetchall()
     if not rows:
         return "Каталог пока загружается. Напишите менеджеру — поможем с выбором."
     lines = ["🦞 РАКОВАРЪ · несколько позиций из каталога"]
     for row in rows:
         mark = "" if row["price_verified"] else " · цена предварительная"
-        lines.append(f"• {row['title']} — {row['price']} ₽ {row['unit']}{mark}")
+        price = "цена по запросу" if row['price_on_request'] or row['price'] <= 0 else f"{row['price']} ₽ {row['unit']}{mark}"
+        lines.append(f"• {row['title']} — {price}")
     lines.append("\nАктуальные наличие, состав и цену подтвердит менеджер.")
     return "\n".join(lines)[:3900]
 
@@ -120,7 +121,8 @@ def handle_update(update: dict, bot_username: str | None = None):
             inviter_reward = referral_setting(c, "referral_inviter_tickets", 10, 0, 100)
             friend_reward = referral_setting(c, "referral_friend_tickets", 5, 0, 100)
             minimum = referral_setting(c, "referral_min_order_rub", 1500, 0, 1000000)
-        link = f"https://max.ru/{(bot_username or os.getenv('MAX_BOT_USERNAME','')).lstrip('@')}?startapp=ref_{code}"
+        username = (bot_username or os.getenv('MAX_BOT_USERNAME','')).lstrip('@')
+        link = f"https://max.ru/{username}?startapp=ref_{code}" if username else os.getenv('PUBLIC_BASE_URL','').rstrip('/')+f"/?ref={code}"
         answer = (f"🦞 Ваш код приглашения: {code}\n\n"
                   f"Друг получает {friend_reward} клубных билетов, а вы — {inviter_reward}, когда друг совершит первую подтверждённую покупку от {minimum} ₽.\n\n"
                   f"Поделиться: {link}\n\n"

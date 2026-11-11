@@ -1,0 +1,377 @@
+{
+  "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/",
+  "checked_at": "2026-11-10",
+  "listing_date": "2026-10-08",
+  "sha256_html": "a2db69ea20455af7a49889b3e8af86f50e62156282fe10e96a5d4442b34301d0",
+  "offers": [
+    {
+      "source_id": "3013529722_midii-chili-v-souse-blyu-chiz",
+      "title": "Мидии чили в соусе Блю Чиз",
+      "price_rub": 890,
+      "weight_label": "500 г",
+      "image_url": "https://eda.yandex.ru/images/13912834/0733ecb0199940369cba5001eae0a348-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013529722_midii-chili-v-souse-blyu-chiz/",
+      "catalog_id": "mussels-chili-blue"
+    },
+    {
+      "source_id": "3013529723_midii-chili-v-slivochnom-souse",
+      "title": "Мидии чили в сливочном соусе",
+      "price_rub": 890,
+      "weight_label": "500 г",
+      "image_url": "https://eda.yandex.ru/images/13190335/b5fb70a4cf154915b7abf4842c796ab7-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013529723_midii-chili-v-slivochnom-souse/",
+      "catalog_id": "mussels-chili-cream"
+    },
+    {
+      "source_id": "3014801189_set-iz-mollyuskov-v-slivochnom-souse",
+      "title": "Сет из моллюсков в сливочном соусе",
+      "price_rub": 1590,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/10503578/55e3d88b4efa4a08860a44137f436ebc-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3014801189_set-iz-mollyuskov-v-slivochnom-souse/",
+      "catalog_id": "mussels-set-cream"
+    },
+    {
+      "source_id": "3014801252_set-mollyuskov-v-souse-blyu-chiz",
+      "title": "Сет моллюсков в соусе Блю Чиз",
+      "price_rub": 1590,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/13912834/5afcc2e76933469c868215fe6803501d-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3014801252_set-mollyuskov-v-souse-blyu-chiz/",
+      "catalog_id": "mussels-blue-cheese"
+    },
+    {
+      "source_id": "3014801263_set-mollyuskov-v-vinnom-souse",
+      "title": "Сет моллюсков в винном соусе",
+      "price_rub": 1590,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/14440961/e877cbc01d864a35a732a19803d981d9-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3014801263_set-mollyuskov-v-vinnom-souse/",
+      "catalog_id": "mussels-wine"
+    },
+    {
+      "source_id": "3009366263_assorti-krevetok-v-souse-tom-yam",
+      "title": "Ассорти креветок в соусе Том Ям",
+      "price_rub": 1490,
+      "weight_label": "400 г",
+      "image_url": "https://eda.yandex.ru/images/2761069/d6dfe0d802114a9b821512a385cced38-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366263_assorti-krevetok-v-souse-tom-yam/",
+      "catalog_id": "shrimp-tom-yam"
+    },
+    {
+      "source_id": "3009366264_assorti-krevetok-v-souse-teriyaki",
+      "title": "Ассорти креветок в соусе Терияки",
+      "price_rub": 1490,
+      "weight_label": "400 г",
+      "image_url": "https://eda.yandex.ru/images/1397595/0269c3b9a93e4d6fa37f9cb0e9ceb0c7-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366264_assorti-krevetok-v-souse-teriyaki/",
+      "catalog_id": "shrimp-teriyaki"
+    },
+    {
+      "source_id": "3009366265_assorti-krevetok-v-slivochnom-souse",
+      "title": "Ассорти креветок в сливочном соусе",
+      "price_rub": 1490,
+      "weight_label": "400 г",
+      "image_url": "https://eda.yandex.ru/images/3806315/880be079566747f6bbcc42358798d9cd-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366265_assorti-krevetok-v-slivochnom-souse/",
+      "catalog_id": "shrimp-cream"
+    },
+    {
+      "source_id": "3013593948_zharenye-argentinskie-krevetki-langustiny",
+      "title": "Жареные аргентинские креветки (лангустины)",
+      "price_rub": 1290,
+      "weight_label": "500 г",
+      "image_url": "https://eda.yandex.ru/images/13912834/d0d1b1a0964b4b43ac1db004667c8d01-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013593948_zharenye-argentinskie-krevetki-langustiny/",
+      "catalog_id": "shrimp-argentinian"
+    },
+    {
+      "source_id": "3013593967_tigrovaya-krevetka-po-aziatski",
+      "title": "Тигровая креветка в соусе Терияки",
+      "price_rub": 1490,
+      "weight_label": "400 г",
+      "image_url": "https://eda.yandex.ru/images/13912834/9b487db19d864453b04d47c4e20db70b-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013593967_tigrovaya-krevetka-po-aziatski/",
+      "catalog_id": "shrimp-tiger-teriyaki"
+    },
+    {
+      "source_id": "3013593998_zharenye-korolevskie-krevetki",
+      "title": "Жареные королевские креветки",
+      "price_rub": 990,
+      "weight_label": "450 г",
+      "image_url": "https://eda.yandex.ru/images/13806227/c6ff97046e7546e6ab59315267a4c538-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013593998_zharenye-korolevskie-krevetki/",
+      "catalog_id": "shrimp-king-fried"
+    },
+    {
+      "source_id": "3013594127_vannamej-po-aziatski",
+      "title": "Очищенная креветка в соусе Терияки",
+      "price_rub": 1690,
+      "weight_label": "450 г",
+      "image_url": "https://eda.yandex.ru/images/13190335/7de4fe6ae4374406a5621d4e2888d8ae-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013594127_vannamej-po-aziatski/",
+      "catalog_id": "shrimp-peeled-teriyaki"
+    },
+    {
+      "source_id": "3013610827_krab-strigun",
+      "title": "Краб-стригун",
+      "price_rub": 990,
+      "weight_label": "330 г",
+      "image_url": "https://eda.yandex.ru/images/13055084/6a22043dfc134e15930fd3d6b17eadce-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013610827_krab-strigun/",
+      "catalog_id": "crab-strigun"
+    },
+    {
+      "source_id": "3013709836_kamchatskij-krab",
+      "title": "Камчатский краб ",
+      "price_rub": 1890,
+      "weight_label": "300 г",
+      "image_url": "https://eda.yandex.ru/images/13190335/1487556db12241cb9159f8bd9c15d13a-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013709836_kamchatskij-krab/",
+      "catalog_id": "kamchatka-crab"
+    },
+    {
+      "source_id": "3015072317_lobster",
+      "title": "Лобстер ",
+      "price_rub": 8800,
+      "weight_label": "740 г",
+      "image_url": "https://eda.yandex.ru/images/13873613/74b477fe6e84483aaa8ffc92350b496f-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3015072317_lobster/",
+      "catalog_id": "lobster"
+    },
+    {
+      "source_id": "3019591507_langust",
+      "title": "Лангуст ",
+      "price_rub": 7990,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/15660005/ecc2990ed00e4115942a2476cf3eb09d-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3019591507_langust/",
+      "catalog_id": "langoust"
+    },
+    {
+      "source_id": "3009366266_raki-varenye",
+      "title": "Раки вареные",
+      "price_rub": 1690,
+      "weight_label": "400 г",
+      "image_url": "https://eda.yandex.ru/images/13806227/50372808b983471aab601c6643f28cf5-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366266_raki-varenye/",
+      "catalog_id": "crayfish-boiled-400"
+    },
+    {
+      "source_id": "3010008280_melkie-varyonye-raki",
+      "title": "Мелкие варёные раки",
+      "price_rub": 2680,
+      "weight_label": "1 кг",
+      "image_url": "https://eda.yandex.ru/images/1447609/f660b814a5ad46ad813a1e12aa05cec5-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3010008280_melkie-varyonye-raki/",
+      "catalog_id": "crayfish-small-kg"
+    },
+    {
+      "source_id": "3010008281_srednie-varyonye-raki",
+      "title": "Средние варёные раки",
+      "price_rub": 3580,
+      "weight_label": "1 кг",
+      "image_url": "https://eda.yandex.ru/images/3191933/2e2ec1b5f13648629a9049693308d723-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3010008281_srednie-varyonye-raki/",
+      "catalog_id": "crayfish-medium-kg"
+    },
+    {
+      "source_id": "3011081993_srednekrupnye-raki",
+      "title": "Средне-крупные вареные раки",
+      "price_rub": 3880,
+      "weight_label": "1 кг",
+      "image_url": "https://eda.yandex.ru/images/3772831/acaec8620163420087d8846d8383ed4a-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3011081993_srednekrupnye-raki/",
+      "catalog_id": "crayfish-medium-large-kg"
+    },
+    {
+      "source_id": "3011189037_s-tigrovoj-krevetkoj-i-sousom-iz-mango",
+      "title": "С тигровой креветкой и соусом из манго",
+      "price_rub": 570,
+      "weight_label": "270 г",
+      "image_url": "https://eda.yandex.ru/images/1472406/ac9a6430e0b14891bf6939bd6762e687-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3011189037_s-tigrovoj-krevetkoj-i-sousom-iz-mango/",
+      "catalog_id": "burger-mango"
+    },
+    {
+      "source_id": "3011189052_burger-s-tigrovoj-krevetkoj-i-ananasovym-sousom",
+      "title": "Бургер с тигровой креветкой и ананасовым соусом",
+      "price_rub": 570,
+      "weight_label": "270 г",
+      "image_url": "https://eda.yandex.ru/images/1381342/b4f782392d3845ab9827208418e8e6ec-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3011189052_burger-s-tigrovoj-krevetkoj-i-ananasovym-sousom/",
+      "catalog_id": "burger-pineapple"
+    },
+    {
+      "source_id": "3009366262_langustiny-v-bekone",
+      "title": "Лангустины в беконе",
+      "price_rub": 1490,
+      "weight_label": "350 г",
+      "image_url": "https://eda.yandex.ru/images/3772831/9586f07de1c64fa6860fc408ca77a628-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366262_langustiny-v-bekone/",
+      "catalog_id": "langoustine-bacon"
+    },
+    {
+      "source_id": "3009752637_fri-kombo-1",
+      "title": "Фри-комбо №1",
+      "price_rub": 1290,
+      "weight_label": "600 г",
+      "image_url": "https://eda.yandex.ru/images/1381342/e874952036d4497f9d575152f297996a-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009752637_fri-kombo-1/",
+      "catalog_id": "combo-fries-1"
+    },
+    {
+      "source_id": "3009754587_fri-kombo-2",
+      "title": "Фри-комбо №2",
+      "price_rub": 1190,
+      "weight_label": "550 г",
+      "image_url": "https://eda.yandex.ru/images/3550919/8043243673cf43d79533848b0efe46fe-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009754587_fri-kombo-2/",
+      "catalog_id": "combo-fries-2"
+    },
+    {
+      "source_id": "3009754600_fri-kombo-3",
+      "title": "Фри-комбо №3",
+      "price_rub": 1090,
+      "weight_label": "650 г",
+      "image_url": "https://eda.yandex.ru/images/3528150/08673ec92c264a67b0c348c7c9cfb1b4-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009754600_fri-kombo-3/",
+      "catalog_id": "combo-fries-3"
+    },
+    {
+      "source_id": "3009366258_nabor-k-pennomu",
+      "title": "Набор к пенному",
+      "price_rub": 2890,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/3508185/78faf4ffdc1a49c19f5b9108ac9f2832-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366258_nabor-k-pennomu/",
+      "catalog_id": "set-k-pennomu"
+    },
+    {
+      "source_id": "3009366259_nabor-na-dvoikh",
+      "title": "Сет на гриле",
+      "price_rub": 2390,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/3550919/5f94f0bdd9074052ae19d4ec0acda2d7-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366259_nabor-na-dvoikh/",
+      "catalog_id": "set-grill"
+    },
+    {
+      "source_id": "3009366260_assorti-iz-zharenykh-krevetok",
+      "title": "Ассорти из жареных креветок",
+      "price_rub": 2690,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/1365461/8b7a2488d45c4b148a4a9623f7cf7d1b-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366260_assorti-iz-zharenykh-krevetok/",
+      "catalog_id": "shrimp-assorted-fried"
+    },
+    {
+      "source_id": "3009366261_assorti-iz-varenykh-krevetok",
+      "title": "Ассорти из вареных креветок",
+      "price_rub": 2690,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/3550919/c5547e102b694de5a576c9c480d09d2b-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009366261_assorti-iz-varenykh-krevetok/",
+      "catalog_id": "shrimp-assorted-boiled"
+    },
+    {
+      "source_id": "3009680306_set-klassicheskij",
+      "title": "Сет Классический ",
+      "price_rub": 3190,
+      "weight_label": "1 кг",
+      "image_url": "https://eda.yandex.ru/images/3541746/897f5190307e445da01eaa16298c03e0-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009680306_set-klassicheskij/",
+      "catalog_id": "set-classic"
+    },
+    {
+      "source_id": "3010990882_firmennyj",
+      "title": "Фирменный",
+      "price_rub": 3310,
+      "weight_label": "900 г",
+      "image_url": "https://eda.yandex.ru/images/3806315/7bd93c6b793f428dbb656b67b70e0ca8-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3010990882_firmennyj/",
+      "catalog_id": "set-firmenny"
+    },
+    {
+      "source_id": "3013064953_kombo-1",
+      "title": "Комбо №1",
+      "price_rub": 2490,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/13190335/e67239ba7dbba41a1eb996408a9a893a-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013064953_kombo-1/",
+      "catalog_id": "combo-1"
+    },
+    {
+      "source_id": "3013065116_kombo-2",
+      "title": "Комбо №2",
+      "price_rub": 2390,
+      "weight_label": "900 г",
+      "image_url": "https://eda.yandex.ru/images/3772831/d7c9fd5518f3431bad981b4002a2d4c7-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013065116_kombo-2/",
+      "catalog_id": "combo-2"
+    },
+    {
+      "source_id": "3013065733_kombo-3",
+      "title": "Комбо №3",
+      "price_rub": 1990,
+      "weight_label": "800 г",
+      "image_url": "https://eda.yandex.ru/images/13439948/8546e5aa505b405f8b3f8a6575d9b18e-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3013065733_kombo-3/",
+      "catalog_id": "combo-3"
+    },
+    {
+      "source_id": "3016898180_set-dlya-dvoikh-s-midiyami",
+      "title": "Сет для двоих с мидиями",
+      "price_rub": 2690,
+      "weight_label": "1,2 кг",
+      "image_url": "https://eda.yandex.ru/images/14790567/9dfb847a002247d2ab94f91ea5bb0d5f-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3016898180_set-dlya-dvoikh-s-midiyami/",
+      "catalog_id": "set-for-two-mussels"
+    },
+    {
+      "source_id": "3016898187_set-dlya-dvoikh-s-krevetkami",
+      "title": "Сет для двоих с креветками",
+      "price_rub": 2690,
+      "weight_label": "1,2 кг",
+      "image_url": "https://eda.yandex.ru/images/15143849/df52949abe3e44b3a6ed981bd4fb6bd3-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3016898187_set-dlya-dvoikh-s-krevetkami/",
+      "catalog_id": "set-for-two-shrimp"
+    },
+    {
+      "source_id": "3009422357_slivochno-chesnochnyj",
+      "title": "Сливочно-чесночный",
+      "price_rub": 90,
+      "weight_label": "50 мл",
+      "image_url": "https://eda.yandex.ru/images/3541746/709f991cd12e4f3c8e9a973b5b13fda9-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009422357_slivochno-chesnochnyj/",
+      "catalog_id": "sauce-creamy-garlic"
+    },
+    {
+      "source_id": "3009422358_kislo-sladkij-chili",
+      "title": "Кисло-сладкий чили",
+      "price_rub": 60,
+      "weight_label": "50 мл",
+      "image_url": "https://eda.yandex.ru/images/3525661/d68896bca7ca426bb9a7ebde2a7329f3-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009422358_kislo-sladkij-chili/",
+      "catalog_id": "sauce-sweet-chili"
+    },
+    {
+      "source_id": "3009825306_ketchup",
+      "title": "Кетчуп",
+      "price_rub": 60,
+      "weight_label": "50 г",
+      "image_url": "https://eda.yandex.ru/images/3772831/6de16c0879124b0f83349348c4e23ef9-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009825306_ketchup/",
+      "catalog_id": "sauce-ketchup"
+    },
+    {
+      "source_id": "3009825307_syrnyj",
+      "title": "Сырный",
+      "price_rub": 60,
+      "weight_label": "50 г",
+      "image_url": "https://eda.yandex.ru/images/1381342/250ed8b7907142db93bf2d355eb25e80-216x188.jpeg",
+      "source_url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/menu/3009825307_syrnyj/",
+      "catalog_id": "sauce-cheese"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+# Adopt the existing FREE preview; the database already exists in this workspace.
+services:
+  - type: web
+    name: rakovar-preview-0psh
+    runtime: python
+    plan: free
+    region: frankfurt
+    repo: https://github.com/milekcat/rakovar-yaroslavl
+    branch: work/rakovar-meeting-release-20261110
+    buildCommand: python prepare_render.py && pip install -r requirements.txt
+    startCommand: python start_render_preview.py
+    healthCheckPath: /api/health
+    autoDeployTrigger: off
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: DEMO_MODE
+        value: "true"
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: INTEGRATION_ENCRYPTION_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: rakovar-demo-db-20261110
+          property: connectionString
+      - key: PUBLIC_BASE_URL
+        value: https://rakovar-preview-0psh.onrender.com
+      - key: MAX_MINIAPP_URL
+        value: https://rakovar-preview-0psh.onrender.com
+      - key: MAX_BOT_USERNAME
+        value: ""
+      - key: MAX_BOT_MODE
+        value: webhook
+# Existing owner password hash and other unlisted variables are preserved.

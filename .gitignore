@@ -9,3 +9,4 @@ __pycache__/
 *.db
 instance/
 .DS_Store
+test-results/

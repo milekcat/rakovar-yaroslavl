@@ -1,6 +1,6 @@
 """Minimal MAX Bot API client using the official platform-api2 host.
 
-Tokens are read only from MAX_BOT_TOKEN. TLS verification is always enabled.
+Tokens come from encrypted admin settings or MAX_BOT_TOKEN. TLS is verified.
 For environments where the platform's required MinTsifry CA is not in the
 system trust store, set MAX_CA_BUNDLE to the official CA bundle path.
 """
@@ -27,8 +27,8 @@ def _ssl_context() -> ssl.SSLContext:
     return ssl.create_default_context(cafile=ca_bundle or None)
 
 
-def api_request(method: str, path: str, *, params: dict | None = None, body: dict | None = None, timeout: int = 35) -> dict:
-    token = os.getenv("MAX_BOT_TOKEN", "").strip()
+def api_request(method: str, path: str, *, params: dict | None = None, body: dict | None = None, timeout: int = 35, token: str | None = None) -> dict:
+    token = (token if token is not None else os.getenv("MAX_BOT_TOKEN", "")).strip()
     if not token:
         raise MaxAPIError(None, "MAX_BOT_TOKEN is not configured")
     query = urlencode({k: v for k, v in (params or {}).items() if v is not None}, doseq=True)
@@ -55,8 +55,8 @@ def api_request(method: str, path: str, *, params: dict | None = None, body: dic
         # Do not include request headers or token in error text.
         # Keep response bodies out of logs; they are not needed for actionable status.
         raise MaxAPIError(exc.code, f"MAX API HTTP {exc.code}") from None
-    except URLError as exc:
-        raise MaxAPIError(None, f"MAX API network/TLS error: {exc.reason}") from None
+    except URLError:
+        raise MaxAPIError(None, "MAX API network/TLS error") from None
 
 
 def get_me() -> dict:
@@ -84,10 +84,10 @@ def get_updates(*, marker: int | None = None, timeout: int = 30, limit: int = 10
     }, timeout=max(40, int(timeout) + 10))
 
 
-def send_message(*, user_id: int | None = None, chat_id: int | None = None, text: str, buttons: list | None = None) -> dict:
+def send_message(*, user_id: int | None = None, chat_id: int | None = None, text: str, buttons: list | None = None, token: str | None = None) -> dict:
     if (user_id is None) == (chat_id is None):
         raise ValueError("Specify exactly one of user_id or chat_id")
     payload = {"text": str(text)[:4000]}
     if buttons:
         payload["attachments"] = [{"type": "inline_keyboard", "payload": {"buttons": buttons}}]
-    return api_request("POST", "/messages", params={"user_id": user_id, "chat_id": chat_id}, body=payload)
+    return api_request("POST", "/messages", params={"user_id": user_id, "chat_id": chat_id}, body=payload, token=token)

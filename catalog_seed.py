@@ -1,128 +1,32 @@
-"""Cross-platform public-menu snapshot for a non-production Rakovar preview.
+"""Reviewed, per-product catalog snapshot; company approval is outstanding.
 
-Primary listing: Eda7 page updated around 8 Oct 2026.
-Cross-check / additional positions: Chibbis menu and Eda-Dostavka.
-Every imported price and stock value remains unverified until the company approves it.
-Product photos use generic local category imagery until Rakovar supplies brand-owned photos and grants permission for their use.
+Source offers and conflicts live in docs/research, outside customer copy.
+No network request or archive extraction occurs during startup or builds.
 """
+import json
+from pathlib import Path
 
 EDA7_URL = "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/"
 CHIBBIS_URL = "https://chibbis.ru/yar/restaurant/rakovar/menu"
 EDA_DOSTAVKA_URL = "https://eda-dostavka.com/yaroslavl/restorany/rakovar-fnxcs/"
-
-# id, title, category, public listed price, unit, weight, description, local fallback, remote photo, source
-_ROWS = [
-# Раки
-("crayfish-boiled-400","Раки варёные","Раки",1690,"за порцию","400 г","Варёные раки. Размер и фактическую фасовку подтвердить.","crayfish.webp","",EDA7_URL),
-("crayfish-small-kg","Мелкие варёные раки","Раки",2680,"за кг","1 кг","Мелкие варёные раки.","crayfish.webp","",EDA7_URL),
-("crayfish-medium-kg","Средние варёные раки","Раки",3580,"за кг","1 кг","Средние варёные раки.","crayfish.webp","",EDA7_URL),
-("crayfish-medium-large-kg","Средне-крупные варёные раки","Раки",3880,"за кг","1 кг","Средне-крупные варёные раки.","crayfish.webp","",EDA7_URL),
-("crayfish-standart-trad","Варёные раки Standart · традиционные","Раки",3680,"за кг","1 кг","Традиционный вариант приготовления раков Standart.","crayfish.webp","",CHIBBIS_URL),
-("crayfish-standart-pennoy","Варёные раки Standart · на пенном","Раки",3910,"за кг","1 кг","Раки Standart с вариантом приготовления «На пенном».","crayfish.webp","",CHIBBIS_URL),
-("crayfish-standart-village","Варёные раки Standart · по-деревенски","Раки",3800,"за кг","1 кг","Раки Standart по-деревенски.","crayfish.webp","",CHIBBIS_URL),
-("crayfish-standart-sourcream","Варёные раки Standart · на сметане","Раки",3850,"за кг","1 кг","Раки Standart с вариантом приготовления на сметане.","crayfish.webp","",CHIBBIS_URL),
-("crayfish-standart-honey","Варёные раки Standart · на мёду","Раки",3870,"за кг","1 кг","Раки Standart с медовым вариантом приготовления.","crayfish.webp","",CHIBBIS_URL),
-("crayfish-mexican","Жареные раки по-мексикански","Раки",2990,"за порцию","500 г","Жареные раки по-мексикански. Остроту и состав соуса уточнить.","crayfish.webp","",CHIBBIS_URL),
-# Сеты и комбо
-("set-classic","Сет «Классический»","Сеты",3190,"за сет","1 кг","Классический морской сет.","seafood-set.webp","",EDA7_URL),
-("set-firmenny","Сет «Фирменный»","Сеты",3310,"за сет","900 г","Фирменный сет из публичного меню. Состав подтвердить.","seafood-set.webp","",EDA7_URL),
-("set-k-pennomu","Набор «К пенному»","Сеты",2890,"за сет","800 г","Набор к пенному из публичного меню.","seafood-set.webp","",EDA7_URL),
-("set-grill","Сет на гриле","Сеты",2390,"за сет","800 г","Сет с позициями на гриле. Состав уточнить.","seafood-set.webp","",EDA7_URL),
-("set-atlanticheskiy","Сет «Атлантический»","Сеты",2990,"за сет","850 г","Авторский морской сет.","seafood-set.webp","",CHIBBIS_URL),
-("set-4-morya","Сет «4 моря»","Сеты",2790,"за сет","вес уточнить","Ассорти морепродуктов. Вес в источнике отображается неоднозначно.","seafood-set.webp","",CHIBBIS_URL),
-("set-for-two-mussels","Сет для двоих с мидиями","Сеты",2690,"за сет","1,2 кг","Сет для двоих с мидиями.","seafood-set.webp","",EDA7_URL),
-("set-for-two-shrimp","Сет для двоих с креветками","Сеты",2690,"за сет","1,2 кг","Сет для двоих с креветками.","seafood-set.webp","",EDA7_URL),
-("set-for-two","Сет «Для двоих» (состав уточнить)","Сеты",2890,"за сет","вес уточнить","Позиция из меню Chibbis; уточнить, совпадает ли с новыми сетами для двоих.","seafood-set.webp","",CHIBBIS_URL),
-("combo-1","Комбо №1","Комбо",2490,"за комбо","800 г","Комбо №1 из публичного меню Eda7.","seafood-set.webp","",EDA7_URL),
-("combo-2","Комбо №2","Комбо",2390,"за комбо","900 г","Комбо №2 из публичного меню Eda7.","seafood-set.webp","",EDA7_URL),
-("combo-3","Комбо №3","Комбо",1990,"за комбо","800 г","Комбо №3 из публичного меню Eda7.","seafood-set.webp","",EDA7_URL),
-("combo-fries-1","Фри-комбо №1","Закуски",1290,"за комбо","600 г","Комбо с закусками. Состав подтвердить.","seafood-set.webp","",EDA7_URL),
-("combo-fries-2","Фри-комбо №2","Закуски",1190,"за комбо","550 г","Комбо с закусками. Состав подтвердить.","seafood-set.webp","",EDA7_URL),
-("combo-fries-3","Фри-комбо №3","Закуски",1090,"за комбо","650 г","Комбо с закусками. Состав подтвердить.","seafood-set.webp","",EDA7_URL),
-# Мидии и моллюски
-("mussels-chili-blue","Мидии чили в соусе «Блю Чиз»","Мидии и моллюски",890,"за порцию","500 г","Мидии чили в соусе Блю Чиз. Состав и аллергены подтвердить.","seafood-set.webp","",EDA7_URL),
-("mussels-chili-cream","Мидии чили в сливочном соусе","Мидии и моллюски",890,"за порцию","500 г","Мидии чили в сливочном соусе. Состав и аллергены подтвердить.","seafood-set.webp","",EDA7_URL),
-("mussels-set-cream","Сет из моллюсков в сливочном соусе","Мидии и моллюски",1590,"за сет","800 г","Сет моллюсков в сливочном соусе.","seafood-set.webp","",EDA7_URL),
-("mussels-wine","Сет моллюсков в винном соусе","Мидии и моллюски",1590,"за сет","800 г","Сет моллюсков в винном соусе.","seafood-set.webp","",EDA7_URL),
-("mussels-blue-cheese","Сет моллюсков в соусе «Блю Чиз»","Мидии и моллюски",1590,"за сет","800 г","Сет моллюсков в соусе Блю Чиз. Содержит молочные продукты.","seafood-set.webp","",EDA7_URL),
-("mussels-greek","Сет мидий по-гречески","Мидии и моллюски",1590,"за сет","вес уточнить","Позиция из публичного меню Chibbis; уточнить актуальность.","seafood-set.webp","",CHIBBIS_URL),
-# Креветки
-("shrimp-assorted-fried","Ассорти из жареных креветок","Креветки",2690,"за порцию","800 г","Ассорти из жареных креветок.","prawns.webp","",EDA7_URL),
-("shrimp-assorted-boiled","Ассорти из варёных креветок","Креветки",2690,"за порцию","800 г","Ассорти из варёных креветок.","prawns.webp","",EDA7_URL),
-("shrimp-tom-yam","Ассорти креветок в соусе «Том Ям»","Креветки",1490,"за порцию","400 г","Ассорти креветок в соусе Том Ям. Остроту и состав уточнить.","prawns.webp","",EDA7_URL),
-("shrimp-teriyaki","Ассорти креветок в соусе «Терияки»","Креветки",1490,"за порцию","400 г","Ассорти креветок в соусе Терияки.","prawns.webp","",EDA7_URL),
-("shrimp-cream","Ассорти креветок в сливочном соусе","Креветки",1490,"за порцию","400 г","Ассорти креветок в сливочном соусе.","prawns.webp","",EDA7_URL),
-("shrimp-tiger-teriyaki","Тигровая креветка в соусе «Терияки»","Креветки",1490,"за порцию","400 г","Тигровая креветка в соусе Терияки.","prawns.webp","",EDA7_URL),
-("shrimp-argentinian","Жареные аргентинские креветки (лангустины)","Креветки",1290,"за порцию","500 г","Жареные аргентинские креветки / лангустины.","prawns.webp","",EDA7_URL),
-("shrimp-peeled-teriyaki","Очищенная креветка в соусе «Терияки»","Креветки",1690,"за порцию","450 г","Очищенная креветка в соусе Терияки.","prawns.webp","",EDA7_URL),
-("shrimp-tiger-asian","Тигровые креветки по-азиатски","Креветки",1590,"за порцию","400 г","Позиция из меню Chibbis; подтвердить наличие и состав.","prawns.webp","",CHIBBIS_URL),
-("shrimp-king-fried","Жареные королевские креветки","Креветки",990,"за порцию","450 г","Жареные королевские креветки.","prawns.webp","",EDA7_URL),
-("shrimp-king-boiled","Королевские креветки варёные","Креветки",990,"за порцию","500 г","Варёные королевские креветки.","prawns.webp","",CHIBBIS_URL),
-("shrimp-king-asian","Королевские креветки по-азиатски","Креветки",1090,"за порцию","400 г","Королевские креветки по-азиатски.","prawns.webp","",CHIBBIS_URL),
-# Деликатесы
-("crab-strigun","Краб-стригун","Деликатесы",990,"за порцию","330 г","Краб-стригун. Вид, фасовку и происхождение подтвердить.","seafood-set.webp","",EDA7_URL),
-("kamchatka-crab","Камчатский краб","Деликатесы",1890,"за порцию","300 г","Камчатский краб.","seafood-set.webp","",EDA7_URL),
-("lobster","Лобстер","Деликатесы",8800,"за порцию","740 г","Лобстер. Наличие и цена требуют подтверждения перед заказом.","seafood-set.webp","",EDA7_URL),
-("langoust","Лангуст","Деликатесы",7990,"за порцию","800 г","Лангуст. Наличие и цена требуют подтверждения перед заказом.","seafood-set.webp","",EDA7_URL),
-# Лангустины / закуски
-("langoustine-bacon","Лангустины в беконе","Закуски",1490,"за порцию","350 г","Лангустины в беконе.","prawns.webp","",EDA7_URL),
-("langoustine-honey-soy","Лангустины в медово-соевом соусе","Лангустины",1390,"за порцию","500 г","Лангустины в медово-соевом соусе.","prawns.webp","",CHIBBIS_URL),
-("langoustine-boiled","Лангустины варёные","Лангустины",1290,"за порцию","500 г","Варёные лангустины.","prawns.webp","",CHIBBIS_URL),
-# Бургеры
-("burger-mango","Бургер с тигровой креветкой и соусом из манго","Бургеры",570,"за шт.","270 г","Бургер с тигровой креветкой и соусом из манго.","seafood-set.webp","",EDA7_URL),
-("burger-pineapple","Бургер с тигровой креветкой и ананасовым соусом","Бургеры",570,"за шт.","270 г","Бургер с тигровой креветкой и ананасовым соусом.","seafood-set.webp","",EDA7_URL),
-# Рыба
-("dorado-grill","Дорадо на гриле","Рыба",990,"за порцию","390 г","Дорадо на гриле.","seafood-set.webp","",CHIBBIS_URL),
-# Подарки
-("gift-set-1","Сет «Подарочный» №1","Подарки",1990,"за набор","вес уточнить","Подарочный сет из меню Chibbis. Варианты оформления и состав подтвердить.","seafood-gift.webp","",CHIBBIS_URL),
-("gift-set-2","Сет «Подарочный» №2","Подарки",1210,"за набор","вес уточнить","Подарочный сет из меню Chibbis. Варианты оформления и состав подтвердить.","seafood-gift.webp","",CHIBBIS_URL),
-# Соусы
-("sauce-creamy-garlic","Соус сливочно-чесночный","Соусы",90,"за порцию","50 мл","Сливочно-чесночный соус.","seafood-set.webp","",EDA7_URL),
-("sauce-sweet-chili","Соус кисло-сладкий чили","Соусы",60,"за порцию","50 мл","Кисло-сладкий соус чили.","seafood-set.webp","",EDA7_URL),
-("sauce-ketchup","Кетчуп","Соусы",60,"за порцию","50 г","Кетчуп.","seafood-set.webp","",EDA7_URL),
-("sauce-cheese","Соус сырный","Соусы",60,"за порцию","50 г","Сырный соус. Состав и аллергены подтвердить.","seafood-set.webp","",EDA7_URL),
-("edible-bouquet-request","Съедобный букет из морепродуктов","Подарки",0,"по запросу","под заказ","Индивидуальная съедобная композиция из раков, крабов, креветок и других деликатесов. Состав, оформление и стоимость согласуются с менеджером.","seafood-gift.webp","", "https://vk.ru/rakovar_yar"),
-("live-crayfish-request","Живые раки — подбор по размеру","Живые раки",0,"по запросу","по наличию","Розничная позиция: живые раки разных размеров. Актуальный размер, вес, наличие и цену уточнить у менеджера.","crayfish.webp","", "https://vk.ru/rakovar_yar"),
-("frozen-seafood-request","Замороженные морепродукты — подбор по наличию","Деликатесы",0,"по запросу","по наличию","Подбор морепродуктов из розничного ассортимента. Перечень, фасовку и стоимость уточнить у менеджера.","seafood-set.webp","", "https://vk.ru/rakovar_yar"),
-# Seasonal and social-first products published by the brand. The last public posts
-# are snapshots, not a guarantee of current stock or price.
-("fresh-murmansk-trout","Форель мурманская свежая","Сезонное",0,"по запросу","партия 2,5–3,5 кг","В публичном посте от 24.10.2026 указывалась цена 1 250 ₽/кг. Это объявление о конкретной партии; текущую цену, вес и наличие подтвердить у менеджера.","seafood-set.webp","", "https://vk.ru/rakovar_yar"),
-("smoked-trout","Форель холодного или горячего копчения","Сезонное",0,"по запросу","под заказ","В публичном посте октября 2026 года бренд предлагал копчение свежей форели под заказ. Срок, способ копчения и стоимость согласуются индивидуально.","seafood-set.webp","", "https://vk.ru/rakovar_yar"),
-("red-salmon-caviar","Икра горбуши","Сезонное",0,"по запросу","по фасовке","Сезонное предложение из публичных публикаций бренда. Производитель, фасовка, дата изготовления и цена требуют подтверждения перед заказом.","seafood-set.webp","", "https://vk.ru/rakovar_yar"),
-("tiger-shrimp-butterfly","Тигровые креветки «Бабочка» с фирменным соусом","Креветки",0,"по запросу","порция уточняется","Авторская позиция, показанная в публикации РАКОВАРЪ от 17.10.2026. Состав, вес, цена и доступность уточняются у менеджера.","prawns.webp","", "https://vk.ru/rakovar_yar"),
-
-]
-
-CATALOG_PRODUCTS = []
-for pid,title,category,price,unit,weight,description,image,image_url,source_url in _ROWS:
-    CATALOG_PRODUCTS.append({
-        "id":pid,"title":title,"category":category,"price":price,"unit":unit,
-        "weight":weight,"description":description,"image":image,"image_url":image_url,
-        "source_url":source_url,"badge":category,"stock":99,"price_verified":0,
-        "stock_confirmed":0,"price_on_request":1 if price == 0 else 0,"created_at":"",
-    })
-
-
-# Public product photography exposed by the current Chibbis listing. These URLs
-# are temporary preview references; replace with company-owned originals before
-# commercial publication and confirm reuse rights with the brand.
-CATEGORY_IMAGE_URLS = {
-    "Раки": "https://scdn.chibbis.ru/live/products/108f3eeaa45bb0138f55295849aa2f7e.jpeg",
-    "Живые раки": "https://scdn.chibbis.ru/live/products/108f3eeaa45bb0138f55295849aa2f7e.jpeg",
-    "Сеты": "https://scdn.chibbis.ru/live/products/fe4c4a6a9dc1e91b6eee1127139e5bae.jpeg",
-    "Комбо": "https://scdn.chibbis.ru/live/products/fe4c4a6a9dc1e91b6eee1127139e5bae.jpeg",
-    "Креветки": "https://scdn.chibbis.ru/live/products/5bf788161e3f482151c9e6ec7b625522.jpeg",
-    "Лангустины": "https://scdn.chibbis.ru/live/products/b2f141e560f500d95e5cc5966427dcfe.jpeg",
-    "Закуски": "https://scdn.chibbis.ru/live/products/b2f141e560f500d95e5cc5966427dcfe.jpeg",
-    "Мидии и моллюски": "https://scdn.chibbis.ru/live/products/44424c13a8bdc70c1ab8a4f1a691b010.jpeg",
-    "Деликатесы": "https://scdn.chibbis.ru/live/products/fe4c4a6a9dc1e91b6eee1127139e5bae.jpeg",
-    "Бургеры": "https://scdn.chibbis.ru/live/products/5bf788161e3f482151c9e6ec7b625522.jpeg",
-    "Рыба": "https://scdn.chibbis.ru/live/products/5bb0164b3a7281af9d10c3b64c367159.jpeg",
-    "Подарки": "https://scdn.chibbis.ru/live/products/685af54568bd400c7f80eba0b88c2303.jpeg",
-    "Сезонное": "https://scdn.chibbis.ru/live/products/5bb0164b3a7281af9d10c3b64c367159.jpeg",
-    "Соусы": "https://scdn.chibbis.ru/live/products/44424c13a8bdc70c1ab8a4f1a691b010.jpeg",
-}
-for product in CATALOG_PRODUCTS:
-    product["image_url"] = CATEGORY_IMAGE_URLS.get(product["category"], "")
-
 SOURCE_URL = EDA7_URL
+CATALOG_VERSION = "store-2026-11-11-v10"
+NON_BRAND_PRODUCT_TERMS = ("пицц", "pizza", "пепперони", "pepperoni", "военные раки")
+# Opaque upstream banner filenames evade title-only checks.
+REJECTED_MEDIA_IDS = ("df9c6ef11fd698f6963dbb540a41dc1f",)
+RETIRED_UNVERIFIED_IDS = (
+    "crayfish-standart-trad", "crayfish-standart-pennoy", "crayfish-standart-village",
+    "crayfish-standart-sourcream", "crayfish-standart-honey", "crayfish-mexican",
+    "set-atlanticheskiy", "gift-set-1", "gift-set-2",
+)
+
+
+def is_non_brand_product(product):
+    fields = ("title", "category", "description", "image", "badge", "image_url")
+    haystack = " ".join(str(product.get(field, "") or "") for field in fields).casefold()
+    return any(term in haystack for term in NON_BRAND_PRODUCT_TERMS + REJECTED_MEDIA_IDS)
+
+
+CATALOG_PRODUCTS = json.loads((Path(__file__).parent / "data/catalog.json").read_text(encoding="utf-8"))
+if any(is_non_brand_product(product) for product in CATALOG_PRODUCTS):
+    raise ValueError("The curated catalog contains unrelated content")

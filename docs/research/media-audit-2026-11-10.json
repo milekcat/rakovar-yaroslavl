@@ -1,0 +1,897 @@
+{
+  "checked_at": "2026-11-10",
+  "rights_status": "Public menu references for private review; company approval required before publication.",
+  "assets": [
+    {
+      "url": "https://eda.yandex.ru/images/10503578/55e3d88b4efa4a08860a44137f436ebc-216x188.jpeg",
+      "file": "static/images/menu/menu-9f0b91ca2ae3.jpg",
+      "bytes": 16110,
+      "sha256": "2956211a6f67c008659b8215ad455d44fd3480a7fa18dd21d61edd325f3e0fab",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13055084/6a22043dfc134e15930fd3d6b17eadce-216x188.jpeg",
+      "file": "static/images/menu/menu-f11211c7a79f.jpg",
+      "bytes": 13477,
+      "sha256": "5d69fbcfb9bb91fc407731618097f3ccaf48d7401b5da84db332bac70f0282be",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13190335/1487556db12241cb9159f8bd9c15d13a-216x188.jpeg",
+      "file": "static/images/menu/menu-df3272d64006.jpg",
+      "bytes": 13017,
+      "sha256": "3a3181d6d418f63a5955dee8c39a06b518df5e55dd19f9f9f03e374e99d52dbc",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13190335/7de4fe6ae4374406a5621d4e2888d8ae-216x188.jpeg",
+      "file": "static/images/menu/menu-9b7676623f7e.jpg",
+      "bytes": 15594,
+      "sha256": "5fb5a895ce20682ef1c889b67f9651b3de0d211f18cb5658bba1710fe3e17115",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13190335/b5fb70a4cf154915b7abf4842c796ab7-216x188.jpeg",
+      "file": "static/images/menu/menu-374a29544ce1.jpg",
+      "bytes": 14028,
+      "sha256": "b00684a2f34d29628f2eca1632c824536ab245b4480f9e351436418ef5e573c5",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13190335/e67239ba7dbba41a1eb996408a9a893a-216x188.jpeg",
+      "file": "static/images/menu/menu-7c47af6be47b.jpg",
+      "bytes": 20679,
+      "sha256": "69591efbde7f1542a1145a7d5f16b391bf25e043e05a7b3df4baae6ab2d86971",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13439948/8546e5aa505b405f8b3f8a6575d9b18e-216x188.jpeg",
+      "file": "static/images/menu/menu-75cbe7b62a7b.jpg",
+      "bytes": 16838,
+      "sha256": "74a48879d87257d328681c4f1954e3430dd8099fbfaeaaa6fdae662fdec826e6",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/1365461/8b7a2488d45c4b148a4a9623f7cf7d1b-216x188.jpeg",
+      "file": "static/images/menu/menu-060792fbd549.jpg",
+      "bytes": 14487,
+      "sha256": "6e5401befb65a9c1126948ac6f2df741e36d2ae96bc6178afeb77c0cc72cbd58",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13806227/50372808b983471aab601c6643f28cf5-216x188.jpeg",
+      "file": "static/images/menu/menu-344d5d5c82c1.jpg",
+      "bytes": 16493,
+      "sha256": "02130a129565db7b2cff345761ffc7b5717554b5b01a4cd5e4d177ab54f61ff8",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13806227/c6ff97046e7546e6ab59315267a4c538-216x188.jpeg",
+      "file": "static/images/menu/menu-3ead91eb5c93.jpg",
+      "bytes": 11757,
+      "sha256": "b6a5ae7314f0df42325a90c4778e6094fbe814021ef80f9f2982d9c1e6902055",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/1381342/250ed8b7907142db93bf2d355eb25e80-216x188.jpeg",
+      "file": "static/images/menu/menu-99fbb6d38014.jpg",
+      "bytes": 6764,
+      "sha256": "fad69a642008f762ee3870b75eff4d8e9d0f6ecd9e02e98995b0954e6f5b8e80",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/1381342/b4f782392d3845ab9827208418e8e6ec-216x188.jpeg",
+      "file": "static/images/menu/menu-6a0d41036c4a.jpg",
+      "bytes": 12260,
+      "sha256": "571ec4fd21ed1714ab669a848a6a60f0a3475d9f00a40f810f8d30f146c111ba",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/1381342/e874952036d4497f9d575152f297996a-216x188.jpeg",
+      "file": "static/images/menu/menu-2cd9a07a43b8.jpg",
+      "bytes": 14051,
+      "sha256": "4ddf844df003f63b9b8b70c86e6084162120ff8a57d75e68801871ebda2c5dcc",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13873613/74b477fe6e84483aaa8ffc92350b496f-216x188.jpeg",
+      "file": "static/images/menu/menu-3ecf95630000.jpg",
+      "bytes": 15112,
+      "sha256": "e38874304d6af1872d5305dfef9034f4a8ac75ac2e18c7fa17a8e3499df23a72",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13912834/0733ecb0199940369cba5001eae0a348-216x188.jpeg",
+      "file": "static/images/menu/menu-49dc85c6be8e.jpg",
+      "bytes": 13136,
+      "sha256": "fd311209f2e3214a038dcd7a17931145d850c585d8abb59113eeeb5cd5bcf740",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13912834/5afcc2e76933469c868215fe6803501d-216x188.jpeg",
+      "file": "static/images/menu/menu-96a1667f5a77.jpg",
+      "bytes": 16356,
+      "sha256": "ca4c198b7147667d138177e0655ce248ad8782c56558e1f4a7ff665c75e40919",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13912834/9b487db19d864453b04d47c4e20db70b-216x188.jpeg",
+      "file": "static/images/menu/menu-45a964fabaca.jpg",
+      "bytes": 13410,
+      "sha256": "110d0b7a58a9c6bcc12539807c4c89cf1cb828e71de4782878e4a4b0d1e69b24",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/13912834/d0d1b1a0964b4b43ac1db004667c8d01-216x188.jpeg",
+      "file": "static/images/menu/menu-a015cbc57d20.jpg",
+      "bytes": 14102,
+      "sha256": "68f80b1b2bde4272079e727153e057c2ce5153180c74beaa7991e0ff07f868f8",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/1397595/0269c3b9a93e4d6fa37f9cb0e9ceb0c7-216x188.jpeg",
+      "file": "static/images/menu/menu-cedfb07d2ae9.jpg",
+      "bytes": 14355,
+      "sha256": "7cbb73988f875f0ecd5b90266ef9c4fe123995d1098434271ecbfec3de2c92bf",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/14440961/e877cbc01d864a35a732a19803d981d9-216x188.jpeg",
+      "file": "static/images/menu/menu-cd37df43b28e.jpg",
+      "bytes": 17329,
+      "sha256": "b665e00e7b2df2d9bf65d3408b962f7a9be1d466a8ce1060ddd524aba363c2fb",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/1447609/f660b814a5ad46ad813a1e12aa05cec5-216x188.jpeg",
+      "file": "static/images/menu/menu-6f962337b250.jpg",
+      "bytes": 8004,
+      "sha256": "20695b17e6a59a70ae0bd2e9aa92ccd714433ecff42751d5cc89f4dda2aef8c1",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/1472406/ac9a6430e0b14891bf6939bd6762e687-216x188.jpeg",
+      "file": "static/images/menu/menu-c71f22476e45.jpg",
+      "bytes": 10575,
+      "sha256": "07e08242a94f0dfddf1134cfc9de9505bb204aa92232e9d9887d44de9daf8e91",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/14790567/9dfb847a002247d2ab94f91ea5bb0d5f-216x188.jpeg",
+      "file": "static/images/menu/menu-c803cb76f4e0.jpg",
+      "bytes": 15447,
+      "sha256": "7c09b42140f09d44ceda9ca0e1ebbadabefbfa92c88674c03fb2792694c9d8f4",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/15143849/df52949abe3e44b3a6ed981bd4fb6bd3-216x188.jpeg",
+      "file": "static/images/menu/menu-a3698ff47e0f.jpg",
+      "bytes": 16527,
+      "sha256": "4a8e9da08462638a5b56a198b874bff3302ffd8ce1760726464c52957a37e0f1",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/15660005/ecc2990ed00e4115942a2476cf3eb09d-216x188.jpeg",
+      "file": "static/images/menu/menu-159a45320f24.jpg",
+      "bytes": 16593,
+      "sha256": "e4d0f4f8c8944ba14f3775ef3b79bd308317402a1577c1309aa95cb7de7eaac1",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/2761069/d6dfe0d802114a9b821512a385cced38-216x188.jpeg",
+      "file": "static/images/menu/menu-cf7dc13671ad.jpg",
+      "bytes": 12355,
+      "sha256": "76db7425bf5c625438ceb3ce6e4d01ae5708e1592bec9f28986353cbf863d4bc",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3191933/2e2ec1b5f13648629a9049693308d723-216x188.jpeg",
+      "file": "static/images/menu/menu-cc0a65579558.jpg",
+      "bytes": 8043,
+      "sha256": "62073b1a327c2c5e72bde36f682a365828f9c7e53bae3e2baff64c7e66205763",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3508185/78faf4ffdc1a49c19f5b9108ac9f2832-216x188.jpeg",
+      "file": "static/images/menu/menu-ebf6f5e7c81d.jpg",
+      "bytes": 17469,
+      "sha256": "301364cb965a348d3e4ed84184411bbb30774084bf18c14826fa7d404a7d7aab",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3525661/d68896bca7ca426bb9a7ebde2a7329f3-216x188.jpeg",
+      "file": "static/images/menu/menu-8a25b1deb22f.jpg",
+      "bytes": 6923,
+      "sha256": "0592bbc15cf4d59c0dacc6d963371bb8b81c580bb84123366029545c46afefc5",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3528150/08673ec92c264a67b0c348c7c9cfb1b4-216x188.jpeg",
+      "file": "static/images/menu/menu-6b08efadfbe4.jpg",
+      "bytes": 13298,
+      "sha256": "48c67144474cadd381c9bc16e084b710ad5bdc3027b4a53d806d65ed1f2393eb",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3541746/709f991cd12e4f3c8e9a973b5b13fda9-216x188.jpeg",
+      "file": "static/images/menu/menu-c4a8642fc996.jpg",
+      "bytes": 5745,
+      "sha256": "5bf89b5c320288c7d2e93d7a3628e43f684c012377c9594bd9fd4a4caeb842d9",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3541746/897f5190307e445da01eaa16298c03e0-216x188.jpeg",
+      "file": "static/images/menu/menu-c38c1570de9f.jpg",
+      "bytes": 16805,
+      "sha256": "2e908996dc3a4d5ab28bdda873dfc7ed972a825cb0035537d9f9f63bd445a78e",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3550919/5f94f0bdd9074052ae19d4ec0acda2d7-216x188.jpeg",
+      "file": "static/images/menu/menu-caaed36ff99b.jpg",
+      "bytes": 18045,
+      "sha256": "9d1f1ad806b2eda777366540dc8c01aeced75a999111921dd8adb4e3196b9225",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3550919/8043243673cf43d79533848b0efe46fe-216x188.jpeg",
+      "file": "static/images/menu/menu-9fed39b8fe9d.jpg",
+      "bytes": 13326,
+      "sha256": "7cbe4ef4d6daaed2ca09f4adcaf5bd2a64ae44c7f1d9ad79ff06226e87ef656e",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3550919/c5547e102b694de5a576c9c480d09d2b-216x188.jpeg",
+      "file": "static/images/menu/menu-b6517329ff8b.jpg",
+      "bytes": 14645,
+      "sha256": "a1449b7045214434f2c403612c2e6b3dd715fcc3b170e422515738a255777f43",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3772831/6de16c0879124b0f83349348c4e23ef9-216x188.jpeg",
+      "file": "static/images/menu/menu-5f67fe7349de.jpg",
+      "bytes": 6543,
+      "sha256": "4b351228d2b6d033a35f47e216f6a946417b04b5d9a3245cccf651945980797c",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3772831/9586f07de1c64fa6860fc408ca77a628-216x188.jpeg",
+      "file": "static/images/menu/menu-98240dd390d5.jpg",
+      "bytes": 10006,
+      "sha256": "865bd7c00b605d139a396aa2ed1054dc163a895af0c38db292425d8c1efc6685",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3772831/acaec8620163420087d8846d8383ed4a-216x188.jpeg",
+      "file": "static/images/menu/menu-7117ec2a23c6.jpg",
+      "bytes": 8265,
+      "sha256": "ebf3fc6504edaa3e41d6d4b660d258bc72f43f8ec0d4af1addbb182bdcc5aa4a",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3772831/d7c9fd5518f3431bad981b4002a2d4c7-216x188.jpeg",
+      "file": "static/images/menu/menu-a4f77f9c1198.jpg",
+      "bytes": 16445,
+      "sha256": "ac71789acbea6b967599869ffee479290a48333d30713ff9375064fe62310e1a",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3806315/7bd93c6b793f428dbb656b67b70e0ca8-216x188.jpeg",
+      "file": "static/images/menu/menu-5b9f67ea2ae5.jpg",
+      "bytes": 16255,
+      "sha256": "8d2869a2d10c49eb7c4f3298fdf58acd28be61a3c3733c57daa4c9780082f436",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://eda.yandex.ru/images/3806315/880be079566747f6bbcc42358798d9cd-216x188.jpeg",
+      "file": "static/images/menu/menu-9aa71e972031.jpg",
+      "bytes": 12596,
+      "sha256": "130d59c7b07c5ab97bba076651497dd76d3517e3d9ff2843dc0f923347134dac",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/logos/ef70804ad82b43394b885f18187aa24c.png",
+      "file": "static/images/menu/menu-c07998b1a9b2.png",
+      "bytes": 124034,
+      "sha256": "c443aedb8d3111f1867f7855313debe4d4f1767238b381cedd93080ceba6fc46",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/0181d5cd7a5213aa4afe7bfbf207a4ce.jpeg",
+      "file": "static/images/menu/menu-83de4395b212.jpg",
+      "bytes": 72215,
+      "sha256": "f842969eec2fd7cb33a64a977d53131f011f521afeabf7f8685480cce447f6ab",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/108f3eeaa45bb0138f55295849aa2f7e.jpeg",
+      "file": "static/images/menu/menu-bc7c7db1d8ae.jpg",
+      "bytes": 41811,
+      "sha256": "5df0e16ce1528f3084a9fbadd543528d2b05c698297717f7acab1eb8eb2518e2",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/158c766a87386faf536676ff24cf9c9b.jpeg",
+      "file": "static/images/menu/menu-3e488a835c03.jpg",
+      "bytes": 92281,
+      "sha256": "cd2a7dbf89b35efb55f777db9b29817510938ce1b99645821393b330d9f66fc3",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/2288d789f9a05f740b66ef34c11891bd.jpeg",
+      "file": "static/images/menu/menu-41e66b4dc89f.jpg",
+      "bytes": 95448,
+      "sha256": "a21334cff3f95026134b1ec2027f8040b8745a5814b76ef40546967afac1195c",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/34e1506e91087fb212816199ff0d9178.jpeg",
+      "file": "static/images/menu/menu-4d1f55911ed6.jpg",
+      "bytes": 91044,
+      "sha256": "08d0e2195310c7a2ef80da550064fcfb44b0f067e2b6492fac7f78271404bc81",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/44424c13a8bdc70c1ab8a4f1a691b010.jpeg",
+      "file": "static/images/menu/menu-bb153e383607.jpg",
+      "bytes": 97667,
+      "sha256": "e18d51fe2c53b232a7a54805d502cebbe8e488e1182801f10d3c9241c00e9871",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/4e465b513b816a656be2ae3782e46e4f.jpeg",
+      "file": "static/images/menu/menu-d350c35289d6.jpg",
+      "bytes": 79396,
+      "sha256": "57552aad1e564f8514d7e978c1bfa3d4a9a91299c2ea9c20f26a12ec83f5c97a",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/53575d6b1d628fe63c669bb608e9b6f0.jpeg",
+      "file": "static/images/menu/menu-7e61081ab55b.jpg",
+      "bytes": 105238,
+      "sha256": "3908f7dd25e3bdc036177abadbccdd221536a2f03bcf82303bfe09eb1dad10ab",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/5929ece0a237594f0dc01ce54f25c1d4.jpeg",
+      "file": "static/images/menu/menu-77dc9f594bdd.jpg",
+      "bytes": 70914,
+      "sha256": "c1494a36263476eca2c2888478412afe35c9ca5f65d6b13520c768963fa70cf8",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/5bb0164b3a7281af9d10c3b64c367159.jpeg",
+      "file": "static/images/menu/menu-b3fab797b4cd.jpg",
+      "bytes": 82404,
+      "sha256": "5dd33c17e786a7d935f7774394e651ec59324393aa49c54a86ad2a2b6f4a33e2",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/5bf788161e3f482151c9e6ec7b625522.jpeg",
+      "file": "static/images/menu/menu-b2d99c040112.jpg",
+      "bytes": 80985,
+      "sha256": "9f1998b8a894b8ef562eab8606b26bc0601ff73fe14f86bea948c1e0a206dc5c",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/685af54568bd400c7f80eba0b88c2303.jpeg",
+      "file": "static/images/menu/menu-b522d0bc59ad.jpg",
+      "bytes": 105468,
+      "sha256": "e3722e35818e23f27f8407d794453891502068862f5d8758807ef76bb7292afc",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/6c29e2cc86a3248d75dc79fc367339a4.jpeg",
+      "file": "static/images/menu/menu-f842e149d0ae.jpg",
+      "bytes": 72709,
+      "sha256": "0625e90c24650c88d58d0817d38ccca4b0edb3a108178831b7d37771629bb7d5",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/7a9cbfea5f5b004f8a3fecc07de44f76.jpeg",
+      "file": "static/images/menu/menu-cc0f3d20a2dd.jpg",
+      "bytes": 66965,
+      "sha256": "8807fc74506c9c43caa52a646371dd7b3168ce8c03d4f2d70957f3bcace271b4",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/9871a4f342559e25d73d161c57e4f250.jpeg",
+      "file": "static/images/menu/menu-e87b3893c851.jpg",
+      "bytes": 75527,
+      "sha256": "ff230158c005cc7c1a99116f97f1a48777792408c9d16e7b29928555e6b6f685",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/9919afc4ce8f4b6a3db2283ac718df62.jpeg",
+      "file": "static/images/menu/menu-39b1b8b28fc4.jpg",
+      "bytes": 97205,
+      "sha256": "b372a7d5217f392e720315499563bbd1fdf48c195bfc7fd62094b945c242a0a5",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/a5af0b6101bf00d6ab5edf8ea9544646.jpeg",
+      "file": "static/images/menu/menu-88e967f8b8d9.jpg",
+      "bytes": 80122,
+      "sha256": "f8f0ea9658a9280a9026fe9a8b45e040121aa38707bcb685e78d84dbc1de7706",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/ab2e33a060b6e283bc98c0481dffbbb0.jpeg",
+      "file": "static/images/menu/menu-c6a23b9e91ef.jpg",
+      "bytes": 81336,
+      "sha256": "677cf0b7345fc2940b33587cf4996c44c4757a2f634206f9233d737dfa489b20",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/b22f4db80a930c4104bb18183bf2ebfb.jpeg",
+      "file": "static/images/menu/menu-98f6bc7b54b3.jpg",
+      "bytes": 110758,
+      "sha256": "2be56f1b1ca13be75a173672371338e3f270bd01d897da4dfcfe046a905d0255",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/b2f141e560f500d95e5cc5966427dcfe.jpeg",
+      "file": "static/images/menu/menu-9927a7a3ef22.jpg",
+      "bytes": 51077,
+      "sha256": "2abddb28486815452eebb712fcbddb692acc49761319fe680b55fda687953998",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/b546adf250ca72e6bf7dc0e5ee6f68fb.jpeg",
+      "file": "static/images/menu/menu-33ce2a6ff04c.jpg",
+      "bytes": 66216,
+      "sha256": "71719f334bad623202c8465d98e1f04fbfda7430549093bbc8895370f118aaca",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/b64d9dd5df9aad5c99006cb7fcfb5b41.jpeg",
+      "file": "static/images/menu/menu-897ba2f136f2.jpg",
+      "bytes": 94308,
+      "sha256": "310ee5d5138e0212eed2cb0d05cc69ac31f7611eee2a249eef109de8df73b23d",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/caff177d09e3935c26ab2553a74b22f4.jpeg",
+      "file": "static/images/menu/menu-8cfe0306f391.jpg",
+      "bytes": 56487,
+      "sha256": "c154a0a0234a63181a0835df4dac378285d04861663af5bc9f8451101e9ae56e",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://scdn.chibbis.ru/live/products/d324e55fb020c2a4bfb4f27412a7e2ff.jpeg",
+      "file": "static/images/menu/menu-a5236deb9a67.jpg",
+      "bytes": 57937,
+      "sha256": "732cf48b4c98c35e1edcfde5523aec599b37b01e23bf58cbb7a2683fd9f0907c",
+      "status": "reviewed_seafood_or_brand_logo",
+      "review_method": "Visual contact sheets, 66 images, 2026-11-10",
+      "rights_status": "requires_company_approval"
+    },
+    {
+      "url": "https://f1.ds-russia.ru/u_dirs/186/186812/b36415d656605e1e005165c0b66e6135.jpg",
+      "file": "static/images/menu/live-company-0.jpg",
+      "bytes": 34072,
+      "sha256": "40416ce7a33a2496da8dd410d5835aec37baf29ff731816a07a3f71a621c1c9e",
+      "status": "reviewed_live_crayfish_company_listing",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://www.ds76.ru/goods/2185866/"
+    },
+    {
+      "url": "https://f1.ds-russia.ru/u_dirs/186/186812/50ac3dac5bdf30be9f94db4cb85ca0a8.jpg",
+      "file": "static/images/menu/live-company-1.jpg",
+      "bytes": 35869,
+      "sha256": "08ad339a4bc1024269d0d03d9ba90632044ef4252429ff5fe4761b0a4a770ce8",
+      "status": "reviewed_live_crayfish_company_listing",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://www.ds76.ru/goods/2186101/"
+    },
+    {
+      "url": "https://f1.ds-russia.ru/u_dirs/186/186812/d31ad3bd392705e53170d34d4a571094.jpg",
+      "file": "static/images/menu/live-company-2.jpg",
+      "bytes": 37031,
+      "sha256": "fdd386b5ef7a82d4dde0096b12e78e3b0be4dc6bfdc78b930f059074a3738cf9",
+      "status": "reviewed_live_crayfish_company_listing",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://www.ds76.ru/goods/2186102/"
+    },
+    {
+      "url": "https://f1.ds-russia.ru/u_dirs/186/186812/59bf3b79b9813ad1de261c9f17c3b379.jpg",
+      "file": "static/images/menu/live-company-3.jpg",
+      "bytes": 35408,
+      "sha256": "de61935f321357ea34afe4bae66966a2d6dff0043aaf2ace0e3b97f4111e4805",
+      "status": "reviewed_live_crayfish_company_listing",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://www.ds76.ru/goods/2186103/"
+    },
+    {
+      "url": "https://f1.ds-russia.ru/u_dirs/186/186812/1b3eaca2c4b0eee1a3d2c4eb1754a41d.jpg",
+      "file": "static/images/menu/live-company-4.jpg",
+      "bytes": 36611,
+      "sha256": "4102cd142d1f3c10b5c2444cf2c4c458d228add9d96484072182e9893d9c2ba7",
+      "status": "reviewed_live_crayfish_company_listing",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://www.ds76.ru/goods/2186104/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/2816622/2a00000174bb308c619a11250e4dbf97f70e/XXL_height",
+      "file": "static/images/menu/company-20261111-0.jpg",
+      "bytes": 181053,
+      "sha256": "7dd3129cbea470638f6bb66145a9505a0b62c9c408579b2d91799863abc6ad01",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/2701879/2a00000174bb33c6a7f75f06013036821691/XXL_height",
+      "file": "static/images/menu/company-20261111-1.jpg",
+      "bytes": 102639,
+      "sha256": "725ee41a33942ec35c06d2cb21eee1861f59cb72289e03f8564d2b9a8a43ec73",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/2805836/2a00000174bb3121ff706125338334e6092c/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-002.jpg",
+      "bytes": 126999,
+      "sha256": "0a252c98c25c61b42575b88f3fcb264c4caf6f959eaef6c5df3e346480a7ae40",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/20756808/2a0000019f8f577e021051334ff75f5a91cc/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-004.jpg",
+      "bytes": 169412,
+      "sha256": "8e0d0123a5a3568b90188e6f443e60a93b3e9a8ab82ca8f98f7cbce98bfd7046",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/18134764/2a0000019e7e59af5e50250424aad50b311c/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-005.jpg",
+      "bytes": 209366,
+      "sha256": "406763cfba4d7d1d535d6d5fec0aeffc81fc2e0ba9e8102d89529d94f3daa19f",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/19532714/2a0000019daa8add2c488eac9ad1458f9790/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-006.jpg",
+      "bytes": 139210,
+      "sha256": "6a7ef0fc9ae4d5c11b4f98871cfb31eb8a1bd104dd71722be3c78ffc770d6fcf",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/17765111/2a0000019daa8adc872d35bd4c3b52781671/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-007.jpg",
+      "bytes": 202131,
+      "sha256": "203eacfe9557b91cd285551a9c5432eb5a1e05278f5b06118d3aabc8a428fc91",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/18111423/2a0000019b9870a8dd424af60c5162f031fd/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-008.jpg",
+      "bytes": 199724,
+      "sha256": "3948a6d5c92660fb818762abad3e3995beff88f8e96f2f966dac85137ee8730e",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/16874425/2a0000019b9870a900484dbe057dc5c66b23/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-009.jpg",
+      "bytes": 227678,
+      "sha256": "6acc28208d9268fab9d103c8f62d00a8d916567f1027e52ca52594bf30e581ae",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/5097807/2a0000018fba2599295683f82dd4140fe638/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-010.jpg",
+      "bytes": 32600,
+      "sha256": "da72e21de97823e680b74b22df8d6ccfd809ee5bfa2071291ddc8b8106abcc91",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/6406681/2a00000181012ebf98c91c879aefde72e6bb/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-011.jpg",
+      "bytes": 237137,
+      "sha256": "04b657d9c3a1ac7c129979a853c9041950a58986596e809ab1da348ce2ac4762",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/16483787/2a0000019b986aeb9997221a35e0b8896e2b/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-012.jpg",
+      "bytes": 226300,
+      "sha256": "1a019d94f276e9441112e53467c18b0f18cce455deab6e92a80586d8be975715",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/9691438/2a0000018c19760fd6748739428356be3828/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-013.jpg",
+      "bytes": 178057,
+      "sha256": "73832d4aa66b182d468135853e3bdf4968fa8da36b65e9a93232dac6b7ba4b72",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/5509094/2a000001810130ab253cf79f3c52ce3975c8/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-014.jpg",
+      "bytes": 75835,
+      "sha256": "da63b18f0ee91b4d27e4d9f5cfe4301324535417a711ddf3a8ab64e462bde50c",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/6222916/2a00000181012d187755642fe934b6236d07/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-015.jpg",
+      "bytes": 67283,
+      "sha256": "7591924cc6b99b232b9a836278c28283678f9bfb9295349321afe3661c260ebd",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/15437010/2a00000197dfe1b566ff6432d80e776522d3/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-017.jpg",
+      "bytes": 240428,
+      "sha256": "ce2f425690960e48285cadac1514129ba8deebb8061cd50b4891624a4b36a94b",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/13611210/2a00000192e5ff5a8a8b32b85fee6a6b327b/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-018.jpg",
+      "bytes": 199988,
+      "sha256": "1743a37852970edc5fd26969f38a4710a1da4a2cacdf542c9545911933234eee",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/15037708/2a000001953d5ffdec7bc96d213eeaf2b5a2/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-019.jpg",
+      "bytes": 114042,
+      "sha256": "597516b4b6dd5bb5282776463ead650b7f6aa558b8ac2015296f79e089f453fb",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/5098140/2a00000181dfdc640a510d5d742453f11d40/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-020.jpg",
+      "bytes": 278284,
+      "sha256": "43801f2d1f648b3ec92e8915757c3b717fe54502ab8a527a2032a6589b25fcdc",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/14376766/2a000001945a1694df58b071d495eed03c89/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-021.jpg",
+      "bytes": 135613,
+      "sha256": "6f8ada54c7046978753a93fd24dfee648d206aac346802617f73858402fd2fb3",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/16264361/2a0000019b986ae5747c42b185eea5266d8c/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-022.jpg",
+      "bytes": 181132,
+      "sha256": "7a6b56161b5c215b3c5821fa697843d592c906fa5373c127d49c5728f45243c4",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/17765342/2a0000019daa8adc7dc10758fc52681cede2/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-023.jpg",
+      "bytes": 200606,
+      "sha256": "fb9be8abf6a3855563bf45649eb39ef064b0682daa0e19841754183fae9b2cf4",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/20856454/2a0000019f8f57c32cdaa0bd1a674b71a17a/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-025.jpg",
+      "bytes": 131150,
+      "sha256": "21512aa013e5550fde55b57023e3117a87c8bd71ce79ad5716820f6721171415",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/6236523/2a00000181012cb74ec78a9b94bdcffa7f10/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-027.jpg",
+      "bytes": 216319,
+      "sha256": "9ad3ab0f7412d643298628efaba891a41534cf25471e752d6172d577d323105b",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/16130837/2a0000019b986ae58a014d7e001c4f37cb69/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-028.jpg",
+      "bytes": 180426,
+      "sha256": "7e7641148dc755a970d7afae8f362c5c54546b8288f5d97874f2c7f0f8d44655",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/18147375/2a0000019b986ae634e2208c43802441b9df/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-030.jpg",
+      "bytes": 174219,
+      "sha256": "60d6e2f9d511d14ce7dd362ba9d6e3ae5c5b7a18dca6a8a8019222edd362479c",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/6302373/2a000001810131f7f1b2d753c627a534fd90/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-031.jpg",
+      "bytes": 60805,
+      "sha256": "38b2fe692ac84c1bdc5571d2e360f458eb06bc7e9404d991be7ae66cf321ac65",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/5307539/2a00000181012edd6ae4b0c670d1798c19dc/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-032.jpg",
+      "bytes": 173705,
+      "sha256": "61157ad21651b42a11c904c8419227c8a3d2297b36a8a6dd2e9ec1cd95667442",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
+    }
+  ]
+}

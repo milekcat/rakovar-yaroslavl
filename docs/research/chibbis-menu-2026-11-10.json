@@ -1,0 +1,379 @@
+{
+  "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+  "checked_at": "2026-11-10",
+  "sha256_html": "bc788809931b7fec296c0458b33bfb9e51d17e76c07370276ea55c56dca977d6",
+  "offers": [
+    {
+      "source_id": "76bb0683-05ee-42aa-9f6a-fe9673afd8ae",
+      "title": "Ассорти креветок варёных",
+      "price_rub": 2790,
+      "weight_raw": "800 г",
+      "weight_label": "800 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/ab2e33a060b6e283bc98c0481dffbbb0.jpeg",
+      "categories": [
+        "Хиты продаж",
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "shrimp-assorted-boiled"
+    },
+    {
+      "source_id": "3249ec1a-ce56-43d7-b09c-e529951c26ec",
+      "title": "Ассорти обжаренных креветок",
+      "price_rub": 2790,
+      "weight_raw": "800 г",
+      "weight_label": "800 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/5bf788161e3f482151c9e6ec7b625522.jpeg",
+      "categories": [
+        "Хиты продаж",
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "shrimp-assorted-fried"
+    },
+    {
+      "source_id": "47d752a5-a3ea-4ce3-8866-b2dd01221b1a",
+      "title": "Очищенные в сливочном соусе",
+      "price_rub": 1690,
+      "weight_raw": "500 г",
+      "weight_label": "500 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/d324e55fb020c2a4bfb4f27412a7e2ff.jpeg",
+      "categories": [
+        "Хиты продаж",
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-peeled-cream"
+    },
+    {
+      "source_id": "c24b2684-29ce-41c9-8700-09e3589db64d",
+      "title": "Лангустины в Беконе",
+      "price_rub": 1690,
+      "weight_raw": "1 г",
+      "weight_label": "",
+      "anomalies": [
+        "invalid_weight_1g"
+      ],
+      "image_url": "https://scdn.chibbis.ru/live/products/b2f141e560f500d95e5cc5966427dcfe.jpeg",
+      "categories": [
+        "Хиты продаж",
+        "Креветки"
+      ],
+      "catalog_id": "langoustine-bacon"
+    },
+    {
+      "source_id": "e82b5ef4-8771-4a5e-86ce-47e15a1b7c2e",
+      "title": "Лангустины в медово-соевом соусе",
+      "price_rub": 1390,
+      "weight_raw": "500 г",
+      "weight_label": "500 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/b64d9dd5df9aad5c99006cb7fcfb5b41.jpeg",
+      "categories": [
+        "Хиты продаж",
+        "Креветки"
+      ],
+      "catalog_id": "langoustine-honey-soy"
+    },
+    {
+      "source_id": "2c72fa72-1042-40f4-8cf4-3c1318632766",
+      "title": "Ассорти креветок варёных",
+      "price_rub": 2790,
+      "weight_raw": "1 г",
+      "weight_label": "",
+      "anomalies": [
+        "invalid_weight_1g"
+      ],
+      "image_url": "https://scdn.chibbis.ru/live/products/ab2e33a060b6e283bc98c0481dffbbb0.jpeg",
+      "categories": [
+        "Хиты продаж",
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-assorted-boiled"
+    },
+    {
+      "source_id": "b8549b85-0b96-4182-b655-fc11f13c1b9a",
+      "title": "Лангустины в Беконе",
+      "price_rub": 1590,
+      "weight_raw": "1 г",
+      "weight_label": "",
+      "anomalies": [
+        "invalid_weight_1g"
+      ],
+      "image_url": "https://scdn.chibbis.ru/live/products/b2f141e560f500d95e5cc5966427dcfe.jpeg",
+      "categories": [
+        "Хиты продаж",
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "langoustine-bacon"
+    },
+    {
+      "source_id": "34b07ce8-3c5c-48df-861d-b6a983d27078",
+      "title": "Сет креветок «По- азиатски»",
+      "price_rub": 1790,
+      "weight_raw": "400 г",
+      "weight_label": "400 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/9871a4f342559e25d73d161c57e4f250.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-asian-set"
+    },
+    {
+      "source_id": "5e18748c-a11a-4d1f-8951-b7f2c8346682",
+      "title": "Сет креветок \"Том Ям\"",
+      "price_rub": 1790,
+      "weight_raw": "400 г",
+      "weight_label": "400 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/4e465b513b816a656be2ae3782e46e4f.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-tom-yam"
+    },
+    {
+      "source_id": "c6cc35fc-ccf3-4cd1-9bc3-7e46e2204326",
+      "title": "Тигровые \"По - азиатски\"",
+      "price_rub": 1590,
+      "weight_raw": "400 г",
+      "weight_label": "400 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/6c29e2cc86a3248d75dc79fc367339a4.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-tiger-asian"
+    },
+    {
+      "source_id": "2e1b5da0-8fea-4f7f-bca6-1554b6110daf",
+      "title": "Ассорти обжаренных креветок",
+      "price_rub": 2790,
+      "weight_raw": "1 г",
+      "weight_label": "",
+      "anomalies": [
+        "invalid_weight_1g"
+      ],
+      "image_url": "https://scdn.chibbis.ru/live/products/5bf788161e3f482151c9e6ec7b625522.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-assorted-fried"
+    },
+    {
+      "source_id": "806ffa61-6d2e-46b9-b7aa-fc54d833975f",
+      "title": "Очищенные \"по-азиатски\"",
+      "price_rub": 1690,
+      "weight_raw": "400 г",
+      "weight_label": "400 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/158c766a87386faf536676ff24cf9c9b.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-peeled-asian"
+    },
+    {
+      "source_id": "c88de1d5-adbf-42d0-bf97-40ca80409ec5",
+      "title": "Тигровые обжаренные",
+      "price_rub": 1390,
+      "weight_raw": "350 г",
+      "weight_label": "350 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/0181d5cd7a5213aa4afe7bfbf207a4ce.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-tiger-fried"
+    },
+    {
+      "source_id": "ebb54b17-972d-4560-9461-ad788a116442",
+      "title": "Лангустины варёные",
+      "price_rub": 1290,
+      "weight_raw": "500 г",
+      "weight_label": "500 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/9919afc4ce8f4b6a3db2283ac718df62.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "langoustine-boiled"
+    },
+    {
+      "source_id": "ab703ea2-488b-4a19-9131-3cec364e17ef",
+      "title": "Королевские \"По- азиатски\"",
+      "price_rub": 1090,
+      "weight_raw": "400 г",
+      "weight_label": "400 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/b546adf250ca72e6bf7dc0e5ee6f68fb.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-king-asian"
+    },
+    {
+      "source_id": "6c74f56b-66ed-4ff8-a956-791eb38ecf67",
+      "title": "Королевские варёные",
+      "price_rub": 990,
+      "weight_raw": "500 г",
+      "weight_label": "500 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/5929ece0a237594f0dc01ce54f25c1d4.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-king-boiled"
+    },
+    {
+      "source_id": "9798a1aa-d8bd-4242-9689-a4fd4c233a2e",
+      "title": "Королевские обжаренные",
+      "price_rub": 990,
+      "weight_raw": "500 г",
+      "weight_label": "500 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/7a9cbfea5f5b004f8a3fecc07de44f76.jpeg",
+      "categories": [
+        "Креветки"
+      ],
+      "catalog_id": "shrimp-king-fried"
+    },
+    {
+      "source_id": "914967cf-085c-4837-834a-4f9e68db5c05",
+      "title": "Сет креветок \"Том Ям\"",
+      "price_rub": 1790,
+      "weight_raw": "400 г",
+      "weight_label": "400 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/4e465b513b816a656be2ae3782e46e4f.jpeg",
+      "categories": [
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "shrimp-tom-yam"
+    },
+    {
+      "source_id": "99e4e78d-577d-4e99-8de8-69e464ce4d48",
+      "title": "Сет мидий в винном соусе",
+      "price_rub": 1590,
+      "weight_raw": null,
+      "weight_label": "",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/53575d6b1d628fe63c669bb608e9b6f0.jpeg",
+      "categories": [
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "mussels-wine"
+    },
+    {
+      "source_id": "d2a93ce8-d360-4888-b27a-988b9ea96321",
+      "title": "Сет креветок «По- азиатски»",
+      "price_rub": 1790,
+      "weight_raw": "400 г",
+      "weight_label": "400 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/9871a4f342559e25d73d161c57e4f250.jpeg",
+      "categories": [
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "shrimp-asian-set"
+    },
+    {
+      "source_id": "c38d5d84-3836-437e-bf18-17789b4e2737",
+      "title": "Ассорти в сливочном соусе",
+      "price_rub": 2690,
+      "weight_raw": "1 г",
+      "weight_label": "",
+      "anomalies": [
+        "invalid_weight_1g"
+      ],
+      "image_url": "https://scdn.chibbis.ru/live/products/a5af0b6101bf00d6ab5edf8ea9544646.jpeg",
+      "categories": [
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "seafood-assorted-cream"
+    },
+    {
+      "source_id": "97200a24-5195-44ce-8011-3296649c4a9f",
+      "title": "Сет мидий \"по-гречески\"",
+      "price_rub": 1590,
+      "weight_raw": null,
+      "weight_label": "",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/caff177d09e3935c26ab2553a74b22f4.jpeg",
+      "categories": [
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "mussels-greek"
+    },
+    {
+      "source_id": "bb2a84f8-c661-4be4-b448-0177c105f7ed",
+      "title": "Сет мидий в соусе \"Блю Чиз\"",
+      "price_rub": 1590,
+      "weight_raw": null,
+      "weight_label": "",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/44424c13a8bdc70c1ab8a4f1a691b010.jpeg",
+      "categories": [
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "mussels-blue-cheese"
+    },
+    {
+      "source_id": "b99c94b1-0cbb-454c-896b-96429bd3c9c3",
+      "title": "Сет «4 моря»",
+      "price_rub": 2790,
+      "weight_raw": "1 г",
+      "weight_label": "",
+      "anomalies": [
+        "invalid_weight_1g"
+      ],
+      "image_url": "https://scdn.chibbis.ru/live/products/b22f4db80a930c4104bb18183bf2ebfb.jpeg",
+      "categories": [
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "set-4-morya"
+    },
+    {
+      "source_id": "78fc5695-2142-4a19-9ef2-c3a208c28015",
+      "title": "Комбо №3",
+      "price_rub": 2190,
+      "weight_raw": "1 г",
+      "weight_label": "",
+      "anomalies": [
+        "invalid_weight_1g"
+      ],
+      "image_url": "https://scdn.chibbis.ru/live/products/2288d789f9a05f740b66ef34c11891bd.jpeg",
+      "categories": [
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "combo-3"
+    },
+    {
+      "source_id": "2a786df2-9bfe-4a9a-9b75-94dc244f76b7",
+      "title": "Ассорти в томатном соусе",
+      "price_rub": 2690,
+      "weight_raw": null,
+      "weight_label": "",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/34e1506e91087fb212816199ff0d9178.jpeg",
+      "categories": [
+        "Сеты морепродуктов"
+      ],
+      "catalog_id": "seafood-assorted-tomato"
+    },
+    {
+      "source_id": "80573c7d-18b4-4656-855e-b767af44720b",
+      "title": "ДОРАДО НА ГРИЛЕ",
+      "price_rub": 990,
+      "weight_raw": "390 г",
+      "weight_label": "390 г",
+      "anomalies": [],
+      "image_url": "https://scdn.chibbis.ru/live/products/5bb0164b3a7281af9d10c3b64c367159.jpeg",
+      "categories": [
+        "Рыбка на гриле"
+      ],
+      "catalog_id": "dorado-grill"
+    }
+  ]
+}

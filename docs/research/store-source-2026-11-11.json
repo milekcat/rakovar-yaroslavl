@@ -1,0 +1,335 @@
+{
+  "checked_at": "2026-11-11T00:54:46+03:00",
+  "requested_source": {
+    "url": "https://rakovar76.clients.site/",
+    "http_observation": "Ordinary urllib response200 with195-byte SiteUnavailable page; no bot-detection evidence. No bypass attempted.",
+    "web_observation": "Search-service click from published company link succeeded (turn56view0); catalog section empty in text extraction, likely client-rendered.",
+    "company_name": "РАКОВАРЪ",
+    "phone": "+7 920 118 57 87",
+    "address": "Ярославль, Комсомольская улица,14",
+    "inn": "760801923181",
+    "ogrnip": "317762700028792",
+    "legal_data_caution": "These primary-site details conflict with seller details shown by aggregators; do not silently substitute aggregator legal data."
+  },
+  "company_identity_sources": [
+    {
+      "url": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "state": "Old location moved",
+      "new_location_link_observed_in_html": "https://yandex.com/maps/org/213608255711/",
+      "source_ref": "turn50view0 / turn51view0"
+    },
+    {
+      "url": "https://yandex.com/maps/org/213608255711/",
+      "state": "Current company card: Komsomolskaya14, same phone, primary website matches user URL.",
+      "photos_count": 52,
+      "menu_embedded_in_current_html": false
+    }
+  ],
+  "live_crayfish_import_candidates": [
+    {
+      "proposed_id": "live-crayfish-mini-kg",
+      "title": "Живые раки «Mini»",
+      "category": "Живые раки",
+      "size": "Mini",
+      "weight_per_item": "15–30 г/шт.",
+      "approximate_items_per_kg": "38–44 шт./кг",
+      "price_rub_per_kg": 3190,
+      "unit": "за кг",
+      "quantity_unit": "kg",
+      "image": "menu/live-company-0.jpg",
+      "image_url": "",
+      "image_sha256": "40416ce7a33a2496da8dd410d5835aec37baf29ff731816a07a3f71a621c1c9e",
+      "photo_source_url": "https://www.ds76.ru/goods/2185866/",
+      "photo_original_url": "https://f1.ds-russia.ru/u_dirs/186/186812/b36415d656605e1e005165c0b66e6135.jpg",
+      "price_source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "price_source_ref": "turn50view0",
+      "price_source_retrieval_date": "2026-11-11",
+      "price_source_snapshot_note": "Search-service snapshot of the old business card. Source explicitly says menu has not been updated for a while; current card reports relocation. Company confirmation still required.",
+      "price_published_at": null,
+      "source_stale": true,
+      "requires_admin_price_confirmation": true,
+      "price_verified": false,
+      "availability_confirmed": false,
+      "real_stock": null,
+      "historic_ds76_price_rub_per_kg_do_not_use": 1190
+    },
+    {
+      "proposed_id": "live-crayfish-standart-kg",
+      "title": "Живые раки «Standart»",
+      "category": "Живые раки",
+      "size": "Standart",
+      "weight_per_item": "30–50 г/шт.",
+      "approximate_items_per_kg": "26–33 шт./кг",
+      "price_rub_per_kg": 3790,
+      "unit": "за кг",
+      "quantity_unit": "kg",
+      "image": "menu/live-company-1.jpg",
+      "image_url": "",
+      "image_sha256": "08ad339a4bc1024269d0d03d9ba90632044ef4252429ff5fe4761b0a4a770ce8",
+      "photo_source_url": "https://www.ds76.ru/goods/2186101/",
+      "photo_original_url": "https://f1.ds-russia.ru/u_dirs/186/186812/50ac3dac5bdf30be9f94db4cb85ca0a8.jpg",
+      "price_source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "price_source_ref": "turn50view0",
+      "price_source_retrieval_date": "2026-11-11",
+      "price_source_snapshot_note": "Search-service snapshot of the old business card. Source explicitly says menu has not been updated for a while; current card reports relocation. Company confirmation still required.",
+      "price_published_at": null,
+      "source_stale": true,
+      "requires_admin_price_confirmation": true,
+      "price_verified": false,
+      "availability_confirmed": false,
+      "real_stock": null,
+      "historic_ds76_price_rub_per_kg_do_not_use": 1490
+    },
+    {
+      "proposed_id": "live-crayfish-maxi-kg",
+      "title": "Живые раки «Maxi»",
+      "category": "Живые раки",
+      "size": "Maxi",
+      "weight_per_item": "50–70 г/шт.",
+      "approximate_items_per_kg": "18–25 шт./кг",
+      "price_rub_per_kg": 4190,
+      "unit": "за кг",
+      "quantity_unit": "kg",
+      "image": "menu/live-company-2.jpg",
+      "image_url": "",
+      "image_sha256": "fdd386b5ef7a82d4dde0096b12e78e3b0be4dc6bfdc78b930f059074a3738cf9",
+      "photo_source_url": "https://www.ds76.ru/goods/2186102/",
+      "photo_original_url": "https://f1.ds-russia.ru/u_dirs/186/186812/d31ad3bd392705e53170d34d4a571094.jpg",
+      "price_source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "price_source_ref": "turn50view0",
+      "price_source_retrieval_date": "2026-11-11",
+      "price_source_snapshot_note": "Search-service snapshot of the old business card. Source explicitly says menu has not been updated for a while; current card reports relocation. Company confirmation still required.",
+      "price_published_at": null,
+      "source_stale": true,
+      "requires_admin_price_confirmation": true,
+      "price_verified": false,
+      "availability_confirmed": false,
+      "real_stock": null,
+      "historic_ds76_price_rub_per_kg_do_not_use": 1890,
+      "higher_resolution_matching_image": {
+        "file": "static/images/menu/company-20261111-0.jpg",
+        "source_url": "https://yandex.com/maps/org/213608255711/",
+        "url": "https://avatars.mds.yandex.net/get-altay/2816622/2a00000174bb308c619a11250e4dbf97f70e/XXL_height",
+        "sha256": "7dd3129cbea470638f6bb66145a9505a0b62c9c408579b2d91799863abc6ad01",
+        "match": "Visually identical composition and crayfish to DS76 Maxi image; larger1024px source."
+      }
+    },
+    {
+      "proposed_id": "live-crayfish-mega-kg",
+      "title": "Живые раки «Mega»",
+      "category": "Живые раки",
+      "size": "Mega",
+      "weight_per_item": "70–90 г/шт.",
+      "approximate_items_per_kg": "13–17 шт./кг",
+      "price_rub_per_kg": 4790,
+      "unit": "за кг",
+      "quantity_unit": "kg",
+      "image": "menu/live-company-3.jpg",
+      "image_url": "",
+      "image_sha256": "de61935f321357ea34afe4bae66966a2d6dff0043aaf2ace0e3b97f4111e4805",
+      "photo_source_url": "https://www.ds76.ru/goods/2186103/",
+      "photo_original_url": "https://f1.ds-russia.ru/u_dirs/186/186812/59bf3b79b9813ad1de261c9f17c3b379.jpg",
+      "price_source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "price_source_ref": "turn50view0",
+      "price_source_retrieval_date": "2026-11-11",
+      "price_source_snapshot_note": "Search-service snapshot of the old business card. Source explicitly says menu has not been updated for a while; current card reports relocation. Company confirmation still required.",
+      "price_published_at": null,
+      "source_stale": true,
+      "requires_admin_price_confirmation": true,
+      "price_verified": false,
+      "availability_confirmed": false,
+      "real_stock": null,
+      "historic_ds76_price_rub_per_kg_do_not_use": 2290
+    },
+    {
+      "proposed_id": "live-crayfish-xxl-kg",
+      "title": "Живые раки «XXL»",
+      "category": "Живые раки",
+      "size": "XXL",
+      "weight_per_item": "90–110 г/шт.",
+      "approximate_items_per_kg": "7–12 шт./кг",
+      "price_rub_per_kg": 5190,
+      "unit": "за кг",
+      "quantity_unit": "kg",
+      "image": "menu/live-company-4.jpg",
+      "image_url": "",
+      "image_sha256": "4102cd142d1f3c10b5c2444cf2c4c458d228add9d96484072182e9893d9c2ba7",
+      "photo_source_url": "https://www.ds76.ru/goods/2186104/",
+      "photo_original_url": "https://f1.ds-russia.ru/u_dirs/186/186812/1b3eaca2c4b0eee1a3d2c4eb1754a41d.jpg",
+      "price_source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "price_source_ref": "turn50view0",
+      "price_source_retrieval_date": "2026-11-11",
+      "price_source_snapshot_note": "Search-service snapshot of the old business card. Source explicitly says menu has not been updated for a while; current card reports relocation. Company confirmation still required.",
+      "price_published_at": null,
+      "source_stale": true,
+      "requires_admin_price_confirmation": true,
+      "price_verified": false,
+      "availability_confirmed": false,
+      "real_stock": null,
+      "historic_ds76_price_rub_per_kg_do_not_use": 2490
+    }
+  ],
+  "existing_missing_items": [
+    {
+      "catalog_id": "set-for-two",
+      "title": "Сет «Для двоих»",
+      "exact_original_photo_obtained": false,
+      "price_obtained": true,
+      "recommendation": "Do not invent a price or substitute another dish photo.",
+      "price_rub": 2890,
+      "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+      "source_kind": "secondary_index_of_company_post",
+      "post_date": "2026-10-17",
+      "source_ref": "turn52search0",
+      "description_facts": [
+        "красная рыба на гриле",
+        "креветки или мидии",
+        "два салата с креветками и авторской заправкой"
+      ],
+      "requires_admin_price_confirmation": true
+    },
+    {
+      "catalog_id": "edible-bouquet-request",
+      "title": "Съедобный букет из морепродуктов",
+      "exact_original_photo_obtained": true,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo.",
+      "photo_file": "static/images/menu/company-20261111-photos-027.jpg",
+      "photo_source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "photo_sha256": "9ad3ab0f7412d643298628efaba891a41534cf25471e752d6172d577d323105b",
+      "photo_match_confidence": "high_product_family_match",
+      "photo_note": "Generic configurable bouquet card; exact composition and weight still require owner input."
+    },
+    {
+      "catalog_id": "frozen-seafood-request",
+      "title": "Замороженные морепродукты — подбор по наличию",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    },
+    {
+      "catalog_id": "fresh-murmansk-trout",
+      "title": "Северная форель свежая",
+      "exact_original_photo_obtained": false,
+      "price_obtained": true,
+      "recommendation": "Do not invent a price or substitute another dish photo.",
+      "price_rub_per_kg": 1290,
+      "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+      "source_kind": "secondary_index_of_company_post",
+      "original_url": "https://vk.com/wall-1227486_248162",
+      "post_date": "2026-11-06",
+      "source_ref": "turn54view0",
+      "fulfillment": "preorder",
+      "announced_arrival": "2026-11-23/2026-11-24",
+      "whole_fish_weight": "2.5–4 кг",
+      "requires_admin_price_confirmation": true,
+      "older_conflicting_price_rub": 1250,
+      "older_price_note": "1250 ₽/кг belongs to October25–26 batch; do not use as latest observed price."
+    },
+    {
+      "catalog_id": "smoked-trout",
+      "title": "Форель холодного или горячего копчения",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    },
+    {
+      "catalog_id": "red-salmon-caviar",
+      "title": "Икра горбуши",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    },
+    {
+      "catalog_id": "tiger-shrimp-butterfly",
+      "title": "Тигровые креветки «Бабочка» с фирменным соусом",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    },
+    {
+      "catalog_id": "spiny-crab-request",
+      "title": "Колючий краб",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    },
+    {
+      "catalog_id": "dried-fish-request",
+      "title": "Рыба вяленая",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    },
+    {
+      "catalog_id": "smoked-fish-request",
+      "title": "Рыба копчёная",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    },
+    {
+      "catalog_id": "scallop-request",
+      "title": "Морской гребешок обжаренный",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    },
+    {
+      "catalog_id": "octopus-request",
+      "title": "Щупальца осьминога",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    },
+    {
+      "catalog_id": "crayfish-cooking-kit",
+      "title": "Набор для варки раков",
+      "exact_original_photo_obtained": false,
+      "price_obtained": false,
+      "recommendation": "Do not invent a price or substitute another dish photo."
+    }
+  ],
+  "downloaded_assets": [
+    {
+      "index": 0,
+      "file": "static/images/menu/company-20261111-0.jpg",
+      "url": "https://avatars.mds.yandex.net/get-altay/2816622/2a00000174bb308c619a11250e4dbf97f70e/XXL_height",
+      "bytes": 181053,
+      "sha256": "7dd3129cbea470638f6bb66145a9505a0b62c9c408579b2d91799863abc6ad01"
+    },
+    {
+      "index": 1,
+      "file": "static/images/menu/company-20261111-1.jpg",
+      "url": "https://avatars.mds.yandex.net/get-altay/2701879/2a00000174bb33c6a7f75f06013036821691/XXL_height",
+      "bytes": 102639,
+      "sha256": "725ee41a33942ec35c06d2cb21eee1861f59cb72289e03f8564d2b9a8a43ec73"
+    }
+  ],
+  "failed_exact_assets": [
+    {
+      "catalog_id": "fresh-murmansk-trout",
+      "url": "https://sun9-39.userapi.com/s/v1/ig2/DjyZpAKT6YzL51Ou5i7uwehNGBP1DTQszlMJmUvjfZxroB-BOROtVaWk3lM2nQKKytQkixXQ2z4pMRpEuJEWdJ1t.jpg?as=32x43%2C48x64%2C72x96%2C108x144%2C160x213%2C240x320%2C360x480%2C480x640%2C540x720%2C640x853%2C720x960%2C1080x1440%2C1280x1707%2C1440x1920&cs=1440x0&from=bu&quality=95",
+      "error": "Original userapi image URL from company post returns195-byte HTML SiteUnavailable; not an image.",
+      "web_ref": "turn55view0"
+    },
+    {
+      "catalog_id": "set-for-two",
+      "url": "https://sun9-67.userapi.com/s/v1/ig2/2L_w8hKaTxbY8cO2TPkneL97HU0n0cadSGjMUGqRd5xJmeuPQirkAeltUfuyYHitBdRMwLwLgp9W25YEBWGIaCl5.jpg?as=32x43%2C48x64%2C72x96%2C108x144%2C160x213%2C240x320%2C360x480%2C480x640%2C540x720%2C640x853%2C720x960%2C1080x1440%2C1280x1707%2C1440x1920%2C1920x2560&cs=1920x0&from=bu&quality=95",
+      "error": "Original userapi image URL from company post returns195-byte HTML SiteUnavailable; not an image.",
+      "web_ref": "turn55view1"
+    }
+  ],
+  "asset_assignment_notes": {
+    "company-20261111-0.jpg": "Exact visual match to existing DS76 Maxi2 photo; suitable as higher-resolution live-Maxi photo.",
+    "company-20261111-1.jpg": "Company-branded crab in a bucket. Exact crab species/SKU/price not stated in image metadata; safe for company gallery/category only, not an exact missing product replacement."
+  },
+  "unresolved": {
+    "missing_items_count": 13,
+    "missing_items_with_observed_price": 2,
+    "missing_items_with_new_exact_photo": 1,
+    "primary_site_catalog_transfer_complete": false,
+    "live_size_specific_photos_available": 5
+  },
+  "extended_asset_manifest": "docs/research/store-assets-2026-11-11.json"
+}

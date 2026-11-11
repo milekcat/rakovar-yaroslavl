@@ -1,0 +1,72 @@
+name: Validate Rakovar preview
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install development dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Validate checked-in preview sources
+        run: python prepare_render.py
+      - name: Check source and catalog invariants
+        run: python scripts/validate_preview.py
+      - name: Compile Python modules
+        run: python -m compileall -q app.py max_auth.py max_client.py max_bot.py catalog_seed.py prepare_render.py storage.py staff_auth.py commerce_safety.py connections.py shop.py scripts
+      - name: Run tests
+        run: python -m pytest -q
+      - name: Check storefront scripts
+        run: |
+          node --check static/storefront.js
+          node --check static/admin.js
+          node --check static/staff.js
+          node --check static/wheel.js
+          node --check static/studio.js
+          node --check static/connections.js
+          node --check static/account.js
+          node --check static/shop-admin.js
+  postgres:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements-dev.txt
+      - name: Locate PostgreSQL binaries
+        run: pg_config --version
+      - name: Test transactions, migrations, backup and recovery on real PostgreSQL
+        run: python scripts/run_postgres_tests.py --postgres-bin "$(pg_config --bindir)" -- -q --tb=short
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements-browser.txt
+      - run: python -m playwright install --with-deps chromium
+      - name: Run synthetic browser acceptance checks
+        run: python scripts/browser_check.py --app-python "$(command -v python)" --chromium "$(python -c 'from playwright.sync_api import sync_playwright;p=sync_playwright().start();print(p.chromium.executable_path);p.stop()')" --output test-results/browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rakovar-browser-evidence
+          path: |
+            test-results/browser/*.png
+            test-results/browser/browser-results.json
+          if-no-files-found: ignore

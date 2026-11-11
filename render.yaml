@@ -32,6 +32,6 @@ services:
       - key: LOYALTY_RUB_PER_TICKET
         value: "1000"
       - key: PREVIEW_DELIVERY_RUB
-        value: "200"
+        value: "350"
       - key: PREVIEW_DELIVERY_MIN_RUB
-        value: "1000"
+        value: "0"

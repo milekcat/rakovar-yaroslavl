@@ -1,0 +1,64 @@
+{
+  "add_columns": [
+    [
+      "prizes",
+      "reward_value",
+      "INTEGER NOT NULL DEFAULT 0"
+    ],
+    [
+      "spins",
+      "redemption_code",
+      "TEXT NOT NULL DEFAULT ''"
+    ],
+    [
+      "products",
+      "image_url",
+      "TEXT NOT NULL DEFAULT ''"
+    ],
+    [
+      "products",
+      "source_url",
+      "TEXT NOT NULL DEFAULT ''"
+    ],
+    [
+      "products",
+      "price_verified",
+      "INTEGER NOT NULL DEFAULT 0"
+    ],
+    [
+      "products",
+      "stock_confirmed",
+      "INTEGER NOT NULL DEFAULT 0"
+    ],
+    [
+      "products",
+      "weight_label",
+      "TEXT NOT NULL DEFAULT ''"
+    ],
+    [
+      "products",
+      "price_on_request",
+      "INTEGER NOT NULL DEFAULT 0"
+    ],
+    [
+      "orders",
+      "guest_id",
+      "TEXT NOT NULL DEFAULT ''"
+    ],
+    [
+      "orders",
+      "source_channel",
+      "TEXT NOT NULL DEFAULT 'web'"
+    ],
+    [
+      "promotions",
+      "ticket_reward",
+      "INTEGER NOT NULL DEFAULT 0"
+    ],
+    [
+      "contests",
+      "ticket_reward",
+      "INTEGER NOT NULL DEFAULT 0"
+    ]
+  ]
+}

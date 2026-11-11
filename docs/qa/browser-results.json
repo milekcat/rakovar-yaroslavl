@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "checks": [
+    "Storefront loads corrected seafood hero and real catalog API",
+    "Lost spin response retries same key, consumes one ticket and lands on server sector",
+    "Set builder and checkout create one synthetic order without storing contacts",
+    "Manager changes statuses, reverses tickets and sees persisted order history",
+    "Owner creates an individual employee through the working staff UI",
+    "Restricted employee is denied staff/finance access and can enable personal TOTP MFA",
+    "Blocking an employee immediately invalidates their existing server session",
+    "390px mobile wheel has no horizontal overflow and supports reduced motion"
+  ],
+  "javascript_errors": [],
+  "browser": "Chromium",
+  "screenshots": [
+    "admin-staff.png",
+    "order-history.png",
+    "storefront-desktop.png",
+    "wheel-desktop.png",
+    "wheel-mobile.png"
+  ]
+}
