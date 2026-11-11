@@ -28,9 +28,10 @@ TABLES = (
     "integration_health", "ticket_ledger", "referral_codes", "referral_attributions",
     "audit_log", "operation_receipts", "order_status_history", "max_webhook_events",
     "provider_deliveries", "provider_events",
+    "shop_catalog_overrides", "shop_inventory", "shop_stock_ledger", "shop_bonus_ledger", "shop_notifications", "shop_outbox",
 )
 SKIPPED = frozenset({"schema_migrations", "max_webhook_leases", "staff_accounts",
-    "staff_sessions", "staff_mfa", "staff_login_events", "staff_login_guards", "provider_connections"})
+    "staff_sessions", "staff_mfa", "staff_login_events", "staff_login_guards", "provider_connections", "shop_profiles", "shop_accounts", "shop_sessions", "shop_order_details", "shop_media"})
 IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
@@ -57,6 +58,8 @@ def inspect_source(connection):
     unknown = names - set(TABLES) - SKIPPED
     if unknown:
         raise TransferError("Unknown source tables require an explicit migration: " + ", ".join(sorted(unknown)))
+    if "shop_order_details" in names and connection.execute("SELECT COUNT(*) FROM shop_order_details").fetchone()[0]:
+        raise TransferError("Encrypted customer orders require a dedicated protected migration")
     if "orders" in names:
         columns = {r[1] for r in connection.execute("PRAGMA table_info(orders)")}
         required = {"is_demo", "customer_label", "contact_label", "address_label"}

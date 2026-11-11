@@ -1319,7 +1319,7 @@
     "unit": "по запросу",
     "weight": "",
     "description": "Съедобная композиция из морепродуктов. Состав и оформление под ваш повод.",
-    "image": "menu/illustration-gift.svg",
+    "image": "menu/company-20261111-photos-027.jpg",
     "image_url": "",
     "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
     "badge": "Подарки",
@@ -1336,7 +1336,12 @@
         "checked_at": "2026-11-10",
         "original_access": "unavailable"
       }
-    ]
+    ],
+    "photo_evidence": {
+      "source": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "kind": "company_card_photo",
+      "current_price_verified": false
+    }
   },
   {
     "id": "live-crayfish-request",
@@ -1858,5 +1863,170 @@
         "original_access": "unavailable"
       }
     ]
+  },
+  {
+    "id": "live-crayfish-mini-kg",
+    "title": "Живые раки «Mini»",
+    "category": "Живые раки",
+    "price": 3190,
+    "unit": "за кг",
+    "weight": "15–30 г/шт.",
+    "description": "Живые раки «Mini». Вес одного рака 15–30 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/live-company-0.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "Mini",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2185866/",
+      "kind": "company_listing",
+      "current_price_verified": false
+    },
+    "live_size": "Mini",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
+  },
+  {
+    "id": "live-crayfish-standart-kg",
+    "title": "Живые раки «Standart»",
+    "category": "Живые раки",
+    "price": 3790,
+    "unit": "за кг",
+    "weight": "30–50 г/шт.",
+    "description": "Живые раки «Standart». Вес одного рака 30–50 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/live-company-1.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "Standart",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2186101/",
+      "kind": "company_listing",
+      "current_price_verified": false
+    },
+    "live_size": "Standart",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
+  },
+  {
+    "id": "live-crayfish-maxi-kg",
+    "title": "Живые раки «Maxi»",
+    "category": "Живые раки",
+    "price": 4190,
+    "unit": "за кг",
+    "weight": "50–70 г/шт.",
+    "description": "Живые раки «Maxi». Вес одного рака 50–70 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/company-20261111-0.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "Maxi",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://yandex.com/maps/org/213608255711/",
+      "kind": "company_card_photo",
+      "current_price_verified": false
+    },
+    "live_size": "Maxi",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
+  },
+  {
+    "id": "live-crayfish-mega-kg",
+    "title": "Живые раки «Mega»",
+    "category": "Живые раки",
+    "price": 4790,
+    "unit": "за кг",
+    "weight": "70–90 г/шт.",
+    "description": "Живые раки «Mega». Вес одного рака 70–90 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/live-company-3.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "Mega",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2186103/",
+      "kind": "company_listing",
+      "current_price_verified": false
+    },
+    "live_size": "Mega",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
+  },
+  {
+    "id": "live-crayfish-xxl-kg",
+    "title": "Живые раки «XXL»",
+    "category": "Живые раки",
+    "price": 5190,
+    "unit": "за кг",
+    "weight": "90–110 г/шт.",
+    "description": "Живые раки «XXL». Вес одного рака 90–110 г/шт.. Выберите количество от 0,5 кг. Живыми для домашней варки.",
+    "image": "menu/live-company-4.jpg",
+    "image_url": "",
+    "source_url": "https://yandex.com/maps/org/rakovar/123873756504/",
+    "badge": "XXL",
+    "stock": 99,
+    "price_verified": 0,
+    "stock_confirmed": 0,
+    "price_on_request": 0,
+    "created_at": "",
+    "evidence": [
+      {
+        "source": "yandex_company_menu",
+        "checked_at": "2026-11-11",
+        "source_stale": true
+      }
+    ],
+    "photo_evidence": {
+      "source": "https://www.ds76.ru/goods/2186104/",
+      "kind": "company_listing",
+      "current_price_verified": false
+    },
+    "live_size": "XXL",
+    "source_stale": true,
+    "requires_admin_price_confirmation": true
   }
 ]

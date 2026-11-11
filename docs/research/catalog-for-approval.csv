@@ -49,7 +49,7 @@ sauce-creamy-garlic,Соусы,Соус сливочно-чесночный,90,�
 sauce-sweet-chili,Соусы,Соус кисло-сладкий чили,60,за порцию,50 мл,0,eda7,menu/menu-8a25b1deb22f.jpg,нет
 sauce-ketchup,Соусы,Кетчуп,60,за порцию,50 г,0,eda7,menu/menu-5f67fe7349de.jpg,нет
 sauce-cheese,Соусы,Соус сырный,60,за порцию,50 г,0,eda7,menu/menu-99fbb6d38014.jpg,нет
-edible-bouquet-request,Подарки,Съедобный букет из морепродуктов,,по запросу,,1,vk_index_secondary,menu/illustration-gift.svg,нет
+edible-bouquet-request,Подарки,Съедобный букет из морепродуктов,,по запросу,,1,vk_index_secondary,menu/company-20261111-photos-027.jpg,нет
 live-crayfish-request,Живые раки,Живые раки — подбор по размеру,,по запросу,,1,vk_index_secondary,menu/live-company-1.jpg,нет
 frozen-seafood-request,Деликатесы,Замороженные морепродукты — подбор по наличию,,по запросу,,1,vk_index_secondary,menu/illustration-fish.svg,нет
 fresh-murmansk-trout,Сезонное,Северная форель свежая,,по запросу,,1,vk_index_secondary,menu/illustration-fish.svg,нет
@@ -68,3 +68,8 @@ smoked-fish-request,Рыба,Рыба копчёная,,по запросу,,1,v
 scallop-request,Деликатесы,Морской гребешок обжаренный,,по запросу,,1,vk_index_secondary,menu/illustration-scallop.svg,нет
 octopus-request,Деликатесы,Щупальца осьминога,,по запросу,,1,vk_index_secondary,menu/illustration-octopus.svg,нет
 crayfish-cooking-kit,Живые раки,Набор для варки раков,,по запросу,,1,vk_index_secondary,menu/illustration-crayfish.svg,нет
+live-crayfish-mini-kg,Живые раки,Живые раки «Mini»,3190,за кг,15–30 г/шт.,0,yandex_company_menu,menu/live-company-0.jpg,нет
+live-crayfish-standart-kg,Живые раки,Живые раки «Standart»,3790,за кг,30–50 г/шт.,0,yandex_company_menu,menu/live-company-1.jpg,нет
+live-crayfish-maxi-kg,Живые раки,Живые раки «Maxi»,4190,за кг,50–70 г/шт.,0,yandex_company_menu,menu/company-20261111-0.jpg,нет
+live-crayfish-mega-kg,Живые раки,Живые раки «Mega»,4790,за кг,70–90 г/шт.,0,yandex_company_menu,menu/live-company-3.jpg,нет
+live-crayfish-xxl-kg,Живые раки,Живые раки «XXL»,5190,за кг,90–110 г/шт.,0,yandex_company_menu,menu/live-company-4.jpg,нет

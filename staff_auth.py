@@ -24,20 +24,20 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 ROLE_PERMISSIONS = {
     "owner": {"*"},
-    "admin": {"shell", "dashboard.read", "orders.read", "orders.write", "catalog.read", "catalog.write", "promotions.read", "promotions.write", "games.read", "games.write", "content.read", "content.write", "content.publish", "integrations.read", "integrations.manage", "analytics.read", "loyalty.read", "loyalty.write", "settings.read", "settings.write", "audit.read", "staff.manage"},
-    "store_manager": {"shell", "dashboard.read", "orders.read", "orders.write", "catalog.read", "catalog.write", "promotions.read", "games.read", "loyalty.read", "settings.read"},
+    "admin": {"shell", "inventory.write", "customers.read", "customers.write", "dashboard.read", "orders.read", "orders.write", "catalog.read", "catalog.write", "promotions.read", "promotions.write", "games.read", "games.write", "content.read", "content.write", "content.publish", "integrations.read", "integrations.manage", "analytics.read", "loyalty.read", "loyalty.write", "settings.read", "settings.write", "audit.read", "staff.manage"},
+    "store_manager": {"shell", "inventory.write", "customers.read", "customers.write", "dashboard.read", "orders.read", "orders.write", "catalog.read", "catalog.write", "promotions.read", "games.read", "loyalty.read", "settings.read"},
     "catalog_manager": {"shell", "catalog.read", "catalog.write"},
-    "warehouse_operator": {"shell", "catalog.read"},
-    "order_manager": {"shell", "orders.read", "orders.write", "catalog.read"},
+    "warehouse_operator": {"shell", "catalog.read", "inventory.write"},
+    "order_manager": {"shell", "customers.read", "orders.read", "orders.write", "catalog.read"},
     "marketing_manager": {"shell", "promotions.read", "promotions.write", "games.read", "games.write", "content.read", "content.write", "integrations.read", "loyalty.read", "loyalty.write", "analytics.read"},
     "content_editor": {"shell", "content.read", "content.write", "catalog.read"},
     "courier": {"shell"},
-    "customer_support": {"shell", "orders.read", "catalog.read"},
+    "customer_support": {"shell", "orders.read", "catalog.read", "customers.read"},
     "finance_analyst": {"shell", "dashboard.read", "orders.read", "analytics.read", "loyalty.read"},
     "partner": {"shell"},
 }
 PRIVILEGED_ROLES = {"owner", "admin"}
-SHOPPER_SESSION_KEYS = {"guest_id", "max_guest_id", "max_user_id", "max_auth_date", "public_csrf"}
+SHOPPER_SESSION_KEYS = {"guest_id", "max_guest_id", "max_user_id", "max_auth_date", "public_csrf", "customer_token"}
 
 # An unknown endpoint is denied even for owners. New routes must be reviewed and
 # entered here; role='owner' is not a bypass around an unclassified route.

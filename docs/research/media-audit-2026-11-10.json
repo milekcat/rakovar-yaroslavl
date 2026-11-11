@@ -640,6 +640,258 @@
       "status": "reviewed_live_crayfish_company_listing",
       "rights_status": "requires_company_approval",
       "source_url": "https://www.ds76.ru/goods/2186104/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/2816622/2a00000174bb308c619a11250e4dbf97f70e/XXL_height",
+      "file": "static/images/menu/company-20261111-0.jpg",
+      "bytes": 181053,
+      "sha256": "7dd3129cbea470638f6bb66145a9505a0b62c9c408579b2d91799863abc6ad01",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/2701879/2a00000174bb33c6a7f75f06013036821691/XXL_height",
+      "file": "static/images/menu/company-20261111-1.jpg",
+      "bytes": 102639,
+      "sha256": "725ee41a33942ec35c06d2cb21eee1861f59cb72289e03f8564d2b9a8a43ec73",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/2805836/2a00000174bb3121ff706125338334e6092c/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-002.jpg",
+      "bytes": 126999,
+      "sha256": "0a252c98c25c61b42575b88f3fcb264c4caf6f959eaef6c5df3e346480a7ae40",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/20756808/2a0000019f8f577e021051334ff75f5a91cc/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-004.jpg",
+      "bytes": 169412,
+      "sha256": "8e0d0123a5a3568b90188e6f443e60a93b3e9a8ab82ca8f98f7cbce98bfd7046",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/18134764/2a0000019e7e59af5e50250424aad50b311c/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-005.jpg",
+      "bytes": 209366,
+      "sha256": "406763cfba4d7d1d535d6d5fec0aeffc81fc2e0ba9e8102d89529d94f3daa19f",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/19532714/2a0000019daa8add2c488eac9ad1458f9790/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-006.jpg",
+      "bytes": 139210,
+      "sha256": "6a7ef0fc9ae4d5c11b4f98871cfb31eb8a1bd104dd71722be3c78ffc770d6fcf",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/17765111/2a0000019daa8adc872d35bd4c3b52781671/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-007.jpg",
+      "bytes": 202131,
+      "sha256": "203eacfe9557b91cd285551a9c5432eb5a1e05278f5b06118d3aabc8a428fc91",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/18111423/2a0000019b9870a8dd424af60c5162f031fd/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-008.jpg",
+      "bytes": 199724,
+      "sha256": "3948a6d5c92660fb818762abad3e3995beff88f8e96f2f966dac85137ee8730e",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/16874425/2a0000019b9870a900484dbe057dc5c66b23/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-009.jpg",
+      "bytes": 227678,
+      "sha256": "6acc28208d9268fab9d103c8f62d00a8d916567f1027e52ca52594bf30e581ae",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/5097807/2a0000018fba2599295683f82dd4140fe638/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-010.jpg",
+      "bytes": 32600,
+      "sha256": "da72e21de97823e680b74b22df8d6ccfd809ee5bfa2071291ddc8b8106abcc91",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/6406681/2a00000181012ebf98c91c879aefde72e6bb/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-011.jpg",
+      "bytes": 237137,
+      "sha256": "04b657d9c3a1ac7c129979a853c9041950a58986596e809ab1da348ce2ac4762",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/16483787/2a0000019b986aeb9997221a35e0b8896e2b/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-012.jpg",
+      "bytes": 226300,
+      "sha256": "1a019d94f276e9441112e53467c18b0f18cce455deab6e92a80586d8be975715",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/9691438/2a0000018c19760fd6748739428356be3828/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-013.jpg",
+      "bytes": 178057,
+      "sha256": "73832d4aa66b182d468135853e3bdf4968fa8da36b65e9a93232dac6b7ba4b72",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/5509094/2a000001810130ab253cf79f3c52ce3975c8/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-014.jpg",
+      "bytes": 75835,
+      "sha256": "da63b18f0ee91b4d27e4d9f5cfe4301324535417a711ddf3a8ab64e462bde50c",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/6222916/2a00000181012d187755642fe934b6236d07/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-015.jpg",
+      "bytes": 67283,
+      "sha256": "7591924cc6b99b232b9a836278c28283678f9bfb9295349321afe3661c260ebd",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/15437010/2a00000197dfe1b566ff6432d80e776522d3/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-017.jpg",
+      "bytes": 240428,
+      "sha256": "ce2f425690960e48285cadac1514129ba8deebb8061cd50b4891624a4b36a94b",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/13611210/2a00000192e5ff5a8a8b32b85fee6a6b327b/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-018.jpg",
+      "bytes": 199988,
+      "sha256": "1743a37852970edc5fd26969f38a4710a1da4a2cacdf542c9545911933234eee",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/15037708/2a000001953d5ffdec7bc96d213eeaf2b5a2/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-019.jpg",
+      "bytes": 114042,
+      "sha256": "597516b4b6dd5bb5282776463ead650b7f6aa558b8ac2015296f79e089f453fb",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/5098140/2a00000181dfdc640a510d5d742453f11d40/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-020.jpg",
+      "bytes": 278284,
+      "sha256": "43801f2d1f648b3ec92e8915757c3b717fe54502ab8a527a2032a6589b25fcdc",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/14376766/2a000001945a1694df58b071d495eed03c89/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-021.jpg",
+      "bytes": 135613,
+      "sha256": "6f8ada54c7046978753a93fd24dfee648d206aac346802617f73858402fd2fb3",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/16264361/2a0000019b986ae5747c42b185eea5266d8c/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-022.jpg",
+      "bytes": 181132,
+      "sha256": "7a6b56161b5c215b3c5821fa697843d592c906fa5373c127d49c5728f45243c4",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/17765342/2a0000019daa8adc7dc10758fc52681cede2/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-023.jpg",
+      "bytes": 200606,
+      "sha256": "fb9be8abf6a3855563bf45649eb39ef064b0682daa0e19841754183fae9b2cf4",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/20856454/2a0000019f8f57c32cdaa0bd1a674b71a17a/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-025.jpg",
+      "bytes": 131150,
+      "sha256": "21512aa013e5550fde55b57023e3117a87c8bd71ce79ad5716820f6721171415",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/213608255711/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/6236523/2a00000181012cb74ec78a9b94bdcffa7f10/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-027.jpg",
+      "bytes": 216319,
+      "sha256": "9ad3ab0f7412d643298628efaba891a41534cf25471e752d6172d577d323105b",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/16130837/2a0000019b986ae58a014d7e001c4f37cb69/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-028.jpg",
+      "bytes": 180426,
+      "sha256": "7e7641148dc755a970d7afae8f362c5c54546b8288f5d97874f2c7f0f8d44655",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/18147375/2a0000019b986ae634e2208c43802441b9df/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-030.jpg",
+      "bytes": 174219,
+      "sha256": "60d6e2f9d511d14ce7dd362ba9d6e3ae5c5b7a18dca6a8a8019222edd362479c",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/6302373/2a000001810131f7f1b2d753c627a534fd90/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-031.jpg",
+      "bytes": 60805,
+      "sha256": "38b2fe692ac84c1bdc5571d2e360f458eb06bc7e9404d991be7ae66cf321ac65",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
+    },
+    {
+      "url": "https://avatars.mds.yandex.net/get-altay/5307539/2a00000181012edd6ae4b0c670d1798c19dc/XXL_height",
+      "file": "static/images/menu/company-20261111-photos-032.jpg",
+      "bytes": 173705,
+      "sha256": "61157ad21651b42a11c904c8419227c8a3d2297b36a8a6dd2e9ec1cd95667442",
+      "status": "reviewed_company_card_photo",
+      "rights_status": "requires_company_approval",
+      "source_url": "https://yandex.com/maps/org/rakovar/123873756504/"
     }
   ]
 }

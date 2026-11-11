@@ -56,7 +56,7 @@ app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE="Lax",
     SESSION_COOKIE_SECURE=os.environ.get("COOKIE_SECURE", "true").lower() == "true",
-    MAX_CONTENT_LENGTH=256 * 1024,
+    MAX_CONTENT_LENGTH=3 * 1024 * 1024,
     PERMANENT_SESSION_LIFETIME=dt.timedelta(hours=12),
 )
 ADMIN_PASSWORD_HASH = os.environ.get("ADMIN_PASSWORD_HASH", "")
@@ -75,8 +75,8 @@ SAMPLE_PRIZES = [
 ]
 
 SAMPLE_PROMOTIONS = [
-    {"code":"WELCOME10","title":"Знакомство с РАКОВАРЪ","description":"Пример скидки для первого заказа.","discount_type":"percent","discount_value":10,"min_order":1500,"max_uses":100,"active":1},
-    {"code":"SEA300","title":"Морской бонус","description":"Пример скидки 300 ₽ при заказе от 2 500 ₽.","discount_type":"fixed","discount_value":300,"min_order":2500,"max_uses":50,"active":1},
+    {"code":"WELCOME10","title":"Знакомство с РАКОВАРЪ","description":"Скидка 10% на блюда при заказе от 1 500 ₽.","discount_type":"percent","discount_value":10,"min_order":1500,"max_uses":100,"active":1},
+    {"code":"SEA300","title":"Морской бонус","description":"Скидка 300 ₽ на блюда при заказе от 2 500 ₽.","discount_type":"fixed","discount_value":300,"min_order":2500,"max_uses":50,"active":1},
 ]
 
 SAMPLE_CONTESTS = [
@@ -114,7 +114,7 @@ def public_catalog_products(c: sqlite3.Connection) -> list[dict]:
         if is_non_brand_product(product):
             continue
         seed = metadata.get(product['id'], {})
-        for key in ('live_size_options', 'preparation_options', 'photo_evidence', 'ingredients', 'allergens'):
+        for key in ('live_size_options', 'preparation_options', 'photo_evidence', 'ingredients', 'allergens', 'live_size', 'source_stale', 'requires_admin_price_confirmation'):
             if key in seed: product[key] = seed[key]
         result.append(product)
     return result
@@ -146,7 +146,7 @@ def init_db() -> None:
                           description=excluded.description,image=excluded.image,badge=excluded.badge,
                           image_url=excluded.image_url,source_url=excluded.source_url,weight_label=excluded.weight_label,
                           price_on_request=excluded.price_on_request
-                        WHERE products.price_verified=0 AND products.stock_confirmed=0""",
+                        WHERE products.price_verified=0 AND products.stock_confirmed=0 AND products.id NOT IN (SELECT product_id FROM shop_catalog_overrides)""",
                         (p['id'],p['title'],p['category'],p['price'],p['unit'],p['stock'],p['description'],p['image'],p['badge'],NOW(),p['image_url'],p['source_url'],0,0,p['weight'],p['price_on_request']))
                 c.execute("UPDATE products SET active=0 WHERE id IN ('crayfish-classic','seafood-platter','shrimp-tiger','crayfish-bouquet','seafood-gift')")
                 for retired_id in RETIRED_UNVERIFIED_IDS:
@@ -157,6 +157,9 @@ def init_db() -> None:
                     if is_non_brand_product(dict(legacy_row)):
                         c.execute("UPDATE products SET active=0 WHERE id=?", (legacy_row["id"],))
                 c.execute("UPDATE promotions SET ticket_reward=1 WHERE code IN ('WELCOME10','SEA300') AND ticket_reward=0")
+                c.execute("UPDATE promotions SET description='Скидка 10% на блюда при заказе от 1 500 ₽.' WHERE code='WELCOME10' AND description='Пример скидки для первого заказа.'")
+                c.execute("UPDATE promotions SET description='Скидка 300 ₽ на блюда при заказе от 2 500 ₽.' WHERE code='SEA300' AND description='Пример скидки 300 ₽ при заказе от 2 500 ₽.'")
+                c.execute("UPDATE prizes SET partner='РАКОВАРЪ' WHERE id='prize-sauce' AND partner='Партнёрский приз'")
                 c.execute("UPDATE contests SET ticket_reward=1 WHERE id='sea-evening' AND ticket_reward=0")
                 c.execute("INSERT OR REPLACE INTO site_settings(setting_key,setting_value,updated_at) VALUES('catalog_seed_version',?,?)", (CATALOG_VERSION, NOW()))
         if DEMO_MODE and c.execute("SELECT COUNT(*) FROM prizes").fetchone()[0] == 0:
@@ -238,7 +241,7 @@ def csrf_token() -> str:
 
 def csrf_valid() -> bool:
     supplied = request.headers.get("X-CSRF-Token") or json_body().get("csrf_token") or request.form.get("csrf_token")
-    expected = session.get("admin_csrf") if (request.path.startswith("/admin") or request.path.startswith("/api/admin")) else session.get("public_csrf")
+    expected = session.get("admin_csrf") if (request.path.startswith("/admin") or request.path.startswith("/api/admin") or request.endpoint in ("admin_login", "admin_login_post")) else session.get("public_csrf")
     return bool(supplied and expected and hmac.compare_digest(str(supplied), str(expected)))
 
 
@@ -380,6 +383,11 @@ def qualify_referral_for_paid_order(c: sqlite3.Connection, order: sqlite3.Row) -
 
 def resolve_guest_id(value: Any = None) -> str:
     """Bind anonymous visitor IDs to this browser session; MAX identity wins."""
+    customer_token = session.get("customer_token")
+    if customer_token and globals().get("store"):
+        guest, authenticated = store.identity()
+        if authenticated:
+            return guest
     max_guest = session.get("max_guest_id")
     if max_guest:
         return clean_guest_id(max_guest)
@@ -498,7 +506,9 @@ def security_headers(resp):
     resp.headers["X-Frame-Options"] = "DENY"
     resp.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     resp.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-    resp.headers["Cache-Control"] = "no-store" if request.path.startswith("/api/") or "/admin" in request.path else "public, max-age=300"
+    private_page=request.path.startswith(('/api/','/admin','/team/','/account'))
+    resp.headers["Cache-Control"] = "no-store" if private_page else "public, max-age=300"
+    if request.path.startswith(('/admin','/team/','/account')):resp.headers['X-Robots-Tag']='noindex, nofollow'
     resp.headers["Content-Security-Policy"] = "default-src 'self' https: data:; script-src 'self' https://st.max.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https: data:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
     return resp
 
@@ -526,6 +536,7 @@ def storefront():
 
 
 @app.get("/admin/login")
+@app.get("/team/rakovar-control/login")
 def admin_login():
     with connect_db() as c:
         configured = bool(ADMIN_PASSWORD_HASH or c.execute("SELECT 1 FROM staff_accounts LIMIT 1").fetchone())
@@ -540,6 +551,7 @@ def admin_login():
 
 
 @app.post("/admin/login")
+@app.post("/team/rakovar-control/login")
 def admin_login_post():
     if not csrf_valid():
         session["admin_csrf"] = secrets.token_urlsafe(32)
@@ -952,7 +964,12 @@ def admin_dashboard():
 @admin_required
 def admin_orders():
     with connect_db() as c:
-        return jsonify([dict(r) for r in c.execute("SELECT * FROM orders ORDER BY created_at DESC LIMIT 200")])
+        rows=[dict(r) for r in c.execute("SELECT * FROM orders ORDER BY created_at DESC LIMIT 200")]
+        details={r['id']:r for r in store.private_orders(c,staff=True)}
+        for row in rows:
+            if row['id'] in details:
+                row.update(details[row['id']])
+        return jsonify(rows)
 
 
 @app.patch("/api/admin/orders/<order_id>")
@@ -960,7 +977,7 @@ def admin_orders():
 def admin_order_update(order_id):
     require_csrf()
     status = str(json_body().get("status", ""))
-    allowed = {"demo_received", "confirmed", "paid", "preparing", "ready", "completed", "cancelled"}
+    allowed = {"received", "demo_received", "confirmed", "paid", "preparing", "ready", "completed", "cancelled"}
     if status not in allowed:
         abort(400)
     with connect_db() as c:
@@ -1024,6 +1041,7 @@ def admin_order_update(order_id):
                     if reward and adjust_tickets(c, beneficiary, -reward, reason, source_type, order_id, {"reversed_order":order_id}):
                         reversed_tickets += reward
                 c.execute("UPDATE referral_attributions SET status='reversed' WHERE referred_guest_id=?", (order["guest_id"],))
+        store.after_status(c, order, previous, status)
         audit(c, "update_status", "order", order_id, {"status":status,"tickets_awarded":awarded,"tickets_reversed":reversed_tickets})
         c.execute("INSERT INTO order_status_history(id,order_id,previous_status,new_status,actor,created_at) VALUES(?,?,?,?,?,?)",
                   (secrets.token_hex(16), order_id, previous, status, staff_access.actor(), dt.datetime.now(dt.timezone.utc).isoformat()))
@@ -1065,7 +1083,7 @@ def admin_product_create():
     source_url = str(d.get("source_url", "")).strip()
     price_on_request = 1 if d.get("price_on_request") in (1, True, "1", "true", "on") else 0
     if image not in {"opt_hero.svg","opt_crayfish.svg","opt_prawns.svg","opt_platter.svg","opt_bouquet.svg"}: abort(400)
-    if image_url and not image_url.startswith("https://"): abort(400)
+    if image_url and not (image_url.startswith("https://") or re.fullmatch(r"/media/[a-f0-9]{32}|/static/images/menu/[A-Za-z0-9_-]+\.(?:jpg|png|webp)",image_url)): abort(400)
     if source_url and not source_url.startswith("https://"): abort(400)
     if is_non_brand_product({"title":title,"category":category,"description":d.get("description",""),"image":image,"image_url":image_url}):
         abort(400, description="unsupported_catalog_item")
@@ -1098,7 +1116,7 @@ def admin_product_update(product_id):
     for key in ("image_url","source_url","weight_label"):
         if key in d:
             value = str(d[key]).strip()
-            if key in {"image_url","source_url"} and value and not value.startswith("https://"): abort(400)
+            if key in {"image_url","source_url"} and value and not (value.startswith("https://") or key=="image_url" and re.fullmatch(r"/media/[a-f0-9]{32}|/static/images/menu/[A-Za-z0-9_-]+\.(?:jpg|png|webp)",value)): abort(400)
             fields[key] = value[:500]
     if "image" in d:
         if d["image"] not in {"opt_hero.svg","opt_crayfish.svg","opt_prawns.svg","opt_platter.svg","opt_bouquet.svg"}: abort(400)
@@ -1113,6 +1131,7 @@ def admin_product_update(product_id):
             abort(400, description="unsupported_catalog_item")
         cur=c.execute("UPDATE products SET "+",".join(f"{k}=?" for k in fields)+" WHERE id=?",(*fields.values(),product_id))
         if not cur.rowcount: abort(404)
+        c.execute('INSERT INTO shop_catalog_overrides(product_id,fields_json,updated_at) VALUES(?,?,?) ON CONFLICT(product_id) DO UPDATE SET fields_json=excluded.fields_json,updated_at=excluded.updated_at',(product_id,json.dumps(list(fields)),NOW()))
         audit(c,"update","product",product_id,fields)
     return jsonify(status="updated")
 
@@ -1144,21 +1163,29 @@ def admin_promotion_create():
 @admin_required
 def admin_promotion_update(code):
     require_csrf(); d=json_body()
-    fields={}
-    if "active" in d:
-        try: fields["active"]=int(d["active"])
-        except (TypeError,ValueError): abort(400)
-        if fields["active"] not in (0,1): abort(400)
-    if "ticket_reward" in d:
-        try: fields["ticket_reward"]=int(d["ticket_reward"])
-        except (TypeError,ValueError): abort(400)
-        if not 0<=fields["ticket_reward"]<=20: abort(400)
-    if not fields: abort(400)
+    allowed={'title','description','discount_type','discount_value','min_order','max_uses','active','starts_at','ends_at','ticket_reward'}
+    if not d or set(d)-allowed:abort(400)
     with connect_db() as c:
-        cur=c.execute("UPDATE promotions SET "+",".join(f"{k}=?" for k in fields)+" WHERE code=?",(*fields.values(),code.upper()))
-        if not cur.rowcount: abort(404)
-        audit(c,"update","promotion",code,fields)
-    return jsonify(status="updated")
+        old=c.execute("SELECT * FROM promotions WHERE code=?",(code.upper(),)).fetchone()
+        if not old:abort(404)
+        fields={}
+        for key,value in d.items():
+            if key in {'discount_value','min_order','max_uses','active','ticket_reward'}:
+                if not isinstance(value,int) or isinstance(value,bool):abort(400)
+            elif not isinstance(value,str) or len(value)>500:abort(400)
+            fields[key]=value
+        merged={**dict(old),**fields}
+        if merged['discount_type'] not in {'percent','fixed'} or not 0<=merged['discount_value']<=1000000:abort(400)
+        if merged['discount_type']=='percent' and merged['discount_value']>90:abort(400)
+        if merged['active'] not in (0,1) or not 0<=merged['ticket_reward']<=20 or not 0<=merged['min_order']<=1000000 or not 0<=merged['max_uses']<=1000000:abort(400)
+        for key in ('starts_at','ends_at'):
+            if merged[key]:
+                try:dt.date.fromisoformat(merged[key])
+                except ValueError:abort(400,description='invalid_promotion_date')
+        if merged['starts_at'] and merged['ends_at'] and merged['starts_at']>merged['ends_at']:abort(400,description='invalid_promotion_dates')
+        c.execute("UPDATE promotions SET "+','.join(k+'=?' for k in fields)+" WHERE code=?",(*fields.values(),code.upper()))
+        audit(c,'update','promotion',code,fields)
+    return jsonify(status='updated')
 
 
 @app.get("/api/admin/prizes")
@@ -1548,6 +1575,7 @@ def health():
     return jsonify(status="ok", service="rakovar-preview", mode="demo" if DEMO_MODE else "production_guarded",
                    database="postgresql" if os.environ.get("DATABASE_URL", "").strip() else "sqlite",
                    ordering="demo_only" if DEMO_MODE else "disabled_until_integrations_verified",
+                   store_checkout="payment_on_receipt",
                    max_bot_token_configured=bool(active_max_token()), max_miniapp_url_configured=bool(MAX_MINIAPP_URL),
                    integrations="credentials_are_not_connection_proof")
 
@@ -1564,7 +1592,9 @@ def readiness():
 
 @app.errorhandler(400)
 def bad_request(error):
-    return jsonify(error="bad_request", message=getattr(error, "description", "Некорректный запрос")), 400
+    description=str(getattr(error,'description','Некорректный запрос'))
+    code=description if re.fullmatch(r'[a-z][a-z0-9_]{2,100}',description) else 'bad_request'
+    return jsonify(error=code, message=description),400
 
 
 @app.errorhandler(404)
@@ -1592,6 +1622,18 @@ def http_error(error):
 from connections import Connections
 connections = Connections(app, connect_db, staff_access, require_csrf, audit)
 connections.register(admin_required)
+
+from shop import Store
+import sys
+store = Store(sys.modules[__name__])
+store.register()
+
+@app.before_request
+def hide_legacy_staff_entry():
+    if request.content_length and request.content_length>256*1024 and request.endpoint!='store_media_upload':abort(413)
+    if os.environ.get('HIDE_STAFF_ENTRY','false').lower()=='true' and request.path in ('/admin','/admin/login'):
+        if not staff_access.current_principal():abort(404)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))

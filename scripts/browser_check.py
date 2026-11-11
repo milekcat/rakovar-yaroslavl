@@ -57,7 +57,7 @@ def main():
         env.update(DEMO_MODE="true", COOKIE_SECURE="false", DATABASE_URL="",
                    SQLITE_DB_PATH=str(database), ADMIN_PASSWORD_HASH=password_hash,
                    FLASK_SECRET_KEY=secrets.token_hex(32), INTEGRATION_ENCRYPTION_KEY=secrets.token_hex(32), STAFF_REQUIRE_MFA="false",
-                   MAX_BOT_TOKEN="", MAX_ADMIN_USER_ID="", MAX_WEBHOOK_SECRET="")
+                   MAX_BOT_TOKEN="", MAX_ADMIN_USER_ID="", MAX_WEBHOOK_SECRET="", HIDE_STAFF_ENTRY="true")
         with (Path(temporary) / "server.log").open("w+") as log:
             server = subprocess.Popen([args.app_python, "-m", "gunicorn", "app:app", "--bind",
                 f"127.0.0.1:{port}", "--workers", "1", "--threads", "4", "--timeout", "60"],
@@ -84,8 +84,8 @@ def main():
                     expect(page.locator("#wheel svg")).to_be_visible()
                     assert page.locator(".hero-visual > img").get_attribute("src").startswith("/static/images/menu/")
                     expect(page.locator(".hero-visual > img")).to_have_attribute("alt", "Сет «4 моря»: раки, креветки, лангустины и мидии")
-                    assert page.locator("#products .product-card").count() == 12
-                    assert len(context.request.get(origin + "/api/bootstrap").json()["products"]) == 69
+                    assert page.locator("#products .product-card").count() == 24
+                    assert len(context.request.get(origin + "/api/bootstrap").json()["products"]) == 74
                     expect(page.locator("#products .product-card h3").first).to_have_text("Средние варёные раки")
                     assert page.locator(".demo-banner").count() == 0
                     assert page.locator("#products .product-source").count() == 0
@@ -94,9 +94,13 @@ def main():
                     for image in page.locator("#products img").all():
                         assert image.get_attribute("src").startswith("/static/images/menu/")
                     page.locator('[data-category="all"]').click()
-                    expect(page.locator("#products .product-card")).to_have_count(12)
+                    expect(page.locator("#products .product-card")).to_have_count(24)
+                    assert page.locator('a[href^="/admin"]').count()==0
+                    assert context.request.get(origin+'/admin/login').status==404
+                    page.locator('#products [data-favorite]').first.click()
+                    expect(page.locator('#products [data-favorite]').first).to_have_attribute('aria-pressed','true')
                     page.screenshot(path=str(output / "storefront-desktop.png"))
-                    checks.append("Storefront loads 69 sourced items, seafood hero, per-product sauces and clean customer copy")
+                    checks.append("Storefront shows 59 priced photo cards, five live sizes, favorites and no staff links")
 
                     # Lose the successful response AFTER the server commits it.
                     sent_keys = []
@@ -132,29 +136,57 @@ def main():
                     page.locator('#liveWeight').fill('3')
                     expect(page.locator('#liveSummary')).to_contain_text('3')
                     page.locator('#studioSearch').fill('кревет')
-                    assert 3 < page.locator('#builderItems .studio-product').count() < 69
+                    assert 3 < page.locator('#builderItems .studio-product').count() < 59
                     page.locator('#studioSearch').fill('')
                     page.locator('#sets').scroll_into_view_if_needed()
                     page.screenshot(path=str(output / 'set-studio-desktop.png'))
-                    checks.append('Five live-crayfish sizes switch source photos and all 69 builder items remain searchable')
+                    checks.append('Five live-crayfish sizes switch source photos and all 59 priced builder items remain searchable')
+                    page.locator('#studioBudget').fill('10000')
+                    page.locator('#autoBuildSet').click()
+                    assert page.locator('#builderSelection .studio-selection-line').count()>=2
+                    expect(page.locator('#studioPlate img').first).to_be_visible()
+                    page.locator('#clearBuildSet').click()
+                    expect(page.locator('#addBundle')).to_be_disabled()
                     page.locator('[data-studio-preset="two"]').click()
-                    expect(page.locator("#builderItems .studio-product")).to_have_count(69)
+                    expect(page.locator("#builderItems .studio-product")).to_have_count(59)
+                    page.locator('#bundleInquiry').click()
                     page.locator("#addBundle").click()
                     page.locator("#customerName").fill("Synthetic Browser Customer")
                     page.locator("#customerPhone").fill("+79990000000")
                     page.locator('input[name="delivery"][value="pickup"]').check()
                     page.locator("#consent").check()
-                    with page.expect_response(lambda response: response.url.endswith("/api/orders") and response.status == 201) as order:
+                    order_keys=[]
+                    def lose_order_once(route):
+                        order_keys.append(route.request.headers.get('idempotency-key'))
+                        if len(order_keys)==1:
+                            result=route.fetch();assert result.status==201;route.abort()
+                        else:route.continue_()
+                    page.route('**/api/store/orders',lose_order_once)
+                    page.locator('#checkoutForm button[type="submit"]').click()
+                    expect(page.locator('#checkoutRetry')).not_to_be_empty()
+                    expect(page.locator('#checkoutForm button[type="submit"]')).to_be_enabled()
+                    with page.expect_response(lambda response: response.url.endswith("/api/store/orders") and response.status == 201) as order:
                         page.locator('#checkoutForm button[type="submit"]').click()
                     order_id = order.value.json()["order_id"]
+                    assert len(order_keys)==2 and order_keys[0]==order_keys[1]
+                    page.unroute('**/api/store/orders')
                     expect(page.locator("#orderDone")).to_be_visible()
                     page.locator("#orderDone").click()
                     with sqlite3.connect(database) as c:
-                        row = c.execute("SELECT contact_label,customer_label,address_label FROM orders WHERE id=?", (order_id,)).fetchone()
-                        assert row == ("НЕ СОХРАНЕНО", "ДЕМО-ПОКУПАТЕЛЬ", "НЕ СОХРАНЕНО")
-                    checks.append("Set builder and checkout create one synthetic order without storing contacts")
+                        row=c.execute("SELECT contact_label,customer_label,address_label FROM orders WHERE id=?",(order_id,)).fetchone()
+                        assert row == ('ЗАШИФРОВАНО','Покупатель','ЗАШИФРОВАНО')
+                        private=c.execute('SELECT ciphertext FROM shop_order_details WHERE order_id=?',(order_id,)).fetchone()[0]
+                        assert '+79990000000' not in private and 'Synthetic Browser Customer' not in private
+                    page.goto(origin + '/account')
+                    expect(page.locator('#customerOrders')).to_contain_text(order_id)
+                    assert page.locator('a[href^="/admin"]').count()==0
+                    page.screenshot(path=str(output / 'customer-account-orders.png'))
+                    page.locator('[data-account-tab="favorites"]').click()
+                    expect(page.locator('#customerSavedSets [data-set-buy]')).to_have_count(1)
+                    expect(page.locator('#customerSavedSets [data-set-buy]')).to_be_enabled()
+                    checks.append('Store checkout stores encrypted contacts and customer sees exactly their own order timeline')
 
-                    page.goto(origin + "/admin/login")
+                    page.goto(origin + "/team/rakovar-control/login")
                     page.locator('[name="username"]').fill("owner")
                     page.locator('[name="password"]').fill(password)
                     page.locator('button[type="submit"]').click()
@@ -187,6 +219,38 @@ def main():
                     page.locator("#closeOrderHistory").click()
                     checks.append("Manager changes persisted statuses, blocks edits during delayed refresh, reverses tickets and sees order history")
 
+                    page.locator('[data-tab="inventory"]').click()
+                    stockrow=page.locator('[data-inventory-row="live-crayfish-standart-kg"]')
+                    expect(stockrow).to_be_visible()
+                    stockrow.locator('[data-stock-quantity]').fill('5')
+                    stockrow.locator('[data-stock-tracked]').check()
+                    stockrow.locator('[data-stock-reason]').fill('Синтетическая инвентаризация')
+                    with page.expect_response(lambda response:'/api/admin/store/inventory/live-crayfish-standart-kg' in response.url and response.request.method=='PUT') as stock:
+                        stockrow.locator('[data-stock-save]').click()
+                    assert stock.value.status==200
+                    inventory=context.request.get(origin+'/api/admin/store/inventory').json()
+                    assert next(p for p in inventory if p['product_id']=='live-crayfish-standart-kg')['quantity_milli']==5000
+                    page.screenshot(path=str(output/'inventory-admin.png'))
+                    page.locator('[data-tab="customers"]').click()
+                    expect(page.locator('#customersWorkspace [data-customer]').first).to_be_visible()
+                    page.locator('[data-tab="store"]').click()
+                    expect(page.locator('#storeOperationsForm')).to_be_visible()
+                    page.locator('#storeOperationsForm [name="cashback_percent"]').fill('7')
+                    with page.expect_response(lambda response:response.url.endswith('/api/admin/store/settings') and response.request.method=='PUT') as rules:
+                        page.locator('#storeOperationsForm button[type="submit"]').click()
+                    assert rules.value.status==200
+                    assert context.request.get(origin+'/api/admin/store/settings').json()['cashback_percent']==7
+                    page.locator('[data-tab="promotions"]').click()
+                    promotion=page.locator('[data-promotion-edit="WELCOME10"]')
+                    promotion.locator('[name="discount_value"]').fill('15')
+                    with page.expect_response(lambda response:response.url.endswith('/api/admin/promotions/WELCOME10') and response.request.method=='PATCH') as edited:
+                        promotion.locator('button[type="submit"]').click()
+                    assert edited.value.status==200
+                    page.locator('[data-tab="notifications"]').click()
+                    expect(page.locator('#notificationsWorkspace')).to_contain_text(order_id)
+                    page.screenshot(path=str(output/'notifications-admin.png'))
+                    checks.append('Staff controls tracked stock, customer profiles, cashback rules, full promotions and order notifications')
+
                     page.locator('[data-tab="integrations"]').click()
                     expect(page.locator('.connection-card')).to_have_count(3)
                     expect(page.locator('[data-connection-form="max"] input[name="bot_token"]')).to_have_attribute('type','password')
@@ -211,7 +275,7 @@ def main():
                     editor_context = browser.new_context(viewport={"width": 1280, "height": 900}, reduced_motion="reduce")
                     editor = editor_context.new_page()
                     editor.on("pageerror", lambda error: console_errors.append(str(error)))
-                    editor.goto(origin + "/admin/login")
+                    editor.goto(origin + "/team/rakovar-control/login")
                     editor.locator('[name="username"]').fill("e2e_editor")
                     editor.locator('[name="password"]').fill(staff_password)
                     editor.locator('button[type="submit"]').click()

@@ -15,6 +15,7 @@ from flask import abort, current_app, request
 
 
 ORDER_TRANSITIONS = {
+    "received": {"confirmed", "paid", "cancelled"},
     "demo_received": {"confirmed", "paid", "cancelled"},
     "confirmed": {"paid", "cancelled"},
     "paid": {"preparing", "ready", "completed", "cancelled"},

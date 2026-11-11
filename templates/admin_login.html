@@ -11,7 +11,7 @@
     <a class="brand" href="/"><img class="brand-logo" src="{{ url_for('static',filename='images/menu/menu-c07998b1a9b2.png') }}" alt="РАКОВАРЪ"><span><b>РАКОВАРЪ</b><small>административная система</small></span></a>
     <div class="eyebrow">ЗАЩИЩЁННЫЙ ДОСТУП</div><h1>Вход для команды</h1>
     {% if error %}<div class="alert" role="alert">{{ error }}</div>{% endif %}
-    <form method="post" action="/admin/login">
+    <form method="post" action="{{ url_for('admin_login_post') }}">
       <input type="hidden" name="csrf_token" value="{{ csrf_token or '' }}">
       <label>Логин сотрудника<input name="username" value="owner" maxlength="64" required autocomplete="username" autocapitalize="none" spellcheck="false" autofocus></label>
       <label>Пароль<input type="password" name="password" maxlength="256" required autocomplete="current-password"></label>
