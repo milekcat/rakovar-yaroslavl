@@ -1,7 +1,10 @@
 import importlib
+import hashlib
 import json
 import sys
 import uuid
+from html.parser import HTMLParser
+from urllib.parse import parse_qs, urlsplit
 
 import pytest
 from werkzeug.security import generate_password_hash
@@ -48,6 +51,36 @@ def test_health_and_demo_bootstrap(client):
     assert data['demo_mode'] is True
     assert len(data['products']) >= 5
     assert data['visitor']['tickets'] == 3
+
+
+def test_pages_use_content_versioned_scripts_and_styles(client, app_module):
+    class AssetLinks(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.urls = []
+
+        def handle_starttag(self, tag, attributes):
+            attrs = dict(attributes)
+            if tag == 'script' and attrs.get('src', '').startswith('/static/'):
+                self.urls.append(attrs['src'])
+            if tag == 'link' and attrs.get('rel') == 'stylesheet' and attrs.get('href', '').startswith('/static/'):
+                self.urls.append(attrs['href'])
+
+    # Version URLs must also be present on the separately opened account and
+    # staff pages; otherwise a returning browser can mix incompatible releases.
+    for page in ('/', '/account', '/team/rakovar-control/login'):
+        response = client.get(page)
+        assert response.status_code == 200
+        parser = AssetLinks()
+        parser.feed(response.text)
+        assert parser.urls
+        for url in parser.urls:
+            parts = urlsplit(url)
+            filename = parts.path.removeprefix('/static/')
+            expected = hashlib.sha256((app_module.BASE_DIR / 'static' / filename).read_bytes()).hexdigest()[:16]
+            assert parse_qs(parts.query)['v'] == [expected]
+            assert client.get(url).status_code == 200
+        assert response.headers['Cache-Control'] in ('no-cache', 'no-store')
 
 def test_quote_uses_server_prices_and_coupon(client):
     data = client.post('/api/checkout/quote', json={
