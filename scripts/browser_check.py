@@ -154,6 +154,7 @@ def main():
                     page.locator("#customerName").fill("Synthetic Browser Customer")
                     page.locator("#customerPhone").fill("+79990000000")
                     page.locator('input[name="delivery"][value="pickup"]').check()
+                    expect(page.locator('#deliveryAddressGroup')).to_be_hidden()
                     page.locator("#consent").check()
                     order_keys=[]
                     def lose_order_once(route):

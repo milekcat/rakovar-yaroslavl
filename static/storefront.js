@@ -287,7 +287,7 @@
       if (e.shiftKey && (document.activeElement === first || !panel.contains(document.activeElement))) { e.preventDefault(); last?.focus(); }
       else if (!e.shiftKey && (document.activeElement === last || !panel.contains(document.activeElement))) { e.preventDefault(); first?.focus(); }
     });
-    $$('input[name="delivery"]').forEach(el => el.addEventListener('change', () => { state.delivery=el.value; quoteCart(); }));
+    $$('input[name="delivery"]').forEach(el => el.addEventListener('change', () => { state.delivery=el.value; updateCart(); }));
     $('#bonusSpend').addEventListener('input',()=>quoteCart());
     $('#applyPromo').addEventListener('click', () => { state.promo=$('#promoCode').value.trim().toUpperCase(); quoteCart(); track('promo_applied',{code:state.promo}); });
     $('#checkoutForm').addEventListener('submit', async e => {
