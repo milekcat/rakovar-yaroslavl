@@ -25,6 +25,8 @@
 | **GOV-08** — Актуальные правила работы | Зоны, слоты, тарифы, адрес/время, минимумы, доставка весовых товаров, самовывоз | GOV-01 | Одни правила действуют в checkout/админке/легальных страницах |
 | **QA-01** — Ревизия безопасности/модели угроз | Точки входа, сторонние provider callbacks, upload, wallet, session, consent | GOV-02 | Отчёт, remediation owners и negative test cases до реальных денег |
 
+| **SECURITY-01** — Контроль рисков новых публичных маршрутов | Threat model UI/CMS/media/account/payment: XSS/IDOR/SSR F/PII/redaction и таблица владельцев рисков | QA-01 | Нет незакрытых критичных угроз при разрешении публикации |
+
 ### P1
 
 | ID | Результат | Зависимости | Проверка приёмки |
@@ -63,6 +65,14 @@
 | **ROLE-01** — RBAC scopes для сотрудников | Разграничить owner/manager/storefront/social/courier/finance/partner и объектные права | GOV-02 | E2E IDOR/authorization suite PASS |
 | **LEGAL-01** — Юридические страницы и редактор версий | Оферта, соглашение, ПДн, согласия, сертификаты, правила клуба, возвраты | GOV-01,GOV-02,CMS-01 | У заказа сохранена версия документа, обязательную ссылку нельзя удалить |
 | **QA-02** — Migration & regression suite | Postgres migrations, legacy compatibility, browser regression, data integrity | ORD-01,ACC-01,CAT-01 | Existing paid orders, bonus entries, guest/max history survive upgrade |
+
+| **UX-01** — Целостная многостраничная UX навигация | Глобальные header/footer, слои навигации, 404, breadcrumbs, переходы/сохранение состояния | WEB-01,WEB-02 | Нет dead links, broken back/forward, не одна секция-лендинг, работа с клавиатурой |
+| **UX-02** — Мобильная адаптация всех ролей | Mobile-first catalogue, customer account, checkout, staff, courier, safe areas/keyboard | UX-01,WEB-02 | 320–1440px без перекрытий, сценарии заказа/админки/курьера доступны |
+| **COPY-01** — Редакционный стандарт живого русского текста | Микротексты ошибок и пустых состояний, голос бренда, проверка claims, редактирование | WEB-01,CMS-01 | Ни одной AI-воды, технического статуса или выдуманного факта в публичном UI |
+| **COPY-02** — Проверенный контент по всем разделам | Настоящие фото, состав/условия, история, контакты, отзывы и соцпубликации с источниками | COPY-01,CAT-01,REP-01 | Все public claims источниково подтверждены/согласованы; нет чужих фото и технических заглушек |
+| **COPY-03** — Автоскан публичного UI на мусор и ложные CTA | Test public DOM/text for placeholders, runtime error keys, dead links, fake unavailable actions | COPY-01,WEB-01 | Скан + ручная редакторская приёмка, нет нарушений без объяснения |
+| **MEDIA-01** — Проверка медиа и постоянного хранения | MIME sniffing, quota, EXIF stripping, 20-photo upload, object storage and restart retrieval | CAT-03,GOV-07 | Привязанные фото остаются после рестарта, опасные файлы отвергаются |
+| **QA-UI-01** — Responsive/E2E/visual регрессия и screenshots | Реальные скриншоты и browser tests по матрице, 320/375/430/768/1024/1366/1440 | UX-01,UX-02,COPY-03,WEB-03 | 0 blocker, реальные evidence, никаких фиктивных screenshots |
 
 ### P2
 
