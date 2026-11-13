@@ -1,6 +1,6 @@
 # РАКОВАРЪ 2.0 — реализационный backlog
 
-**Дата:** 13.11.2026. **Статус:** PROPOSED; задачи **не реализованы** этим документационным PR. Полная система требований: [MASTER_SPEC_2026-11-13.md](MASTER_SPEC_2026-11-13.md). Схема для автоматизации — [implementation-backlog-2026-11-13.csv](implementation-backlog-2026-11-13.csv).
+**Дата:** 13.11.2026. **Статус:** PROPOSED; задачи **не реализованы** этим документационным PR. Полная система требований: [MASTER_SPEC_2026-11-13.md](MASTER_SPEC_2026-11-13.md). Схема для автоматизации — [implementation-backlog-2026-11-13.csv](implementation-backlog-2026-11-13.csv). Исполнение по [EXECUTION_PLAN_2026-11-13.md](EXECUTION_PLAN_2026-11-13.md), приёмка по [QA_TEST_MATRIX_2026-11-13.md](QA_TEST_MATRIX_2026-11-13.md), стартовая задача — [GEMINI_4_ARGON_TASK_PROMPT_2026-11-13.md](GEMINI_4_ARGON_TASK_PROMPT_2026-11-13.md).
 
 ## Правила исполнения
 
