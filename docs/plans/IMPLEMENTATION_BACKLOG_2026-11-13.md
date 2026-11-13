@@ -24,8 +24,7 @@
 | **GOV-07** — Фото/права/техкарты | Компания подтверждает фото/видео, калибры, состав, аллергены, вес, условия хранения, сезонные партии | GOV-04,GOV-05 | Никакой чужой фотографии и неподтверждённого пищевого свойства в опубликованном SKU |
 | **GOV-08** — Актуальные правила работы | Зоны, слоты, тарифы, адрес/время, минимумы, доставка весовых товаров, самовывоз | GOV-01 | Одни правила действуют в checkout/админке/легальных страницах |
 | **QA-01** — Ревизия безопасности/модели угроз | Точки входа, сторонние provider callbacks, upload, wallet, session, consent | GOV-02 | Отчёт, remediation owners и negative test cases до реальных денег |
-
-| **SECURITY-01** — Контроль рисков новых публичных маршрутов | Threat model UI/CMS/media/account/payment: XSS/IDOR/SSR F/PII/redaction и таблица владельцев рисков | QA-01 | Нет незакрытых критичных угроз при разрешении публикации |
+| **SECURITY-01** — Контроль рисков новых публичных маршрутов | Threat model UI/CMS/media/account/payment: XSS/IDOR/SSRF/PII/redaction и таблица владельцев рисков | QA-01 | Нет незакрытых критичных угроз при разрешении публикации |
 
 ### P1
 
@@ -65,7 +64,6 @@
 | **ROLE-01** — RBAC scopes для сотрудников | Разграничить owner/manager/storefront/social/courier/finance/partner и объектные права | GOV-02 | E2E IDOR/authorization suite PASS |
 | **LEGAL-01** — Юридические страницы и редактор версий | Оферта, соглашение, ПДн, согласия, сертификаты, правила клуба, возвраты | GOV-01,GOV-02,CMS-01 | У заказа сохранена версия документа, обязательную ссылку нельзя удалить |
 | **QA-02** — Migration & regression suite | Postgres migrations, legacy compatibility, browser regression, data integrity | ORD-01,ACC-01,CAT-01 | Existing paid orders, bonus entries, guest/max history survive upgrade |
-
 | **UX-01** — Целостная многостраничная UX навигация | Глобальные header/footer, слои навигации, 404, breadcrumbs, переходы/сохранение состояния | WEB-01,WEB-02 | Нет dead links, broken back/forward, не одна секция-лендинг, работа с клавиатурой |
 | **UX-02** — Мобильная адаптация всех ролей | Mobile-first catalogue, customer account, checkout, staff, courier, safe areas/keyboard | UX-01,WEB-02 | 320–1440px без перекрытий, сценарии заказа/админки/курьера доступны |
 | **COPY-01** — Редакционный стандарт живого русского текста | Микротексты ошибок и пустых состояний, голос бренда, проверка claims, редактирование | WEB-01,CMS-01 | Ни одной AI-воды, технического статуса или выдуманного факта в публичном UI |
