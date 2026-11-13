@@ -172,6 +172,12 @@ Admin IA: **Дашборд; Заказы; Доставка; Клиенты; Ка
 - Security QA: IDOR, horizontal escalation, insecure direct access to admin, SSRF на media URLs, malicious SVG, upload decompression bombs, gift card enumeration, replay/double-spend, provider webhook forgery, external auth account takeover, duplicate orders.
 - Не размещать секреты в репо, маскировать PII в технических журналах, тесты проводить на фиктивных данных.
 
+### 9A. Собственность домена и владельческие доступы
+
+Домен и сервер будут оформлены на владельца РАКОВАРЪ в REG.RU. Для команды необходим отдельный технический доступ с минимальными правами, без передачи пароля владельца: DNS/SSH, Flask/Python/PostgreSQL, HTTPS, фоновые задачи, резервные копии, объектное хранилище медиа, mailbox и SMS provider. До покупки обычного хостинга проверить его техническую пригодность: при необходимости VPS/облако.
+
+Внешние подключения не объединять одним «API токеном»: VK Group и VK ID OAuth, MAX Business Bot и подписанный Mini App, Yandex ID и отдельно merchant export Яндекс Еда, YooKassa и отдельно 54-ФЗ/касса, почта/чеки и SMS OTP. Перед live платёж/ПДн/публикацией нужны подтверждённый продавец, юридические основания, тестовые вызовы и договоры. Условия, роли и секреты: [INTEGRATIONS_OWNER_ACCESS_MATRIX_2026-11-13.md](INTEGRATIONS_OWNER_ACCESS_MATRIX_2026-11-13.md).
+
 ## 10. Android / MAX Mini App / PWA
 
 Одна бизнес-логика backend. MAX Mini App отображает mobile UI в контейнере MAX и использует подтверждённую `initData`-сессию; Android-приложение использует поддерживаемые flow VK/Yandex/телефон, deep links, secure session storage, уведомления при разрешении и собственную процедуру обновлений.
