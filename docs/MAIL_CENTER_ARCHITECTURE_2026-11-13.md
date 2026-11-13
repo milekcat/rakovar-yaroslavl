@@ -39,6 +39,7 @@
 - Канонический тестовый адрес: `https://стильный-квадрат.рф` (корень домена, с единым redirect для `www`, если он будет включён).
 - Origin для основного staging-контура: приложение на ПК владельца, опубликованное через Cloudflare Tunnel. Не открывать входящие порты роутера и не публиковать Docker-порт напрямую в интернет; Tunnel должен вести только на локальный origin приложения.
 - Cloudflare zone уже активирована по последнему скриншоту владельца, но подключение Tunnel, hostname route и фактическая доступность приложения ещё не подтверждены.
+- Официальная инструкция Cloudflare Tunnel: https://developers.cloudflare.com/tunnel/get-started/; локальная конфигурация: https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/configuration-file/; схема DNS CNAME: https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/dns/.
 - По ранее показанному DNS-снимку A/AAAA-записи домена и служебных имён указывали на `31.31.196.17`; перед настройкой Tunnel нужно повторно сверить текущую зону, сохранить экспорт и только затем заменить конфликтующие web-записи. Не удалять почтовые/verification TXT и иные неизвестные записи без проверки.
 - Render preview URL можно оставить как дополнительную среду для резервной проверки, но он не является каноническим staging origin после завершения настройки тестового домена.
 - Отдельная PostgreSQL БД staging, не содержащая копию реальных контактов.
