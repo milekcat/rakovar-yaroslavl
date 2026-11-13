@@ -33,7 +33,8 @@ Flask, PostgreSQL / SQLite и vanilla JS. Заказы с оплатой при 
 
 - [Аудит VK Market, Яндекс Еды, clients.site, Chibbis, источников, компании и цен](docs/research/MULTICHANNEL_COMPANY_CATALOG_AUDIT_2026-11-13.md).
 - [Реестр 74 SKU для утверждения](docs/research/sku-approval-register-2026-11-13.csv) и [карта проверенных/непроверенных площадок](docs/research/platform-source-register-2026-11-13.json).
-- [Единое продуктовое и техническое ТЗ](docs/plans/MASTER_SPEC_2026-11-13.md), [backlog из 53 задач](docs/plans/IMPLEMENTATION_BACKLOG_2026-11-13.md), [поля экспорта и подтверждения компании](docs/plans/OWNER_APPROVAL_AND_EXPORT_CHECKLIST_2026-11-13.md).
+- [Отзывы и активные соцсети — UX, проверенные рейтинги и правила модерации](docs/plans/REVIEWS_AND_COMMUNITY_SPEC_2026-11-13.md).
+- [Единое продуктовое и техническое ТЗ](docs/plans/MASTER_SPEC_2026-11-13.md), [backlog из 56 задач](docs/plans/IMPLEMENTATION_BACKLOG_2026-11-13.md), [поля экспорта и подтверждения компании](docs/plans/OWNER_APPROVAL_AND_EXPORT_CHECKLIST_2026-11-13.md).
 
 **Это проектирование, а не изменение магазина.** Ассортимент не является полным без прямых выгрузок владельца. Все цены/остатки из внешних площадок не подтверждены компанией. Прежде чем подключать платежи и реальные персональные данные, необходимо проверить продавца, 54-ФЗ/152-ФЗ и размещение данных.
 
