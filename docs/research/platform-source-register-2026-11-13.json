@@ -14,7 +14,14 @@
       "currentness": "2026-11-11/13",
       "evidence": "https://www.tmaks.ru/c/vk/rakovar_yar",
       "facts": "Description; 9+ years (brand claim); >=20 sets and >=30 bouquet designs (brand claims); Komsomolskaya 14 and phone; 2026-11-09 move and seasonal posts",
-      "next": "Official owner-authorized VK wall, photos, products and market export; confirm rights"
+      "next": "Official owner-authorized VK wall, photos, products and market export; confirm rights",
+      "social_snapshot": {
+        "as_of": "2026-11-12",
+        "followers_telemax_third_party": 42633,
+        "posts_30d_telemax_third_party": 18,
+        "source_url": "https://www.tmaks.ru/c/vk/rakovar_yar",
+        "note": "External monitor, not official owner VK analytics"
+      }
     },
     {
       "id": "vk-market",
@@ -64,7 +71,15 @@
       "currentness": "2026-11-13",
       "evidence": "docs/research/chibbis-menu-2026-11-10.json; freshly viewed public menu 2026-11-13",
       "facts": "27 stored offers; some duplicated in categories; contradictory 1 g units; platform-specific delivery 200 RUB from 1000 RUB",
-      "next": "Reconcile each source_id to canonical SKU and obtain owner-approved direct price"
+      "next": "Reconcile each source_id to canonical SKU and obtain owner-approved direct price",
+      "reviews_snapshot": {
+        "as_of": "2026-11-13",
+        "rating_value": 4.4,
+        "rating_max": 5,
+        "displayed_count": 27,
+        "source_url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+        "note": "27 displayed next to rating; not independently proven 27 long-form reviews"
+      }
     },
     {
       "id": "eda7",
@@ -94,7 +109,16 @@
       "currentness": "2026-11-13",
       "evidence": "Recent public search result",
       "facts": "Komsomolskaya Street 14; phone +7 920 118 57 87; website rakovar76.clients.site; user ratings are platform data",
-      "next": "Confirm business card ownership, hours, exact address, contact data"
+      "next": "Confirm business card ownership, hours, exact address, contact data",
+      "reviews_snapshot": {
+        "as_of": "2026-11-13",
+        "rating_value": 4.7,
+        "rating_max": 5,
+        "ratings_count": 272,
+        "text_reviews_count": 122,
+        "source_url": "https://yandex.com/maps/org/213608255711/",
+        "note": "Current address Komsomolskaya 14, not to be combined with old Yandex place IDs"
+      }
     },
     {
       "id": "yandex-maps-old",
