@@ -58,6 +58,14 @@ git diff --check
 
 **Gate-0:** сохранность текущего сайта и БД, план бэкапа/restore, известны owner-blockers. Отсутствие owner exports **не мешает** строить инфраструктуру и UX на синтетических данных, но запрещает заявлять о полном каталоге.
 
+### 1A. REG.RU и внешние учётные записи — до конфигурирования интеграций
+
+Владелец оформляет домен и хостинг/сервер на своём аккаунте, технический исполнитель получает ограниченные права через официальное partial-management (где возможно) и/или SSH user с ключом, но не основной пароль. До покупки тарифа зафиксировать Python/Flask/PostgreSQL, workers, persistent media, RAM/disk, inbound HTTPS webhook, backup, юридический регион хранения ПД.
+
+Отдельные провайдеры: VK Group Token и VK ID OAuth app; MAX Business bot и Mini App HTTPS URL; Yandex ID OAuth; YooKassa test merchant + correct seller + касса; SMTP/email receipts + SMS OTP; maps/geocoding, object media, analytics и owner-approved partner APIs. Минимальные scopes, раздельные test/prod keys, настройка callbacks только после реального домена. При отсутствии доступа — `BLOCKED`, независимые задачи продолжаются.
+
+[Подробная проверяемая матрица доступов и порядок интеграции](INTEGRATIONS_OWNER_ACCESS_MATRIX_2026-11-13.md). Нельзя автоматом подключать реальную оплату, публиковать токены в PR или переносить PII на неподтвержденную инфраструктуру.
+
 ## 2. Этап 1 — фундамент многостраничного UI (P1)
 
 **Deps:** WEB-01/02, UX-01/02, COPY-01/02/03, QA-UI-01.
