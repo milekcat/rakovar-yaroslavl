@@ -29,6 +29,19 @@ Flask, PostgreSQL / SQLite и vanilla JS. Заказы с оплатой при 
 
 Предоставленный `rakovar76.clients.site` во время проверки показывал `SiteUnavailable`. Не удалось гарантированно получить всё меню с этого адреса. Доказательства переноса и происхождение фотографий: [источники](docs/research/store-source-2026-11-11.json), [медиа](docs/research/store-assets-2026-11-11.json), [каталог на согласование](docs/research/catalog-for-approval.csv).
 
+## Исследование площадок и новый план (13.11.2026)
+
+- [Аудит VK Market, Яндекс Еды, clients.site, Chibbis, источников, компании и цен](docs/research/MULTICHANNEL_COMPANY_CATALOG_AUDIT_2026-11-13.md).
+- [Реестр 74 SKU для утверждения](docs/research/sku-approval-register-2026-11-13.csv) и [карта проверенных/непроверенных площадок](docs/research/platform-source-register-2026-11-13.json).
+- [Стандарт качества сайта, редактура и запрет технических/AI-заглушек](docs/plans/CONTENT_UX_QUALITY_GATE_2026-11-13.md).
+- [Интеграции и доступы владельца: REG.RU, VK, MAX, Яндекс, ЮKassa, касса, SMS, email и резервные копии](docs/plans/INTEGRATIONS_OWNER_ACCESS_MATRIX_2026-11-13.md).
+- [Полный исполняемый промпт для Gemini 4 Argon в режиме Tasks](docs/plans/GEMINI_4_ARGON_TASK_PROMPT_2026-11-13.md).
+- [Пошаговый план реализации агентом Gemini Argon](docs/plans/EXECUTION_PLAN_2026-11-13.md) и [матрица E2E/UX/security-проверок](docs/plans/QA_TEST_MATRIX_2026-11-13.md).
+- [Отзывы и активные соцсети — UX, проверенные рейтинги и правила модерации](docs/plans/REVIEWS_AND_COMMUNITY_SPEC_2026-11-13.md).
+- [Единое продуктовое и техническое ТЗ](docs/plans/MASTER_SPEC_2026-11-13.md), [backlog из 64 задач](docs/plans/IMPLEMENTATION_BACKLOG_2026-11-13.md), [поля экспорта и подтверждения компании](docs/plans/OWNER_APPROVAL_AND_EXPORT_CHECKLIST_2026-11-13.md).
+
+**Это проектирование, а не изменение магазина.** Ассортимент не является полным без прямых выгрузок владельца. Все цены/остатки из внешних площадок не подтверждены компанией. Прежде чем подключать платежи и реальные персональные данные, необходимо проверить продавца, 54-ФЗ/152-ФЗ и размещение данных.
+
 ## Локальный запуск
 
 1. Скопируйте `.env.example` в `.env`, задайте стабильные случайные `FLASK_SECRET_KEY` и `INTEGRATION_ENCRYPTION_KEY`, хеш `ADMIN_PASSWORD_HASH`. Не добавляйте `.env` в Git.
