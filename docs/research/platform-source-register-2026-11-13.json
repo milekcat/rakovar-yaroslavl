@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-11-13",
+  "language": "ru",
+  "scope": "Rakovar Yaroslavl ONLY",
+  "exhaustive": false,
+  "method": "Public search and directly fetched pages plus repository manifests; no owner-admin exports, no protected-site bypass",
+  "platforms": [
+    {
+      "id": "vk-community",
+      "url": "https://vk.ru/rakovar_yar",
+      "type": "company_social_channel",
+      "access": "SECONDARY_INDEX_ONLY",
+      "currentness": "2026-11-11/13",
+      "evidence": "https://www.tmaks.ru/c/vk/rakovar_yar",
+      "facts": "Description; 9+ years (brand claim); >=20 sets and >=30 bouquet designs (brand claims); Komsomolskaya 14 and phone; 2026-11-09 move and seasonal posts",
+      "next": "Official owner-authorized VK wall, photos, products and market export; confirm rights"
+    },
+    {
+      "id": "vk-market",
+      "url": "https://vk.ru/market-1227486?screen=group",
+      "type": "user_supplied_market",
+      "access": "DIRECT_FETCH_FAILED",
+      "currentness": "UNKNOWN",
+      "evidence": "User-supplied URL; historic VK post wall-1227486_248162 appears in existing store-source manifest",
+      "facts": "Cannot enumerate items or independently verify market owner/current catalog",
+      "next": "VK Market API export or accessible owner-provided screenshots/CSV; map owner group_id"
+    },
+    {
+      "id": "yandex-eda",
+      "url": "https://eda.yandex.ru/yaroslavl/r/rakovar_1695811054",
+      "type": "third_party_ordering",
+      "access": "DIRECT_FETCH_DISABLED",
+      "currentness": "UNKNOWN",
+      "evidence": "User-supplied link; https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/ is an independent *snapshot*, not Yandex's official API",
+      "facts": "Do not claim that prices in mirrors are live Yandex prices",
+      "next": "Owner Yandex Eda merchant export, real-time menu and order settings"
+    },
+    {
+      "id": "primary-site",
+      "url": "https://rakovar76.clients.site/",
+      "type": "company_linked_site",
+      "access": "DIRECT_FETCH_DISABLED",
+      "currentness": "2026-11-11 PREVIOUS_REPO_SNAPSHOT",
+      "evidence": "docs/research/store-source-2026-11-11.json",
+      "facts": "Old attempt saw SiteUnavailable 200 response in urllib; historic scrape captured company name, phone, Komsomolskaya 14, conflicting merchant INN",
+      "next": "Owner-provided export/database/catalog and catalog/category screenshots"
+    },
+    {
+      "id": "primary-crabs",
+      "url": "https://rakovar76.clients.site/filter-category/kraby",
+      "type": "primary_catalog_category",
+      "access": "DIRECT_FETCH_DISABLED",
+      "currentness": "UNKNOWN",
+      "evidence": "User-supplied link",
+      "facts": "No direct product enumeration or pricing verified",
+      "next": "Export all category trees and SKU/variants; distinguish crab species and preparation"
+    },
+    {
+      "id": "chibbis",
+      "url": "https://chibbis.ru/yar/restaurant/rakovar/menu",
+      "type": "live_marketplace_menu",
+      "access": "DIRECT_HTML_READ",
+      "currentness": "2026-11-13",
+      "evidence": "docs/research/chibbis-menu-2026-11-10.json; freshly viewed public menu 2026-11-13",
+      "facts": "27 stored offers; some duplicated in categories; contradictory 1 g units; platform-specific delivery 200 RUB from 1000 RUB",
+      "next": "Reconcile each source_id to canonical SKU and obtain owner-approved direct price"
+    },
+    {
+      "id": "eda7",
+      "url": "https://eda7.ru/yaroslavl/rest/rakovar-fnxcs/",
+      "type": "third_party_menu_snapshot",
+      "access": "DIRECT_HTML_READ",
+      "currentness": "LISTING_2026-10-08; read 2026-11-13",
+      "evidence": "docs/research/eda7-menu-2026-11-10.json",
+      "facts": "41 saved offers; obsolete address and merchant identity; historical prices",
+      "next": "Historical cross-check only; not release price source"
+    },
+    {
+      "id": "mirror-eda",
+      "url": "https://xn--80aafbg2bzayj.xn--p1ai/yaroslavl/restaurant/rakovar_367kr/",
+      "type": "unaffiliated_menu_mirror",
+      "access": "DIRECT_HTML_READ",
+      "currentness": "2026-10-21 indexed listing",
+      "evidence": "Public mirrored menu",
+      "facts": "Potentially wrong lobster price and historical address; not official Yandex Eda",
+      "next": "Use only as anomaly detector"
+    },
+    {
+      "id": "yandex-maps-current",
+      "url": "https://yandex.com/maps/org/213608255711/",
+      "type": "business_card",
+      "access": "SEARCH_INDEX_DATA",
+      "currentness": "2026-11-13",
+      "evidence": "Recent public search result",
+      "facts": "Komsomolskaya Street 14; phone +7 920 118 57 87; website rakovar76.clients.site; user ratings are platform data",
+      "next": "Confirm business card ownership, hours, exact address, contact data"
+    },
+    {
+      "id": "yandex-maps-old",
+      "url": "https://yandex.com/maps/org/rakovar/123873756504/",
+      "type": "historical_business_card",
+      "access": "SEARCH_INDEX_DATA",
+      "currentness": "2026-11-13",
+      "evidence": "Search result reports moved",
+      "facts": "Moved to Komsomolskaya 14; historic images/prices may be out of date",
+      "next": "Do not publish historic address; preserve old images only if rights granted"
+    },
+    {
+      "id": "ds76",
+      "url": "https://www.ds76.ru/firms/2185862/",
+      "type": "historical_company_directory",
+      "access": "DIRECT_HTML_READ",
+      "currentness": "~2021 HISTORIC",
+      "evidence": "Archived company profile and five product cards",
+      "facts": "Rеспубликанская 3/4 is old; crayfish mini/standart/maxi/mega prices historic",
+      "next": "Historical brand evidence only"
+    },
+    {
+      "id": "restaurantguru",
+      "url": "https://restaurantguru.ru/Rakovar-Yaroslavl",
+      "type": "third_party_review_photo_directory",
+      "access": "SEARCH_IMAGE_ONLY",
+      "currentness": "UNKNOWN",
+      "evidence": "Indexed example of company photo collage",
+      "facts": "Could support brand photo discovery; image reuse requires permission",
+      "next": "Verify photo ownership/consent before importing"
+    },
+    {
+      "id": "rakovar-preview",
+      "url": "https://rakovar-preview-0psh.onrender.com",
+      "type": "our_preview_app",
+      "access": "REPOSITORY_CONFIRMED; LIVE_RENDER_NOT_RETESTED_IN_THIS_AUDIT",
+      "currentness": "Release docs dated 2026-11-11",
+      "evidence": "README.md; docs/RELEASE_VERIFICATION_2026-11-11.md",
+      "facts": "59 priced public cards, 15 draft in current seed; this is NOT proof these are all merchant products",
+      "next": "Do not confuse preview catalog with merchant master data"
+    },
+    {
+      "id": "vk-procurement",
+      "url": "https://vk.ru/zakypkiyar",
+      "type": "separate_procurement_channel",
+      "access": "NOT_FETCHED",
+      "currentness": "UNKNOWN",
+      "evidence": "docs/COMPANY_RESEARCH_2026.md",
+      "facts": "Different group; goods must not be silently assigned to RAKOVARЪ",
+      "next": "Confirm legal relationship and specific cross-published offers"
+    },
+    {
+      "id": "historic-site-domain",
+      "url": "https://rakovar76.ru/",
+      "type": "historical_directory_domain",
+      "access": "NOT_VERIFIED",
+      "currentness": "UNKNOWN",
+      "evidence": "https://yaroslavl.yp.ru/list/moreprodukty/",
+      "facts": "One older listing used domain/address Pobedy 34; not verified as company's present official site",
+      "next": "Do not link publicly until owner confirms"
+    }
+  ],
+  "identity_conflicts": [
+    {
+      "field": "seller_inn",
+      "primary_site_snapshot": "760801923181",
+      "primary_site_ogrnip_snapshot": "317762700028792",
+      "eda7_seller_inn": "760303378712",
+      "eda7_seller_ogrnip": "324762700017711",
+      "status": "BLOCKED_NEEDS_LEGAL_OWNER_DOCUMENT",
+      "warning": "Do not guess who should appear on checkout, contract, 54-FZ receipt, YooKassa or footer"
+    }
+  ],
+  "publication_policy": "No prices, availability, composition, allergens, addresses, legal merchant data or media rights are merchant-verified in the existing 74-card seed"
+}
