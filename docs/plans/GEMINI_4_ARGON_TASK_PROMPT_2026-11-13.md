@@ -18,6 +18,7 @@
    - `docs/plans/IMPLEMENTATION_BACKLOG_2026-11-13.md` и `implementation-backlog-2026-11-13.csv`
    - `docs/plans/REVIEWS_AND_COMMUNITY_SPEC_2026-11-13.md`
    - `docs/plans/OWNER_APPROVAL_AND_EXPORT_CHECKLIST_2026-11-13.md`
+   - `docs/plans/INTEGRATIONS_OWNER_ACCESS_MATRIX_2026-11-13.md` (REG.RU, VK, MAX Business, Yandex ID, YooKassa, fiscal receipts, SMS, email, storage, least-privilege secrets)
    - `docs/research/MULTICHANNEL_COMPANY_CATALOG_AUDIT_2026-11-13.md`
    - `docs/research/sku-approval-register-2026-11-13.csv` и `platform-source-register-2026-11-13.json`
    - `README.md`, `docs/STORE_OPERATIONS_2026-11-11.md`, `docs/RELEASE_VERIFICATION_2026-11-11.md`.
