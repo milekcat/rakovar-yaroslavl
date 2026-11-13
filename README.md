@@ -34,6 +34,7 @@ Flask, PostgreSQL / SQLite и vanilla JS. Заказы с оплатой при 
 - [Аудит VK Market, Яндекс Еды, clients.site, Chibbis, источников, компании и цен](docs/research/MULTICHANNEL_COMPANY_CATALOG_AUDIT_2026-11-13.md).
 - [Реестр 74 SKU для утверждения](docs/research/sku-approval-register-2026-11-13.csv) и [карта проверенных/непроверенных площадок](docs/research/platform-source-register-2026-11-13.json).
 - [Стандарт качества сайта, редактура и запрет технических/AI-заглушек](docs/plans/CONTENT_UX_QUALITY_GATE_2026-11-13.md).
+- [Грант REG.Cloud — заявка, критерии, смета и будущая передача исключительных прав](docs/plans/REGCLOUD_GRANT_APPLICATION_AND_RIGHTS_2026-11-13.md).
 - [Интеграции и доступы владельца: REG.RU, VK, MAX, Яндекс, ЮKassa, касса, SMS, email и резервные копии](docs/plans/INTEGRATIONS_OWNER_ACCESS_MATRIX_2026-11-13.md).
 - [Полный исполняемый промпт для Gemini 4 Argon в режиме Tasks](docs/plans/GEMINI_4_ARGON_TASK_PROMPT_2026-11-13.md).
 - [Пошаговый план реализации агентом Gemini Argon](docs/plans/EXECUTION_PLAN_2026-11-13.md) и [матрица E2E/UX/security-проверок](docs/plans/QA_TEST_MATRIX_2026-11-13.md).
